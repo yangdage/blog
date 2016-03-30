@@ -64,6 +64,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2016/03/30/sublime-package-control/" class="article-date">
+  <time datetime="2016-03-30T09:44:32.044Z" itemprop="datePublished">2016-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/03/30/sublime-package-control/">Sublime下的Package Control</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
+<p>打开sublime，查看是否存在以下目录</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
+<p>如果没有，我们需要安装Package Control</p>
+<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
+<p>Sublime3:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure>
+<p>Sublime2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)<span class="keyword">else</span>None;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
+<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
+<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2016/03/30/sublime-package-control/" data-id="cimep6f2o0004q4qedi44ty65" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-sublime-package-control" data-title="Sublime下的Package Control" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+  
     <article id="post-vim-xml-format" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2016/03/30/vim-xml-format/" class="article-date">
@@ -102,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2016/03/30/vim-xml-format/" data-id="cimenthjp0004h4qebx92prnk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2016/03/30/vim-xml-format/" data-id="cimep6f2p0005q4qefbpdewot" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,7 +177,26 @@
   
 </article>
 
+<!--
 
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-vim-xml-format" data-title="vim下xml文件格式化" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
   
     <article id="post-nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -194,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2016/03/30/nsq-start/" data-id="cimenthje0001h4qeekptoiuk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2016/03/30/nsq-start/" data-id="cimep6f2n0003q4qejnkhqzze" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,7 +288,26 @@
   
 </article>
 
+<!--
 
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
   
     <article id="post-windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -237,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2016/03/30/windows-port-used/" data-id="cimenthjq0005h4qei7rxbfh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2016/03/30/windows-port-used/" data-id="cimep6f2p0006q4qehm6ht2zl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +350,26 @@
   
 </article>
 
+<!--
 
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-windows-port-used" data-title="windows下端口占用程序查询" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
   
     <article id="post-api-design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -330,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2016/03/28/api-design/" data-id="cimenthjo0003h4qe51l36cyx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/2016/03/28/api-design/" data-id="cimep6f2l0002q4qe8e7pd6dh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -338,7 +462,26 @@
   
 </article>
 
+<!--
 
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-api-design" data-title="API接口文档设计" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
   
 
 </section>
@@ -368,6 +511,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/2016/03/30/sublime-package-control/">Sublime下的Package Control</a>
+          </li>
         
           <li>
             <a href="/blog/2016/03/30/vim-xml-format/">vim下xml文件格式化</a>

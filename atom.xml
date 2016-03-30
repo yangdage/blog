@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Marks &amp; Notes</title>
+  
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-03-30T09:59:39.552Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>yangdage</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sublime下的Package Control</title>
+    <link href="http://yoursite.com/2016/03/30/sublime-package-control/"/>
+    <id>http://yoursite.com/2016/03/30/sublime-package-control/</id>
+    <published>2016-03-30T09:44:32.044Z</published>
+    <updated>2016-03-30T09:59:39.552Z</updated>
+    
+    <content type="html">&lt;p&gt;有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。&lt;/p&gt;
+&lt;p&gt;打开sublime，查看是否存在以下目录&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png&quot; alt=&quot;package control&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果没有，我们需要安装Package Control&lt;/p&gt;
+&lt;p&gt;通过快捷键 &lt;strong&gt;ctrl+`&lt;/strong&gt; 或者 &lt;strong&gt;View &amp;gt; Show Console&lt;/strong&gt; 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。&lt;/p&gt;
+&lt;p&gt;Sublime3:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import  urllib.request,os;pf=&lt;span class=&quot;string&quot;&gt;&#39;Package Control.sublime-package&#39;&lt;/span&gt;;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),&lt;span class=&quot;string&quot;&gt;&#39;wb&#39;&lt;/span&gt;).write(urllib.request.urlopen(&lt;span class=&quot;string&quot;&gt;&#39;http://sublime.wbond.net/&#39;&lt;/span&gt;+pf.replace(&lt;span class=&quot;string&quot;&gt;&#39; &#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;%20&#39;&lt;/span&gt;)).read())&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Sublime2:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import  urllib2,os;pf=&lt;span class=&quot;string&quot;&gt;&#39;Package Control.sublime-package&#39;&lt;/span&gt;;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;None;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),&lt;span class=&quot;string&quot;&gt;&#39;wb&#39;&lt;/span&gt;).write(urllib2.urlopen(&lt;span class=&quot;string&quot;&gt;&#39;http://sublime.wbond.net/&#39;&lt;/span&gt;+pf.replace(&lt;span class=&quot;string&quot;&gt;&#39; &#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;%20&#39;&lt;/span&gt;)).read());&lt;span class=&quot;built_in&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;Please restart Sublime Text to finish installation&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;重启sublime，通过快捷键&lt;strong&gt;ctrl+shift+p&lt;/strong&gt;打开命令面板，输入package，查看Package Control是否安装正常&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png&quot; alt=&quot;package control&quot;&gt;&lt;/p&gt;
+&lt;p&gt;出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。&lt;/p&gt;
+&lt;p&gt;打开sublime，查看是否存在以下目录&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.gith
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vim下xml文件格式化</title>
+    <link href="http://yoursite.com/2016/03/30/vim-xml-format/"/>
+    <id>http://yoursite.com/2016/03/30/vim-xml-format/</id>
+    <published>2016-03-30T03:22:51.159Z</published>
+    <updated>2016-03-30T09:37:04.549Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;1-打开需要格式化的文件&quot;&gt;&lt;a href=&quot;#1-打开需要格式化的文件&quot; class=&quot;headerlink&quot; title=&quot;1.打开需要格式化的文件&quot;&gt;&lt;/a&gt;1.打开需要格式化的文件&lt;/h3&gt;&lt;p&gt;使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。&lt;br&gt;现有一个如下的未格式化的文件：&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png&quot; alt=&quot;origin image&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-保存临时修改&quot;&gt;&lt;a href=&quot;#2-保存临时修改&quot; class=&quot;headerlink&quot; title=&quot;2.保存临时修改&quot;&gt;&lt;/a&gt;2.保存临时修改&lt;/h3&gt;&lt;p&gt;如果我们打开后有对文件进行编辑操作，需要保存所做的修改&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:w&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在命令模式下输入上面的命令，保存改动，不退出文件&lt;/p&gt;
+&lt;h3 id=&quot;3-启用自动缩进选项&quot;&gt;&lt;a href=&quot;#3-启用自动缩进选项&quot; class=&quot;headerlink&quot; title=&quot;3.启用自动缩进选项&quot;&gt;&lt;/a&gt;3.启用自动缩进选项&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:filetype indent on&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;4-设置文件类型&quot;&gt;&lt;a href=&quot;#4-设置文件类型&quot; class=&quot;headerlink&quot; title=&quot;4.设置文件类型&quot;&gt;&lt;/a&gt;4.设置文件类型&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; filetype=xml&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;5-全局格式化&quot;&gt;&lt;a href=&quot;#5-全局格式化&quot; class=&quot;headerlink&quot; title=&quot;5.全局格式化&quot;&gt;&lt;/a&gt;5.全局格式化&lt;/h3&gt;&lt;p&gt;回到文件头：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使用缩进（格式化）&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;==&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;格式化到文件尾:&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;G&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;6-格式化结果&quot;&gt;&lt;a href=&quot;#6-格式化结果&quot; class=&quot;headerlink&quot; title=&quot;6.格式化结果&quot;&gt;&lt;/a&gt;6.格式化结果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png&quot; alt=&quot;origin image&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-打开需要格式化的文件&quot;&gt;&lt;a href=&quot;#1-打开需要格式化的文件&quot; class=&quot;headerlink&quot; title=&quot;1.打开需要格式化的文件&quot;&gt;&lt;/a&gt;1.打开需要格式化的文件&lt;/h3&gt;&lt;p&gt;使用vim命令打开需要格式化的xml文件，html也属于xm
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>初识NSQ分布式实时消息架构</title>
+    <link href="http://yoursite.com/2016/03/30/nsq-start/"/>
+    <id>http://yoursite.com/2016/03/30/nsq-start/</id>
+    <published>2016-03-30T02:31:35.639Z</published>
+    <updated>2016-03-30T02:31:35.639Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;1-NSQ知识普及&quot;&gt;&lt;a href=&quot;#1-NSQ知识普及&quot; class=&quot;headerlink&quot; title=&quot;1.NSQ知识普及&quot;&gt;&lt;/a&gt;1.NSQ知识普及&lt;/h3&gt;&lt;p&gt;NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;https://github.com/nsqio/nsq&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩展，目前已有很多公司都是采用其作为自身企业内部的实时消息服务。而且它的灵活性很强，支持很多种协议。官方直接提供了拆箱可用的Go库和Python库。好，其他的就不废话了，随便搜索下NSQ相关的博文或者去NSQ的官方网站了解更详细的信息吧。&lt;/p&gt;
+&lt;h3 id=&quot;2-NSQ的四大组件&quot;&gt;&lt;a href=&quot;#2-NSQ的四大组件&quot; class=&quot;headerlink&quot; title=&quot;2.NSQ的四大组件&quot;&gt;&lt;/a&gt;2.NSQ的四大组件&lt;/h3&gt;&lt;p&gt;nsqlookupd：管理nsqd节点拓扑信息并提供最终一致性的发现服务的守护进程&lt;/p&gt;
+&lt;p&gt;nsqd：负责接收、排队、转发消息到客户端的守护进程，并且定时向nsqlookupd服务发送心跳&lt;/p&gt;
+&lt;p&gt;nsqadmin：nsq的web统计界面，可实时查看集群的统计数据和执行一些管理任务 &lt;/p&gt;
+&lt;p&gt;utilities：常见基础功能、数据流处理工具，如nsq_stat、nsq_tail、nsq_to_file、nsq_to_http、nsq_to_nsq、to_nsq &lt;/p&gt;
+&lt;h3 id=&quot;3-NSQ依赖&quot;&gt;&lt;a href=&quot;#3-NSQ依赖&quot; class=&quot;headerlink&quot; title=&quot;3.NSQ依赖&quot;&gt;&lt;/a&gt;3.NSQ依赖&lt;/h3&gt;&lt;h4 id=&quot;3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。&quot;&gt;&lt;a href=&quot;#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。&quot; class=&quot;headerlink&quot; title=&quot;3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。&quot;&gt;&lt;/a&gt;3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。&lt;/h4&gt;&lt;p&gt;（i）首先自然是去官网找到对应系统的较新较稳定的版本安装包，中文站地址：&lt;a href=&quot;http://golangtc.com/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://golangtc.com/download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;由于其官方地址在国外，下载速度可能比较慢，推荐使用本地下载的链接进行下载。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;wget http://golangtc.com/static/go/go1.5beta1.linux-amd64.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（ii）下载完安装包后解压并且复制到/usr/local/目录下&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tar zxvf go1.5beta1.linux-amd64.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv go /usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;（iii）GO环境变量配置&lt;/p&gt;
+&lt;p&gt;打开环境变量配置文件&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo vim /etc/profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后在文件的最后追加以下配置&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; GOROOT=/usr/&lt;span class=&quot;built_in&quot;&gt;local&lt;/span&gt;/go&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; GOPATH=\&lt;span class=&quot;variable&quot;&gt;$GOROOT&lt;/span&gt;/bin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; PATH=\&lt;span class=&quot;variable&quot;&gt;$PATH&lt;/span&gt;:\&lt;span class=&quot;variable&quot;&gt;$GOPATH&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;配置好环境变量后再让它马上生效&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;source&lt;/span&gt; /etc/profile&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;最后查看是否安装成功&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;go version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果控制台打印出了对应的版本号信息，那就恭喜你了，等等。。。别急，这才刚刚开始。&lt;/p&gt;
+&lt;h4 id=&quot;3-2-GIT：因为稍候需要从github上获取NSQ的安装文件&quot;&gt;&lt;a href=&quot;#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件&quot; class=&quot;headerlink&quot; title=&quot;3.2 GIT：因为稍候需要从github上获取NSQ的安装文件&quot;&gt;&lt;/a&gt;3.2 GIT：因为稍候需要从github上获取NSQ的安装文件&lt;/h4&gt;&lt;p&gt;直接命令安装就好&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum install git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;4-安装NSQ&quot;&gt;&lt;a href=&quot;#4-安装NSQ&quot; class=&quot;headerlink&quot; title=&quot;4.安装NSQ&quot;&gt;&lt;/a&gt;4.安装NSQ&lt;/h3&gt;&lt;p&gt;命令行直接执行下面的命令安装NSQ&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;go get github.com/kr/godep&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;go get github.com/bmizerany/assert&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;godep get github.com/bitly/nsq/...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;注：godev为GO的语言依赖管理包，assert为GO的测试框架，至于最后一个嘛，自己猜吧&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;到此，NSQ就安装好了，接下来就可以一起愉快的玩耍了&lt;/p&gt;
+&lt;h3 id=&quot;5-启动部署和测试&quot;&gt;&lt;a href=&quot;#5-启动部署和测试&quot; class=&quot;headerlink&quot; title=&quot;5.启动部署和测试&quot;&gt;&lt;/a&gt;5.启动部署和测试&lt;/h3&gt;&lt;p&gt;这节的内容就直接翻译了官网的原文了，有兴趣的可以自己去看下&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://nsq.io/overview/quick_start.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://nsq.io/overview/quick_start.html&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;5-1-打开一个终端，启动nsqlookupd&quot;&gt;&lt;a href=&quot;#5-1-打开一个终端，启动nsqlookupd&quot; class=&quot;headerlink&quot; title=&quot;5.1 打开一个终端，启动nsqlookupd&quot;&gt;&lt;/a&gt;5.1 打开一个终端，启动nsqlookupd&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nsqlookupd&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-2-再打开一个终端，启动nsq&quot;&gt;&lt;a href=&quot;#5-2-再打开一个终端，启动nsq&quot; class=&quot;headerlink&quot; title=&quot;5.2 再打开一个终端，启动nsq&quot;&gt;&lt;/a&gt;5.2 再打开一个终端，启动nsq&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nsqd --lookupd-tcp-address=127.0.0.1:4160&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-3-再打开一个终端，启动nsqadmin&quot;&gt;&lt;a href=&quot;#5-3-再打开一个终端，启动nsqadmin&quot; class=&quot;headerlink&quot; title=&quot;5.3 再打开一个终端，启动nsqadmin&quot;&gt;&lt;/a&gt;5.3 再打开一个终端，启动nsqadmin&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nsqadmin --lookupd-http-address=127.0.0.1:4161&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。&quot;&gt;&lt;a href=&quot;#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。&quot; class=&quot;headerlink&quot; title=&quot;5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。&quot;&gt;&lt;/a&gt;5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hello world 1&#39;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;http://127.0.0.1:4151/put?topic=test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。&quot;&gt;&lt;a href=&quot;#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。&quot; class=&quot;headerlink&quot; title=&quot;5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。&quot;&gt;&lt;/a&gt;5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nsq_to_file --topic=&lt;span class=&quot;built_in&quot;&gt;test&lt;/span&gt; --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-6-我们再发布两条消息，看看日志文件中的变化。&quot;&gt;&lt;a href=&quot;#5-6-我们再发布两条消息，看看日志文件中的变化。&quot; class=&quot;headerlink&quot; title=&quot;5.6 我们再发布两条消息，看看日志文件中的变化。&quot;&gt;&lt;/a&gt;5.6 我们再发布两条消息，看看日志文件中的变化。&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hello world 2&#39;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;http://127.0.0.1:4151/put?topic=test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hello world 3&#39;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;http://127.0.0.1:4151/put?topic=test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;5-7特别说明&quot;&gt;&lt;a href=&quot;#5-7特别说明&quot; class=&quot;headerlink&quot; title=&quot;5.7特别说明&quot;&gt;&lt;/a&gt;5.7特别说明&lt;/h4&gt;&lt;p&gt;需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214444426&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214529061&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214544464&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;6-nsqadmin的web统计&quot;&gt;&lt;a href=&quot;#6-nsqadmin的web统计&quot; class=&quot;headerlink&quot; title=&quot;6.nsqadmin的web统计&quot;&gt;&lt;/a&gt;6.nsqadmin的web统计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214340984&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。&lt;/p&gt;
+&lt;h4 id=&quot;6-1浏览器打开nsqadmin的web页&quot;&gt;&lt;a href=&quot;#6-1浏览器打开nsqadmin的web页&quot; class=&quot;headerlink&quot; title=&quot;6.1浏览器打开nsqadmin的web页&quot;&gt;&lt;/a&gt;6.1浏览器打开nsqadmin的web页&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://192.168.1.111:4171/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;iptables -A  INPUT -p tcp --dport 4171 -j ACCEPT&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;参数讲解：&lt;br&gt;–A 添加一条规则的意思&lt;br&gt;–p 指定是什么协议，这里是tcp协议&lt;br&gt;–dport 就是目标端口，当数据从外部进入服务器为目标端口&lt;br&gt;–sport 数据从服务器出去，则为数据源端口使用&lt;br&gt;–j 就是指定是 ACCEPT -接收 或者 DROP 不接收&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;6-2-Topics界面&quot;&gt;&lt;a href=&quot;#6-2-Topics界面&quot; class=&quot;headerlink&quot; title=&quot;6.2 Topics界面&quot;&gt;&lt;/a&gt;6.2 Topics界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830213809966&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。&lt;/p&gt;
+&lt;h4 id=&quot;6-3-Nodes节点列表&quot;&gt;&lt;a href=&quot;#6-3-Nodes节点列表&quot; class=&quot;headerlink&quot; title=&quot;6.3 Nodes节点列表&quot;&gt;&lt;/a&gt;6.3 Nodes节点列表&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830213848425&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。&lt;/p&gt;
+&lt;h4 id=&quot;6-4-Counter消息计数页&quot;&gt;&lt;a href=&quot;#6-4-Counter消息计数页&quot; class=&quot;headerlink&quot; title=&quot;6.4 Counter消息计数页&quot;&gt;&lt;/a&gt;6.4 Counter消息计数页&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214013450&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。&lt;/p&gt;
+&lt;h4 id=&quot;6-5-Lookup界面&quot;&gt;&lt;a href=&quot;#6-5-Lookup界面&quot; class=&quot;headerlink&quot; title=&quot;6.5 Lookup界面&quot;&gt;&lt;/a&gt;6.5 Lookup界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214233531&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这里我们可以创建消息主题和消息通道。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-NSQ知识普及&quot;&gt;&lt;a href=&quot;#1-NSQ知识普及&quot; class=&quot;headerlink&quot; title=&quot;1.NSQ知识普及&quot;&gt;&lt;/a&gt;1.NSQ知识普及&lt;/h3&gt;&lt;p&gt;NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows下端口占用程序查询</title>
+    <link href="http://yoursite.com/2016/03/30/windows-port-used/"/>
+    <id>http://yoursite.com/2016/03/30/windows-port-used/</id>
+    <published>2016-03-30T02:18:32.655Z</published>
+    <updated>2016-03-30T02:30:20.396Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;1-打开命令行工具&quot;&gt;&lt;a href=&quot;#1-打开命令行工具&quot; class=&quot;headerlink&quot; title=&quot;1.打开命令行工具&quot;&gt;&lt;/a&gt;1.打开命令行工具&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -aon|findstr 4000&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以看到类似以下的输出，最后一列为占用端口的程序的进程id&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TCP    [::]:8082              [::]:0                 LISTENING       2480&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;2-根据进程ID查询程序信息&quot;&gt;&lt;a href=&quot;#2-根据进程ID查询程序信息&quot; class=&quot;headerlink&quot; title=&quot;2.根据进程ID查询程序信息&quot;&gt;&lt;/a&gt;2.根据进程ID查询程序信息&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tasklist|findstr 2480&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;控制台会输出该进程的程序信息&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;java.exe                      2480 Console                    3    253,168 K&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-打开命令行工具&quot;&gt;&lt;a href=&quot;#1-打开命令行工具&quot; class=&quot;headerlink&quot; title=&quot;1.打开命令行工具&quot;&gt;&lt;/a&gt;1.打开命令行工具&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>API接口文档设计</title>
+    <link href="http://yoursite.com/2016/03/28/api-design/"/>
+    <id>http://yoursite.com/2016/03/28/api-design/</id>
+    <published>2016-03-28T10:54:50.415Z</published>
+    <updated>2016-03-28T11:28:26.083Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;功能说明&quot;&gt;&lt;a href=&quot;#功能说明&quot; class=&quot;headerlink&quot; title=&quot;功能说明&quot;&gt;&lt;/a&gt;功能说明&lt;/h3&gt;&lt;p&gt;简单说明接口实现的相关功能，使用场景等等。&lt;/p&gt;
+&lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=&quot;headerlink&quot; title=&quot;调用说明&quot;&gt;&lt;/a&gt;调用说明&lt;/h3&gt;&lt;h4 id=&quot;请求地址&quot;&gt;&lt;a href=&quot;#请求地址&quot; class=&quot;headerlink&quot; title=&quot;请求地址&quot;&gt;&lt;/a&gt;请求地址&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.xxx.com/api/demo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;请求方式&quot;&gt;&lt;a href=&quot;#请求方式&quot; class=&quot;headerlink&quot; title=&quot;请求方式&quot;&gt;&lt;/a&gt;请求方式&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;GET/POST&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;请求头信息&quot;&gt;&lt;a href=&quot;#请求头信息&quot; class=&quot;headerlink&quot; title=&quot;请求头信息&quot;&gt;&lt;/a&gt;请求头信息&lt;/h4&gt;&lt;p&gt;一些需要设置请求头的需要加上特殊说明。&lt;br&gt;例如:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Content-Type：application/json&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;请求参数&quot;&gt;&lt;a href=&quot;#请求参数&quot; class=&quot;headerlink&quot; title=&quot;请求参数&quot;&gt;&lt;/a&gt;请求参数&lt;/h4&gt;&lt;p&gt;GET请求方式的列表方式列出请求所需参数，包含说明是否为必传字段。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;必传&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;userId&lt;/td&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;用户ID&lt;/td&gt;
+&lt;td&gt;Y&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;timestamp&lt;/td&gt;
+&lt;td&gt;long&lt;/td&gt;
+&lt;td&gt;时间戳(毫秒值)&lt;/td&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;POST方式需要传json参数的列出json样例格式&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;userId&quot;&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;123&lt;/span&gt;,	&lt;span class=&quot;comment&quot;&gt;//用户ID，必传&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;timestamp&quot;&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;3887717000&lt;/span&gt;	&lt;span class=&quot;comment&quot;&gt;//时间戳(毫秒值)，非必传&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;返回&quot;&gt;&lt;a href=&quot;#返回&quot; class=&quot;headerlink&quot; title=&quot;返回&quot;&gt;&lt;/a&gt;返回&lt;/h3&gt;&lt;p&gt;一般接口返回JSON或XML格式的数据，需列出相关返回格式样例数据。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;status&quot;&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;data&quot;&lt;/span&gt;:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;string&quot;&gt;&quot;userId&quot;&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;123&lt;/span&gt;,	&lt;span class=&quot;comment&quot;&gt;//用户ID&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;string&quot;&gt;&quot;userName&quot;&lt;/span&gt;:&lt;span class=&quot;string&quot;&gt;&quot;张三&quot;&lt;/span&gt;	&lt;span class=&quot;comment&quot;&gt;//用户名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;msg&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;Result&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;status&lt;/span&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;status&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;msg&lt;/span&gt;&amp;gt;&lt;/span&gt;success&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;msg&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;data&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;userId&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;123&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;userName&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;张三&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;data&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;Result&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;返回状态&quot;&gt;&lt;a href=&quot;#返回状态&quot; class=&quot;headerlink&quot; title=&quot;返回状态&quot;&gt;&lt;/a&gt;返回状态&lt;/h4&gt;&lt;p&gt;必要时需要列出所有返回状态对应的数据格式。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;状态值&lt;/th&gt;
+&lt;th&gt;状态说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;成功&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;td&gt;系统异常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;404&lt;/td&gt;
+&lt;td&gt;请求不存在&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;功能说明&quot;&gt;&lt;a href=&quot;#功能说明&quot; class=&quot;headerlink&quot; title=&quot;功能说明&quot;&gt;&lt;/a&gt;功能说明&lt;/h3&gt;&lt;p&gt;简单说明接口实现的相关功能，使用场景等等。&lt;/p&gt;
+&lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
