@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-30T09:59:39.552Z</updated>
+  <updated>2016-03-31T03:15:56.265Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Sublime下的Package Control</title>
-    <link href="http://yoursite.com/2016/03/30/sublime-package-control/"/>
-    <id>http://yoursite.com/2016/03/30/sublime-package-control/</id>
+    <link href="http://yoursite.com/learning/sublime-package-control.html"/>
+    <id>http://yoursite.com/learning/sublime-package-control.html</id>
     <published>2016-03-30T09:44:32.044Z</published>
-    <updated>2016-03-30T09:59:39.552Z</updated>
+    <updated>2016-03-31T03:15:56.265Z</updated>
     
     <content type="html">&lt;p&gt;有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。&lt;/p&gt;
 &lt;p&gt;打开sublime，查看是否存在以下目录&lt;/p&gt;
@@ -44,15 +44,17 @@
     
     </summary>
     
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
     
   </entry>
   
   <entry>
     <title>Vim下XML文件格式化</title>
-    <link href="http://yoursite.com/2016/03/30/vim-xml-format/"/>
-    <id>http://yoursite.com/2016/03/30/vim-xml-format/</id>
+    <link href="http://yoursite.com/learning/vim-xml-format.html"/>
+    <id>http://yoursite.com/learning/vim-xml-format.html</id>
     <published>2016-03-30T03:22:51.159Z</published>
-    <updated>2016-03-30T10:38:06.856Z</updated>
+    <updated>2016-03-31T03:15:56.266Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-打开需要格式化的文件&quot;&gt;&lt;a href=&quot;#1-打开需要格式化的文件&quot; class=&quot;headerlink&quot; title=&quot;1.打开需要格式化的文件&quot;&gt;&lt;/a&gt;1.打开需要格式化的文件&lt;/h3&gt;&lt;p&gt;使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。&lt;br&gt;现有一个如下的未格式化的文件：&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png&quot; alt=&quot;origin image&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;2-保存临时修改&quot;&gt;&lt;a href=&quot;#2-保存临时修改&quot; class=&quot;headerlink&quot; title=&quot;2.保存临时修改&quot;&gt;&lt;/a&gt;2.保存临时修改&lt;/h3&gt;&lt;p&gt;如果我们打开后有对文件进行编辑操作，需要保存所做的修改&lt;/p&gt;
@@ -62,7 +64,7 @@
 &lt;h3 id=&quot;4-设置文件类型&quot;&gt;&lt;a href=&quot;#4-设置文件类型&quot; class=&quot;headerlink&quot; title=&quot;4.设置文件类型&quot;&gt;&lt;/a&gt;4.设置文件类型&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; filetype=xml&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;5-全局格式化&quot;&gt;&lt;a href=&quot;#5-全局格式化&quot; class=&quot;headerlink&quot; title=&quot;5.全局格式化&quot;&gt;&lt;/a&gt;5.全局格式化&lt;/h3&gt;&lt;p&gt;回到文件头：&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;gg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;使用缩进（格式化）&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;==&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用缩进（格式化）&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;=&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;格式化到文件尾:&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;G&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;6-格式化结果&quot;&gt;&lt;a href=&quot;#6-格式化结果&quot; class=&quot;headerlink&quot; title=&quot;6.格式化结果&quot;&gt;&lt;/a&gt;6.格式化结果&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png&quot; alt=&quot;origin image&quot;&gt;&lt;/p&gt;
@@ -74,15 +76,17 @@
     
     </summary>
     
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
     
   </entry>
   
   <entry>
     <title>初识NSQ分布式实时消息架构</title>
-    <link href="http://yoursite.com/2016/03/30/nsq-start/"/>
-    <id>http://yoursite.com/2016/03/30/nsq-start/</id>
+    <link href="http://yoursite.com/learning/nsq-start.html"/>
+    <id>http://yoursite.com/learning/nsq-start.html</id>
     <published>2016-03-30T02:31:35.639Z</published>
-    <updated>2016-03-30T02:31:35.639Z</updated>
+    <updated>2016-03-31T03:20:09.989Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-NSQ知识普及&quot;&gt;&lt;a href=&quot;#1-NSQ知识普及&quot; class=&quot;headerlink&quot; title=&quot;1.NSQ知识普及&quot;&gt;&lt;/a&gt;1.NSQ知识普及&lt;/h3&gt;&lt;p&gt;NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;https://github.com/nsqio/nsq&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -121,10 +125,10 @@
 &lt;h4 id=&quot;5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。&quot;&gt;&lt;a href=&quot;#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。&quot; class=&quot;headerlink&quot; title=&quot;5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。&quot;&gt;&lt;/a&gt;5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nsq_to_file --topic=&lt;span class=&quot;built_in&quot;&gt;test&lt;/span&gt; --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h4 id=&quot;5-6-我们再发布两条消息，看看日志文件中的变化。&quot;&gt;&lt;a href=&quot;#5-6-我们再发布两条消息，看看日志文件中的变化。&quot; class=&quot;headerlink&quot; title=&quot;5.6 我们再发布两条消息，看看日志文件中的变化。&quot;&gt;&lt;/a&gt;5.6 我们再发布两条消息，看看日志文件中的变化。&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hello world 2&#39;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;http://127.0.0.1:4151/put?topic=test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;curl &lt;span class=&quot;_&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hello world 3&#39;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;http://127.0.0.1:4151/put?topic=test&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h4 id=&quot;5-7特别说明&quot;&gt;&lt;a href=&quot;#5-7特别说明&quot; class=&quot;headerlink&quot; title=&quot;5.7特别说明&quot;&gt;&lt;/a&gt;5.7特别说明&lt;/h4&gt;&lt;p&gt;需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214444426&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214529061&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214544464&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;6-nsqadmin的web统计&quot;&gt;&lt;a href=&quot;#6-nsqadmin的web统计&quot; class=&quot;headerlink&quot; title=&quot;6.nsqadmin的web统计&quot;&gt;&lt;/a&gt;6.nsqadmin的web统计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214340984&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;6-nsqadmin的web统计&quot;&gt;&lt;a href=&quot;#6-nsqadmin的web统计&quot; class=&quot;headerlink&quot; title=&quot;6.nsqadmin的web统计&quot;&gt;&lt;/a&gt;6.nsqadmin的web统计&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
 &lt;p&gt;nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。&lt;/p&gt;
 &lt;h4 id=&quot;6-1浏览器打开nsqadmin的web页&quot;&gt;&lt;a href=&quot;#6-1浏览器打开nsqadmin的web页&quot; class=&quot;headerlink&quot; title=&quot;6.1浏览器打开nsqadmin的web页&quot;&gt;&lt;/a&gt;6.1浏览器打开nsqadmin的web页&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://192.168.1.111:4171/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。&lt;/p&gt;
@@ -132,13 +136,13 @@
 &lt;ul&gt;
 &lt;li&gt;参数讲解：&lt;br&gt;–A 添加一条规则的意思&lt;br&gt;–p 指定是什么协议，这里是tcp协议&lt;br&gt;–dport 就是目标端口，当数据从外部进入服务器为目标端口&lt;br&gt;–sport 数据从服务器出去，则为数据源端口使用&lt;br&gt;–j 就是指定是 ACCEPT -接收 或者 DROP 不接收&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;6-2-Topics界面&quot;&gt;&lt;a href=&quot;#6-2-Topics界面&quot; class=&quot;headerlink&quot; title=&quot;6.2 Topics界面&quot;&gt;&lt;/a&gt;6.2 Topics界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830213809966&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;6-2-Topics界面&quot;&gt;&lt;a href=&quot;#6-2-Topics界面&quot; class=&quot;headerlink&quot; title=&quot;6.2 Topics界面&quot;&gt;&lt;/a&gt;6.2 Topics界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。&lt;/p&gt;
-&lt;h4 id=&quot;6-3-Nodes节点列表&quot;&gt;&lt;a href=&quot;#6-3-Nodes节点列表&quot; class=&quot;headerlink&quot; title=&quot;6.3 Nodes节点列表&quot;&gt;&lt;/a&gt;6.3 Nodes节点列表&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830213848425&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;6-3-Nodes节点列表&quot;&gt;&lt;a href=&quot;#6-3-Nodes节点列表&quot; class=&quot;headerlink&quot; title=&quot;6.3 Nodes节点列表&quot;&gt;&lt;/a&gt;6.3 Nodes节点列表&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。&lt;/p&gt;
-&lt;h4 id=&quot;6-4-Counter消息计数页&quot;&gt;&lt;a href=&quot;#6-4-Counter消息计数页&quot; class=&quot;headerlink&quot; title=&quot;6.4 Counter消息计数页&quot;&gt;&lt;/a&gt;6.4 Counter消息计数页&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214013450&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;6-4-Counter消息计数页&quot;&gt;&lt;a href=&quot;#6-4-Counter消息计数页&quot; class=&quot;headerlink&quot; title=&quot;6.4 Counter消息计数页&quot;&gt;&lt;/a&gt;6.4 Counter消息计数页&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。&lt;/p&gt;
-&lt;h4 id=&quot;6-5-Lookup界面&quot;&gt;&lt;a href=&quot;#6-5-Lookup界面&quot; class=&quot;headerlink&quot; title=&quot;6.5 Lookup界面&quot;&gt;&lt;/a&gt;6.5 Lookup界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20150830214233531&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;6-5-Lookup界面&quot;&gt;&lt;a href=&quot;#6-5-Lookup界面&quot; class=&quot;headerlink&quot; title=&quot;6.5 Lookup界面&quot;&gt;&lt;/a&gt;6.5 Lookup界面&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png&quot; alt=&quot;nsq start&quot;&gt;&lt;/p&gt;
 &lt;p&gt;这里我们可以创建消息主题和消息通道。&lt;/p&gt;
 </content>
     
@@ -148,15 +152,17 @@
     
     </summary>
     
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
     
   </entry>
   
   <entry>
     <title>Windows下端口占用程序查询</title>
-    <link href="http://yoursite.com/2016/03/30/windows-port-used/"/>
-    <id>http://yoursite.com/2016/03/30/windows-port-used/</id>
+    <link href="http://yoursite.com/learning/windows-port-used.html"/>
+    <id>http://yoursite.com/learning/windows-port-used.html</id>
     <published>2016-03-30T02:18:32.655Z</published>
-    <updated>2016-03-30T10:38:18.098Z</updated>
+    <updated>2016-03-31T03:15:56.267Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-打开命令行工具&quot;&gt;&lt;a href=&quot;#1-打开命令行工具&quot; class=&quot;headerlink&quot; title=&quot;1.打开命令行工具&quot;&gt;&lt;/a&gt;1.打开命令行工具&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -aon|findstr 4000&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -174,15 +180,17 @@
     
     </summary>
     
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
     
   </entry>
   
   <entry>
     <title>API接口文档设计</title>
-    <link href="http://yoursite.com/2016/03/28/api-design/"/>
-    <id>http://yoursite.com/2016/03/28/api-design/</id>
+    <link href="http://yoursite.com/learning/api-design.html"/>
+    <id>http://yoursite.com/learning/api-design.html</id>
     <published>2016-03-28T10:54:50.415Z</published>
-    <updated>2016-03-28T11:28:26.083Z</updated>
+    <updated>2016-03-31T03:15:56.262Z</updated>
     
     <content type="html">&lt;h3 id=&quot;功能说明&quot;&gt;&lt;a href=&quot;#功能说明&quot; class=&quot;headerlink&quot; title=&quot;功能说明&quot;&gt;&lt;/a&gt;功能说明&lt;/h3&gt;&lt;p&gt;简单说明接口实现的相关功能，使用场景等等。&lt;/p&gt;
 &lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=&quot;headerlink&quot; title=&quot;调用说明&quot;&gt;&lt;/a&gt;调用说明&lt;/h3&gt;&lt;h4 id=&quot;请求地址&quot;&gt;&lt;a href=&quot;#请求地址&quot; class=&quot;headerlink&quot; title=&quot;请求地址&quot;&gt;&lt;/a&gt;请求地址&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.xxx.com/api/demo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -249,6 +257,8 @@
 &lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=
     
     </summary>
+    
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
     
     
   </entry>

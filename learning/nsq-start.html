@@ -10,26 +10,26 @@
 NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识NSQ分布式实时消息架构">
-<meta property="og:url" content="http://yoursite.com/2016/03/30/nsq-start/index.html">
+<meta property="og:url" content="http://yoursite.com/learning/nsq-start.html">
 <meta property="og:site_name" content="Marks & Notes">
 <meta property="og:description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。
 1https://github.com/nsqio/nsq
 NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214444426">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214529061">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214544464">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214340984">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830213809966">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830213848425">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214013450">
-<meta property="og:image" content="http://img.blog.csdn.net/20150830214233531">
-<meta property="og:updated_time" content="2016-03-30T02:31:35.639Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png">
+<meta property="og:updated_time" content="2016-03-31T03:20:09.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识NSQ分布式实时消息架构">
 <meta name="twitter:description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。
 1https://github.com/nsqio/nsq
 NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20150830214444426">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -41,6 +41,17 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
   
   <link rel="stylesheet" href="/blog/css/style.css">
   
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 </head>
 
@@ -69,7 +80,7 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -80,10 +91,14 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
       <div class="outer">
         <section id="main"><article id="post-nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/2016/03/30/nsq-start/" class="article-date">
+    <a href="/blog/learning/nsq-start.html" class="article-date">
   <time datetime="2016-03-30T02:31:35.639Z" itemprop="datePublished">2016-03-30</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -137,10 +152,10 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
 <h4 id="5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><a href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。" class="headerlink" title="5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。"></a>5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsq_to_file --topic=<span class="built_in">test</span> --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
 <h4 id="5-6-我们再发布两条消息，看看日志文件中的变化。"><a href="#5-6-我们再发布两条消息，看看日志文件中的变化。" class="headerlink" title="5.6 我们再发布两条消息，看看日志文件中的变化。"></a>5.6 我们再发布两条消息，看看日志文件中的变化。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 2'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 3'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
 <h4 id="5-7特别说明"><a href="#5-7特别说明" class="headerlink" title="5.7特别说明"></a>5.7特别说明</h4><p>需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。</p>
-<p><img src="http://img.blog.csdn.net/20150830214444426" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20150830214529061" alt="这里写图片描述"></p>
-<p><img src="http://img.blog.csdn.net/20150830214544464" alt="这里写图片描述"></p>
-<h3 id="6-nsqadmin的web统计"><a href="#6-nsqadmin的web统计" class="headerlink" title="6.nsqadmin的web统计"></a>6.nsqadmin的web统计</h3><p><img src="http://img.blog.csdn.net/20150830214340984" alt="这里写图片描述"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png" alt="nsq start"></p>
+<h3 id="6-nsqadmin的web统计"><a href="#6-nsqadmin的web统计" class="headerlink" title="6.nsqadmin的web统计"></a>6.nsqadmin的web统计</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png" alt="nsq start"></p>
 <p>nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。</p>
 <h4 id="6-1浏览器打开nsqadmin的web页"><a href="#6-1浏览器打开nsqadmin的web页" class="headerlink" title="6.1浏览器打开nsqadmin的web页"></a>6.1浏览器打开nsqadmin的web页</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:4171/</span><br></pre></td></tr></table></figure>
 <p>由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。</p>
@@ -148,19 +163,19 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
 <ul>
 <li>参数讲解：<br>–A 添加一条规则的意思<br>–p 指定是什么协议，这里是tcp协议<br>–dport 就是目标端口，当数据从外部进入服务器为目标端口<br>–sport 数据从服务器出去，则为数据源端口使用<br>–j 就是指定是 ACCEPT -接收 或者 DROP 不接收</li>
 </ul>
-<h4 id="6-2-Topics界面"><a href="#6-2-Topics界面" class="headerlink" title="6.2 Topics界面"></a>6.2 Topics界面</h4><p><img src="http://img.blog.csdn.net/20150830213809966" alt="这里写图片描述"></p>
+<h4 id="6-2-Topics界面"><a href="#6-2-Topics界面" class="headerlink" title="6.2 Topics界面"></a>6.2 Topics界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png" alt="nsq start"></p>
 <p>这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。</p>
-<h4 id="6-3-Nodes节点列表"><a href="#6-3-Nodes节点列表" class="headerlink" title="6.3 Nodes节点列表"></a>6.3 Nodes节点列表</h4><p><img src="http://img.blog.csdn.net/20150830213848425" alt="这里写图片描述"></p>
+<h4 id="6-3-Nodes节点列表"><a href="#6-3-Nodes节点列表" class="headerlink" title="6.3 Nodes节点列表"></a>6.3 Nodes节点列表</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png" alt="nsq start"></p>
 <p>这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。</p>
-<h4 id="6-4-Counter消息计数页"><a href="#6-4-Counter消息计数页" class="headerlink" title="6.4 Counter消息计数页"></a>6.4 Counter消息计数页</h4><p><img src="http://img.blog.csdn.net/20150830214013450" alt="这里写图片描述"></p>
+<h4 id="6-4-Counter消息计数页"><a href="#6-4-Counter消息计数页" class="headerlink" title="6.4 Counter消息计数页"></a>6.4 Counter消息计数页</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png" alt="nsq start"></p>
 <p>这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。</p>
-<h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="http://img.blog.csdn.net/20150830214233531" alt="这里写图片描述"></p>
+<h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png" alt="nsq start"></p>
 <p>这里我们可以创建消息主题和消息通道。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/2016/03/30/nsq-start/" data-id="cimepzslz0003swqenrdpy47r" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/blog/learning/nsq-start.html" data-id="cimfprn6j0004coqez16rns9h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,8 +184,8 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
     
 <nav id="article-nav">
   
-    <a href="/blog/2016/03/30/vim-xml-format/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Nieuwer</strong>
+    <a href="/blog/learning/vim-xml-format.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           Vim下XML文件格式化
@@ -179,8 +194,8 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
     </a>
   
   
-    <a href="/blog/2016/03/30/windows-port-used/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+    <a href="/blog/learning/windows-port-used.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Windows下端口占用程序查询</div>
     </a>
   
@@ -194,7 +209,7 @@ NSQ可用于大规模系统的实时消息服务，它的设计目标是为在�
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="http://yoursite.com/blog/2016/03/30/nsq-start/"></div>
+<div class="ds-thread" data-thread-key="post-nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="http://yoursite.com/blog/learning/nsq-start.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -208,11 +223,31 @@ var duoshuoQuery = {short_name:"yangdage"};
    || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 </script>
-<!-- 多说公共JS代码 end --></section>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>     
+
+<!-- 搜索引擎优化 end--></section>
         
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/learning/">学习</a></li></ul>
+    </div>
+  </div>
+
 
   
     
@@ -222,9 +257,9 @@ var duoshuoQuery = {short_name:"yangdage"};
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">March 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li></ul>
     </div>
   </div>
 
@@ -232,28 +267,28 @@ var duoshuoQuery = {short_name:"yangdage"};
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/blog/2016/03/30/sublime-package-control/">Sublime下的Package Control</a>
+            <a href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
           </li>
         
           <li>
-            <a href="/blog/2016/03/30/vim-xml-format/">Vim下XML文件格式化</a>
+            <a href="/blog/learning/vim-xml-format.html">Vim下XML文件格式化</a>
           </li>
         
           <li>
-            <a href="/blog/2016/03/30/nsq-start/">初识NSQ分布式实时消息架构</a>
+            <a href="/blog/learning/nsq-start.html">初识NSQ分布式实时消息架构</a>
           </li>
         
           <li>
-            <a href="/blog/2016/03/30/windows-port-used/">Windows下端口占用程序查询</a>
+            <a href="/blog/learning/windows-port-used.html">Windows下端口占用程序查询</a>
           </li>
         
           <li>
-            <a href="/blog/2016/03/28/api-design/">API接口文档设计</a>
+            <a href="/blog/learning/api-design.html">API接口文档设计</a>
           </li>
         
       </ul>
