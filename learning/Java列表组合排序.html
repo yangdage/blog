@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java中List列表排序 | Marks &amp; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：
+
+java.util.Collections.sort(java.util.List)
+java.util.Collections.s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java中List列表排序">
+<meta property="og:url" content="http://yoursite.com/learning/Java列表组合排序.html">
+<meta property="og:site_name" content="Marks & Notes">
+<meta property="og:description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：
+
+java.util.Collections.sort(java.util.List)
+java.util.Collections.s">
+<meta property="og:updated_time" content="2016-04-11T02:57:38.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java中List列表排序">
+<meta name="twitter:description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：
+
+java.util.Collections.sort(java.util.List)
+java.util.Collections.s">
+  
+    <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Marks &amp; Notes</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java列表组合排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/Java列表组合排序.html" class="article-date">
+  <time datetime="2016-04-11T02:57:38.239Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java中List列表排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单类型元素排序"><a href="#简单类型元素排序" class="headerlink" title="简单类型元素排序"></a>简单类型元素排序</h3><p>Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：</p>
+<ul>
+<li>java.util.Collections.sort(java.util.List)</li>
+<li>java.util.Collections.sort(java.util.List, java.util.Comparator)</li>
+</ul>
+<p>第一个方法要求List中元素类实现java.lang.Comparable接口。<br>第二个方法需要在元素类外部使用java.util.Comparator接口。<br>Comparable需要在类内部实现排序方法，Comparator是在类外部实现的排序。<br>Comparator是一个专用的比较器，当这个对象不支持自比较时，就可以写一个比较器来比较两个对象之间大小。<br>我们常用的String和Integer内部就已经实现了Comparable接口。</p>
+<p>sort()方法可以支持对List元素的排序。我们可以简单的传一个List对象，也可以传一个List对象和一个Comparator。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Collections.sort(list);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[AAAA, BBBB, aaaa, bbbb]</span></span><br></pre></td></tr></table></figure>
+<p>以上List中元素的类型都是String类型的，排序的顺序是根据每个字符的ASCII/Unicode值顺序排序的。Unicode编码中，英文大写字母A-Z是排在小写字母a-z前面的。如果我们想让元素逆序排序，只需要传给sort()方法一个反序Comparator即可，反序Comparator对象可以直接由Connections.reverseOrder()方法获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Comparator comp = Collections.reverseOrder();</span><br><span class="line">		Collections.sort(list, comp);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[bbbb, aaaa, BBBB, AAAA]</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义类集合排序"><a href="#自定义类集合排序" class="headerlink" title="自定义类集合排序"></a>自定义类集合排序</h3><p>我们要对一个自定义的类进行排序，有两种方式，一种是让该类实现Comparable接口，并实现compareTo()方法。另一种是在类外部单独定义一个比较器，比较器实现Comparator接口。<br>现在我们定义一个Person类，有三个属性：name，birth，score，分别对应姓名，生日，和分数。我们实现一个按分数的排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String birth;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String birth, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.birth = birth;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBirth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirth</span><span class="params">(String birth)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.birth = birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScore</span><span class="params">(<span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.score = score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> diff = <span class="keyword">this</span>.getScore() - other.getScore();</span><br><span class="line">		<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birth='"</span> + birth + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", score="</span> + score +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们不想使用Person内部定义的排序，我们可以在外部使用Comparator类来实现。下面使用Comparator类实现一个要按出生日期排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">				<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h3><p>再来实现先按分数高到低，再按出生早晚两个条件来排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		List&lt;Comparator&lt;Person&gt;&gt; comparatorList = <span class="keyword">new</span> ArrayList&lt;Comparator&lt;Person&gt;&gt;();</span><br><span class="line">		comparatorList.add(compareScore);</span><br><span class="line">		comparatorList.add(compareBirth);</span><br><span class="line"></span><br><span class="line">		sort(list, comparatorList);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Person&gt; list, <span class="keyword">final</span> List&lt;Comparator&lt;Person&gt;&gt; compareList)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (list == <span class="keyword">null</span> || compareList == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Comparator&lt;Person&gt; comparator = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">for</span> (Comparator&lt;Person&gt; tmpComparatoe : compareList) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		Collections.sort(list, comparator);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareScore = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getScore() - o2.getScore();</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareBirth = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用apache集合操作类ComparatorUtils实现多条件排序"><a href="#使用apache集合操作类ComparatorUtils实现多条件排序" class="headerlink" title="使用apache集合操作类ComparatorUtils实现多条件排序"></a>使用apache集合操作类ComparatorUtils实现多条件排序</h3><p>上述Java原生类实现的多条件排序可读性可维护性都比较差，特别是排序条件多了以后，我们要写更多的if判断和比较器。<br>这里使用apache提供的集合操作类ComparatorUtils可以很快实现上面的排序功能。ComparatorChain排序链类使我们更方便的定义第一排序、第二排序，第三排序等等。<br>首先需要引入Apache-common的beanutils、collections、logging三个包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.ComparatorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparableComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparatorChain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		Comparator mycmp = ComparableComparator.getInstance();</span><br><span class="line">		mycmp = ComparatorUtils.nullLowComparator(mycmp);<span class="comment">// 允许null</span></span><br><span class="line">		mycmp = ComparatorUtils.reversedComparator(mycmp);<span class="comment">// 逆序</span></span><br><span class="line"></span><br><span class="line">		ArrayList&lt;Object&gt; sortFields = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"score"</span>, mycmp));<span class="comment">// 第一排序，分数逆序</span></span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"birth"</span>));<span class="comment">// 第二排序，出生时间顺序</span></span><br><span class="line"></span><br><span class="line">		ComparatorChain multiSort = <span class="keyword">new</span> ComparatorChain(sortFields);</span><br><span class="line">		Collections.sort(list, multiSort);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/Java列表组合排序.html" data-id="cimvn6rio0002jcqe9k2zqvir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/learning/hexo-github.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo+Github一步两步搭建博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/learning/sublime-package-control.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Sublime下的Package Control</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-Java列表组合排序" data-title="Java中List列表排序" data-url="http://yoursite.com/blog/learning/Java列表组合排序.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>     
+
+<!-- 搜索引擎优化 end--></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/learning/">学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/learning/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/javascript-closure.html">Javascript闭包(Closure)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/hexo-github.html">Hexo+Github一步两步搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yangdage<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
+//<![CDATA[
+if (typeof jQuery == 'undefined') {
+document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+// ]]>
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div>
+</body>
+</html>

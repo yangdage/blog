@@ -75,6 +75,416 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-函数声明-表达式-匿名函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/函数声明-表达式-匿名函数.html" class="article-date">
+  <time datetime="2016-04-11T02:57:38.243Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>函数声明必须首先有个<strong>function</strong>关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>匿名函数不需要定义函数名字，只有一个<strong>function</strong>关键字，其他跟函数声明一样。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>将一个匿名函数赋值给一个变量来创建一个函数，就形成了函数表达式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：JS解析引擎在解析js代码时，会提升函数声明。</strong></p>
+<h3 id="立即执行函数-立即调用表达式"><a href="#立即执行函数-立即调用表达式" class="headerlink" title="立即执行函数/立即调用表达式"></a>立即执行函数/立即调用表达式</h3><p>立即执行函数也叫立即调用表达式。<br>在函数表达式后面直接加一对小括号<strong>()</strong>就构成了立即执行函数。立即执行函数不需要显示调用，在函数定义的时候就直接执行。</p>
+<p><strong>强调一点，括号前面必须是函数表达式</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>上面代码等价于下面这段：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;;</span><br><span class="line">funName();	<span class="comment">//定义完,立即执行</span></span><br></pre></td></tr></table></figure>
+<p>既然前面提到了立即执行函数的括号前面必须是函数表达式，好奇心的驱使，我们可以试试函数声明是不是真的不行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>打开浏览器，我们可以看到，确实没有弹出alert提示框。</p>
+<p>虽然函数声明不能立即执行，但是JS里提供了很多方式允许我们将函数声明转换为函数表达式。</p>
+<ul>
+<li>1.改成var funName=function(){//do something};</li>
+<li>2.把函数声明用一对括号<strong>()</strong>包裹起来</li>
+<li>3.消除函数声明和函数表达式间歧义，例如在函数声明<strong>function</strong>关键字前面加!、+、-</li>
+</ul>
+<p>第一个就不用解释了，这种定义就是一个最普通的函数表达式。</p>
+<p>第二个，把函数声明用一对括号<strong>()</strong>包裹起来<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>这种写法还有个变体：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<p>第三个，在函数声明<strong>function</strong>关键字前面加!、~、+、-</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<p>立即执行函数最推荐的写法是<strong>(function(){…})()</strong>，有测试发现这种写法的性能是最优的。我们看过JQuery源码的都知道，JQuery中代码就是包裹在<strong>(function(window,undefined){…})(window)</strong>块里面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/函数声明-表达式-匿名函数.html" data-id="cimvn6rk6000hjcqeraribyu5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-函数声明-表达式-匿名函数" data-title="JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-javascript-closure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/javascript-closure.html" class="article-date">
+  <time datetime="2016-04-11T02:57:38.241Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/javascript-closure.html">Javascript闭包(Closure)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="敌在暗，我在明"><a href="#敌在暗，我在明" class="headerlink" title="敌在暗，我在明"></a>敌在暗，我在明</h3><p>看电影的时候我们经常会看到这样的剧情，当敌暗，我在明时，我们的一举一动他们都了如指掌，我们对他们的情况却一无所知。但是我们需要知道对方的真实情况才能从容的应对，这时候最常见的剧情就是在敌方安插我方的眼线，给我们提供情报支持。</p>
+<h3 id="初识Javascript闭包"><a href="#初识Javascript闭包" class="headerlink" title="初识Javascript闭包"></a>初识Javascript闭包</h3><p>我们先来看一段简短的js代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fun1</span></span>()&#123;</span><br><span class="line">	var i=0;</span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">fun2</span></span>()&#123;</span><br><span class="line">		<span class="built_in">return</span> i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> fun2;</span><br><span class="line">&#125;</span><br><span class="line">var result=fun1();</span><br><span class="line">console.log(result());</span><br></pre></td></tr></table></figure>
+<p>这里我们做个映射关系：<strong>result</strong>变量相当于我方成员，<strong>i</strong>相当于敌方的一份情报数据，<strong>fun2</strong>就是我方安插在地方的眼线，专门为我们提供情报数据。</p>
+<p>注意一下<strong>result=fun1();</strong>这句，这里<strong>fun1()</strong>函数返回的是一个函数<strong>fun2()</strong>，这样<strong>result</strong>实际上就是一个直接指向<strong>fun2()</strong>的函数引用。由于<strong>fun2()</strong>可以直接读取<strong>fun1()</strong>内部的变量<strong>i</strong>，因此我们可以实现在函数<strong>fun1()</strong>的外部获取其内部的成员变量。</p>
+<p><strong>fun2()函数就是一个闭包</strong>，引用开始的形容来说，其实js里的闭包就如同一个外部对象安插在一个函数内部的专门对外提供情报的眼线，现在我们来看下<strong>fun2()</strong>函数的特点：</p>
+<ul>
+<li><strong>fun2()</strong>在<strong>fun1()</strong>函数内部</li>
+<li><strong>fun2()</strong>函数里引用了<strong>fun1()</strong>函数里的变量<strong>i</strong></li>
+</ul>
+<p>其实以上的理解还不是很完善，<strong>真正意义上的闭包不仅仅是指定的某个满足条件的函数，而是这个满足条件的函数和其引用环境（父级往上一直到window对象级的作用域环境）组成的一个整体</strong>。</p>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>闭包是js里一个不可避开的概念，也是一个理解难点，主要原因可能是其正式的书面定义太过于晦涩难懂。在理解闭包之前，我们需要来来梳理一下js里的变量作用域。<br>变量作用域分为以下两种：</p>
+<ul>
+<li>局部变量</li>
+<li>全局变量</li>
+</ul>
+<p>在js里无论在什么地方定义变量，只要是没有在前面加var声明的，都会被提升为全局变量。即使在函数里面也是一样。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i=<span class="number">100</span>;</span><br><span class="line"><span class="built_in">console</span>.log(i);	<span class="comment">//i=100</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	i=<span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br><span class="line"><span class="built_in">console</span>.log(i);	<span class="comment">//i=100</span></span><br></pre></td></tr></table></figure>
+<p>以上两段js代码中最后i都会输出100，即使第二段中i定义在函数fun()里面，由于没有加var声明，就相当于声明了一个全局变量，直属于window对象。</p>
+<p>如果函数里面的变量加了var声明，那么函数外部一般情况就取不到这个变量的值，Firefox浏览器控制台会输出以下错误信息。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> i=<span class="number">100</span>;</span><br><span class="line">&#125;</span><br><span class="line">fun();</span><br><span class="line"><span class="built_in">console</span>.log(i);	<span class="comment">//ReferenceError: i is not defined</span></span><br></pre></td></tr></table></figure></p>
+<p>作用域总结：</p>
+<ul>
+<li>1.作用域分两种：局部和全局</li>
+<li>2.函数内部可以读取全局变量</li>
+<li>3.一般情况函数外部无法读取局部变量</li>
+<li>4.函数内部变量定义不加var声明，实际相当于定义了一个全局变量</li>
+</ul>
+<h3 id="函数外部获取局部变量"><a href="#函数外部获取局部变量" class="headerlink" title="函数外部获取局部变量"></a>函数外部获取局部变量</h3><p>上节已经说过，一般情况下，我们是无法在函数外部读取函数内部声明的局部变量的，那怎样才能实现在函数外部获取局部变量了。来，直接上代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">100</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> b=<span class="number">200</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(a);	<span class="comment">//a=100</span></span><br><span class="line">	&#125;</span><br><span class="line">	fun2();</span><br><span class="line">	<span class="built_in">console</span>.log(b);	<span class="comment">//ReferenceError: b is not defined</span></span><br><span class="line">&#125;</span><br><span class="line">fun1();</span><br></pre></td></tr></table></figure>
+<p>从上面代码的输出可以看出来，fun2()函数可以读取fun1()里声明的变量，而fun1()函数里不能获取fun2()里声明的变量。这就是Javascript里的<strong>链式作用域</strong>，子对象可以访问所有上级父对象的所有变量。上面代码里fun2()既然能读到fun1()里的变量，那么如果我们在fun1()最后直接返回fun2()函数，fun1()外部不就可以读取其内部变量了么。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">100</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> fun2();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result=fun1();</span><br><span class="line"><span class="built_in">console</span>.log(result());</span><br></pre></td></tr></table></figure>
+<p>到这里，我们肯定有个疑问，上面那样实现不就是为了在外面获取fun1()里定义的变量a吗，我们用下面的代码也能获取啊！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">100</span>;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result=fun1();</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br></pre></td></tr></table></figure>
+<p>其实不然，闭包不只是为了获取局部变量，更重要的作用是为了让局部变量一直保存在内存中，不被GC(垃圾回收器(garbage collection))回收。再来看下面的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">100</span>;</span><br><span class="line">	add=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		a+=<span class="number">1</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> result=fun1();</span><br><span class="line"><span class="built_in">console</span>.log(result());	<span class="comment">//100</span></span><br><span class="line">add();</span><br><span class="line"><span class="built_in">console</span>.log(result());	<span class="comment">//101</span></span><br><span class="line">add();</span><br><span class="line"><span class="built_in">console</span>.log(result());	<span class="comment">//102</span></span><br></pre></td></tr></table></figure>
+<p>上面有三句输出，100，101，102，每次执行了一次累加1的函数add(),由于a被闭包引用，所以不会被GC回收，其值一直保存在内存中，所以才会有如上的输出结果。</p>
+<h3 id="不要滥用闭包"><a href="#不要滥用闭包" class="headerlink" title="不要滥用闭包"></a>不要滥用闭包</h3><p>由于闭包会常驻内存，所以大量使用闭包会消耗大量的内存，导致内存泄漏。当发生内存泄漏时，我们只有关闭浏览器，这些内存占用才会释放，关闭标签页是没有效果的。</p>
+<h3 id="闭包的优点"><a href="#闭包的优点" class="headerlink" title="闭包的优点"></a>闭包的优点</h3><ul>
+<li>1.让局部变量常驻内存</li>
+<li>2.避免同名全局变量冲突</li>
+<li>3.成员私有化<br>第一点和第二点比较好理解，对于第三点，先来一段代码：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">100</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funB</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		a++;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funC</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		a++;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		b:funB,</span><br><span class="line">		c:funC</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(obj.b());	<span class="comment">//101</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.c());	<span class="comment">//102</span></span><br></pre></td></tr></table></figure>
+<p>这里就是直接将funB和funC方法付给一个匿名对象的成员，最后直接返回该匿名对象。</p>
+<h3 id="闭包常见使用场景"><a href="#闭包常见使用场景" class="headerlink" title="闭包常见使用场景"></a>闭包常见使用场景</h3><p>以下实例展示一个使用闭包解决开发中经常遇到的一个问题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button3"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> btnList=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"input"</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;btnList.length;i++)&#123;</span><br><span class="line">		btnList[i].onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			alert(i);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当我们点击界面的三个按钮时，弹出的全是3，是不是觉得奇怪，因为我们的初衷是想第一个按钮弹出0，第二个弹出1，第三个弹出2。</p>
+<p>会出现上面的结果，正是闭包惹的祸，由于<strong>btnList[i].onclick</strong>是属于函数<strong>window.onload</strong>之外的对象，他所引用的匿名函数引用了<strong>window.onload</strong>函数里的局部变量<strong>i</strong>，导致<strong>btnList[i].onclick</strong>函数形成一个闭包，i会常驻内存，等到用户点击按钮，这时候<strong>i</strong>的值已经三次<strong>i++</strong>操作（for循环三次），最终导致弹出的都是3。</p>
+<p>那究竟怎样才能才能实现我们想要的效果呢，这时候还是要靠闭包，所谓解铃还需系铃人。我们对上面那段代码稍作修改，使用闭包来实现，下面提供两种实现方式。</p>
+<ul>
+<li>1.立即执行函数表达式</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button3"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> btnList=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"input"</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;btnList.length;i++)&#123;</span><br><span class="line">		(<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">			btnList[i].onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				alert(i);</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;)(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.闭包函数引用</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"button3"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> btnClick=<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> btnList=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"input"</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;btnList.length;i++)&#123;</span><br><span class="line">		btnList[i].onclick=btnClick(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后引用《javascript高级程序设计》书上对闭包的定义：<br><strong>闭包</strong>是指有权访问另一个函数作用域中的变量函数</p>
+<h3 id="附：函数声明和函数表达式"><a href="#附：函数声明和函数表达式" class="headerlink" title="附：函数声明和函数表达式"></a>附：函数声明和函数表达式</h3><p>js中定义一个函数一般有两种方式：<strong>函数声明</strong>和<strong>函数表达式</strong><br>函数声明：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数表达式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fun1=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这两种方式都可以在实际中应用，但是JS解析器对这两种实现方式的处理并不一样。<strong>JS解析器会在预解析阶段优先读取函数声明的代码，以确保函数能够被引用到；而对于函数表达式，只有在执行到相应的语句时才进行解析。</strong><br>再看下面两段代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun1();	<span class="comment">//正常执行</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"这个是函数声明"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun2();	<span class="comment">//报错：TypeError: fun2 is not a function</span></span><br><span class="line"><span class="keyword">var</span> fun2=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"这个是函数表达式"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为函数声明会被提升，所以第一段里面fun1的声明虽然写在调用代码后面，但其实他已经被提升到执行语句以前了。而对于第二段，虽然声明了变量fun2，fun2的定义也会被提升，但是并不会立即将代码里的匿名函数引用赋值给他，而是要执行到赋值语句的时候才会得到正确的引用，因此在执行<strong>fun2();</strong>语句的时候会报错。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/javascript-closure.html" data-id="cimvn6rj10003jcqe4dqpj3bm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-javascript-closure" data-title="Javascript闭包(Closure)" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-hexo-github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/hexo-github.html" class="article-date">
+  <time datetime="2016-04-11T02:57:38.240Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/hexo-github.html">Hexo+Github一步两步搭建博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NodeJS、NPM安装"><a href="#NodeJS、NPM安装" class="headerlink" title="NodeJS、NPM安装"></a>NodeJS、NPM安装</h3><p>由于Hexo是基于NodeJS的静态博客框架，首先我们必须要在机器上安装NodeJS运行环境。<br>到NodeJS<a href="https://nodejs.org/en/" target="_blank" rel="external">官网</a>下载好对应系统版本的安装文件，这里以Windows系统为例。<br>Windows下的NodeJS安装比较简单，下载好安装文件以后，双击运行一路next就好，中间注意选择安装到自己喜欢的路径下面。</p>
+<p>NPM为NodeJS的插件管理器，就类似于我们系统里的应用商店，默认已经随NodeJS一起安装了。</p>
+<h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><p>Git安装跟NodeJS安装一样简单，到Git的<a href="https://git-scm.com/download/" target="_blank" rel="external">官网</a>下载对应系统版本的最新安装文件，运行安装，一路next默认就好。</p>
+<h3 id="github账号注册"><a href="#github账号注册" class="headerlink" title="github账号注册"></a>github账号注册</h3><p>到<a href="http://github.com" target="_blank" rel="external">github</a>上注册一个个人账号，已注册过的默默飘过。</p>
+<h3 id="SSHKEY"><a href="#SSHKEY" class="headerlink" title="SSHKEY"></a>SSHKEY</h3><p>想要在自己本地机器上方便的上传/更新文件，我们需要在github上添加一个本机的SSH公钥。<br>首先我们在桌面空白出右键打开右键菜单选择<strong>Git Bash</strong>选项</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401013051.png" alt="git bash"></p>
+<p>输入下面的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>一路回车，如果之前已经生成过SSH Key的，中间有一步会询问是否进行覆盖操作，输入<strong>y</strong>就会覆盖重新生成一个新的SSH密钥对。</p>
+<p>接下来我们到我们当前用户的用户目录下找到.ssh的文件夹，这个文件夹windows下默认是隐藏的，需要设置显示隐藏的项目。如果当前用户是Administrator，那么.ssh文件夹就在C:\Users\Administrator\目录下。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401012837.png" alt=".ssh dir"></p>
+<p>使用文本编辑器打开id_rsa.pub文件，复制全部内容。</p>
+<p>浏览器打开<a href="http://github.com" target="_blank" rel="external">github</a>，登录已注册过的账号，点击右上角的用户头像，会弹出下面的菜单项</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401011320.png" alt="settings"></p>
+<p>选择<strong>Settings</strong>选项进入设置页面，设置页面左边侧边栏有个<strong>SSH Keys</strong>菜单选项，我们点击打开。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401011421.png" alt="ssh keys"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401014113.png" alt="ssh keys"></p>
+<p>点击New SSH key按钮，输入一个title，以及粘贴我们刚复制的id_rsa.pub文件内容到Key编辑框里，保存。</p>
+<h3 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h3><p>快捷键<strong>win+r</strong>输入<strong>cmd</strong>打开命令行终端，执行以下命令安装hexo-cli和hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<p>如果上面的命令执行失败，或者较慢，我们可以替换npm的官方源到淘宝提供的国内镜像源，使用下面命令替换源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><p>在喜欢的目录下创建一个blog文件夹，进入文件夹，在资源管理器地址栏输入<strong>cmd</strong>命令，可以快速的打开命令行终端，且路径已在当前目录。输入下面两个命令，创建一个博客项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401015906.png" alt="hexo init"></p>
+<p>创建完成以后我们看下文件夹下的文件和目录。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401020226.png" alt="hexo init"></p>
+<p>下面简单说明下这些目录和文件的作用</p>
+<ul>
+<li>node_modules node插件文件夹</li>
+<li>scaffolds 工具模板</li>
+<li>source 博客资源</li>
+<li>source/_posts 文章文件夹（存放会发布的博客文件）</li>
+<li>themes 主题样式文件夹</li>
+<li>themes/landscape 默认皮肤文件夹</li>
+<li>_config.yml 全局配置文件</li>
+<li>package.json node插件配置文件</li>
+</ul>
+<p>到这里我们博客项目就已经构建好了，现在我们本地启动服务可以查看下效果。</p>
+<p>首先我们需要生成静态文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>上述命令也可以使用简写方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>控制台打印以下内容，说明生成成功。<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401021857.png" alt="hexo generate"></p>
+<p>生成静态文件后，就可以启动服务了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>也可以使用简写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>hexo启动的服务默认端口为<strong>4000</strong>，我们可以打开浏览器，地址栏输入<strong> <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> </strong>访问查看效果。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401022212.png" alt="hexo hello world"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/hexo-github.html" data-id="cimvn6rjd0008jcqed9gtj2lh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-hexo-github" data-title="Hexo+Github一步两步搭建博客" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-Java列表组合排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/Java列表组合排序.html" class="article-date">
+  <time datetime="2016-04-11T02:57:38.239Z" itemprop="datePublished">2016-04-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单类型元素排序"><a href="#简单类型元素排序" class="headerlink" title="简单类型元素排序"></a>简单类型元素排序</h3><p>Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：</p>
+<ul>
+<li>java.util.Collections.sort(java.util.List)</li>
+<li>java.util.Collections.sort(java.util.List, java.util.Comparator)</li>
+</ul>
+<p>第一个方法要求List中元素类实现java.lang.Comparable接口。<br>第二个方法需要在元素类外部使用java.util.Comparator接口。<br>Comparable需要在类内部实现排序方法，Comparator是在类外部实现的排序。<br>Comparator是一个专用的比较器，当这个对象不支持自比较时，就可以写一个比较器来比较两个对象之间大小。<br>我们常用的String和Integer内部就已经实现了Comparable接口。</p>
+<p>sort()方法可以支持对List元素的排序。我们可以简单的传一个List对象，也可以传一个List对象和一个Comparator。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Collections.sort(list);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[AAAA, BBBB, aaaa, bbbb]</span></span><br></pre></td></tr></table></figure>
+<p>以上List中元素的类型都是String类型的，排序的顺序是根据每个字符的ASCII/Unicode值顺序排序的。Unicode编码中，英文大写字母A-Z是排在小写字母a-z前面的。如果我们想让元素逆序排序，只需要传给sort()方法一个反序Comparator即可，反序Comparator对象可以直接由Connections.reverseOrder()方法获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Comparator comp = Collections.reverseOrder();</span><br><span class="line">		Collections.sort(list, comp);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[bbbb, aaaa, BBBB, AAAA]</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义类集合排序"><a href="#自定义类集合排序" class="headerlink" title="自定义类集合排序"></a>自定义类集合排序</h3><p>我们要对一个自定义的类进行排序，有两种方式，一种是让该类实现Comparable接口，并实现compareTo()方法。另一种是在类外部单独定义一个比较器，比较器实现Comparator接口。<br>现在我们定义一个Person类，有三个属性：name，birth，score，分别对应姓名，生日，和分数。我们实现一个按分数的排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String birth;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String birth, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.birth = birth;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBirth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirth</span><span class="params">(String birth)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.birth = birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScore</span><span class="params">(<span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.score = score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> diff = <span class="keyword">this</span>.getScore() - other.getScore();</span><br><span class="line">		<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birth='"</span> + birth + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", score="</span> + score +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们不想使用Person内部定义的排序，我们可以在外部使用Comparator类来实现。下面使用Comparator类实现一个要按出生日期排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">				<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h3><p>再来实现先按分数高到低，再按出生早晚两个条件来排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		List&lt;Comparator&lt;Person&gt;&gt; comparatorList = <span class="keyword">new</span> ArrayList&lt;Comparator&lt;Person&gt;&gt;();</span><br><span class="line">		comparatorList.add(compareScore);</span><br><span class="line">		comparatorList.add(compareBirth);</span><br><span class="line"></span><br><span class="line">		sort(list, comparatorList);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Person&gt; list, <span class="keyword">final</span> List&lt;Comparator&lt;Person&gt;&gt; compareList)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (list == <span class="keyword">null</span> || compareList == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Comparator&lt;Person&gt; comparator = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">for</span> (Comparator&lt;Person&gt; tmpComparatoe : compareList) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		Collections.sort(list, comparator);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareScore = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getScore() - o2.getScore();</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareBirth = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用apache集合操作类ComparatorUtils实现多条件排序"><a href="#使用apache集合操作类ComparatorUtils实现多条件排序" class="headerlink" title="使用apache集合操作类ComparatorUtils实现多条件排序"></a>使用apache集合操作类ComparatorUtils实现多条件排序</h3><p>上述Java原生类实现的多条件排序可读性可维护性都比较差，特别是排序条件多了以后，我们要写更多的if判断和比较器。<br>这里使用apache提供的集合操作类ComparatorUtils可以很快实现上面的排序功能。ComparatorChain排序链类使我们更方便的定义第一排序、第二排序，第三排序等等。<br>首先需要引入Apache-common的beanutils、collections、logging三个包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.ComparatorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparableComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparatorChain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		Comparator mycmp = ComparableComparator.getInstance();</span><br><span class="line">		mycmp = ComparatorUtils.nullLowComparator(mycmp);<span class="comment">// 允许null</span></span><br><span class="line">		mycmp = ComparatorUtils.reversedComparator(mycmp);<span class="comment">// 逆序</span></span><br><span class="line"></span><br><span class="line">		ArrayList&lt;Object&gt; sortFields = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"score"</span>, mycmp));<span class="comment">// 第一排序，分数逆序</span></span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"birth"</span>));<span class="comment">// 第二排序，出生时间顺序</span></span><br><span class="line"></span><br><span class="line">		ComparatorChain multiSort = <span class="keyword">new</span> ComparatorChain(sortFields);</span><br><span class="line">		Collections.sort(list, multiSort);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/Java列表组合排序.html" data-id="cimvn6rio0002jcqe9k2zqvir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-Java列表组合排序" data-title="Java中List列表排序" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/learning/sublime-package-control.html" class="article-date">
@@ -117,7 +527,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/sublime-package-control.html" data-id="cimfprn6m0006coqe892v1jzq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/sublime-package-control.html" data-id="cimvn6rjl000cjcqe2xsgm7p0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +602,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/vim-xml-format.html" data-id="cimfprn6l0005coqeii3fwv3i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/vim-xml-format.html" data-id="cimvn6rjf0009jcqeuozmix1q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +721,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/nsq-start.html" data-id="cimfprn6j0004coqez16rns9h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/nsq-start.html" data-id="cimvn6rkd000kjcqeirhlf7gi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +781,7 @@ var duoshuoQuery = {short_name:"yangdage"};
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 4000</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
 <p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
 <h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
@@ -381,7 +791,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/windows-port-used.html" data-id="cimfprn6p0008coqex6hdkywi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/windows-port-used.html" data-id="cimvn6rk3000gjcqe3x7wm5sp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -501,7 +911,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/api-design.html" data-id="cimfprn6c0001coqempx7u1n4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/api-design.html" data-id="cimvn6rji000ajcqeybjju8k9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -558,7 +968,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li></ul>
     </div>
   </div>
 
@@ -571,23 +981,23 @@ var duoshuoQuery = {short_name:"yangdage"};
       <ul>
         
           <li>
+            <a href="/blog/learning/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/javascript-closure.html">Javascript闭包(Closure)</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/hexo-github.html">Hexo+Github一步两步搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
+          </li>
+        
+          <li>
             <a href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/vim-xml-format.html">Vim下XML文件格式化</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/nsq-start.html">初识NSQ分布式实时消息架构</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/windows-port-used.html">Windows下端口占用程序查询</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/api-design.html">API接口文档设计</a>
           </li>
         
       </ul>
