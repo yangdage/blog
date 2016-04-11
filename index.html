@@ -75,10 +75,91 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java列表组合排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/Java列表组合排序.html" class="article-date">
+  <time datetime="2016-04-09T16:00:00.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单类型元素排序"><a href="#简单类型元素排序" class="headerlink" title="简单类型元素排序"></a>简单类型元素排序</h3><p>Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：</p>
+<ul>
+<li>java.util.Collections.sort(java.util.List)</li>
+<li>java.util.Collections.sort(java.util.List, java.util.Comparator)</li>
+</ul>
+<p>第一个方法要求List中元素类实现java.lang.Comparable接口。<br>第二个方法需要在元素类外部使用java.util.Comparator接口。<br>Comparable需要在类内部实现排序方法，Comparator是在类外部实现的排序。<br>Comparator是一个专用的比较器，当这个对象不支持自比较时，就可以写一个比较器来比较两个对象之间大小。<br>我们常用的String和Integer内部就已经实现了Comparable接口。</p>
+<p>sort()方法可以支持对List元素的排序。我们可以简单的传一个List对象，也可以传一个List对象和一个Comparator。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Collections.sort(list);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[AAAA, BBBB, aaaa, bbbb]</span></span><br></pre></td></tr></table></figure>
+<p>以上List中元素的类型都是String类型的，排序的顺序是根据每个字符的ASCII/Unicode值顺序排序的。Unicode编码中，英文大写字母A-Z是排在小写字母a-z前面的。如果我们想让元素逆序排序，只需要传给sort()方法一个反序Comparator即可，反序Comparator对象可以直接由Connections.reverseOrder()方法获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Comparator comp = Collections.reverseOrder();</span><br><span class="line">		Collections.sort(list, comp);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[bbbb, aaaa, BBBB, AAAA]</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="自定义类集合排序"><a href="#自定义类集合排序" class="headerlink" title="自定义类集合排序"></a>自定义类集合排序</h3><p>我们要对一个自定义的类进行排序，有两种方式，一种是让该类实现Comparable接口，并实现compareTo()方法。另一种是在类外部单独定义一个比较器，比较器实现Comparator接口。<br>现在我们定义一个Person类，有三个属性：name，birth，score，分别对应姓名，生日，和分数。我们实现一个按分数的排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String birth;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String birth, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.birth = birth;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBirth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirth</span><span class="params">(String birth)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.birth = birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScore</span><span class="params">(<span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.score = score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> diff = <span class="keyword">this</span>.getScore() - other.getScore();</span><br><span class="line">		<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birth='"</span> + birth + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", score="</span> + score +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果我们不想使用Person内部定义的排序，我们可以在外部使用Comparator类来实现。下面使用Comparator类实现一个要按出生日期排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">				<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h3><p>再来实现先按分数高到低，再按出生早晚两个条件来排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		List&lt;Comparator&lt;Person&gt;&gt; comparatorList = <span class="keyword">new</span> ArrayList&lt;Comparator&lt;Person&gt;&gt;();</span><br><span class="line">		comparatorList.add(compareScore);</span><br><span class="line">		comparatorList.add(compareBirth);</span><br><span class="line"></span><br><span class="line">		sort(list, comparatorList);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Person&gt; list, <span class="keyword">final</span> List&lt;Comparator&lt;Person&gt;&gt; compareList)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (list == <span class="keyword">null</span> || compareList == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Comparator&lt;Person&gt; comparator = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">for</span> (Comparator&lt;Person&gt; tmpComparatoe : compareList) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		Collections.sort(list, comparator);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareScore = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getScore() - o2.getScore();</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareBirth = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用apache集合操作类ComparatorUtils实现多条件排序"><a href="#使用apache集合操作类ComparatorUtils实现多条件排序" class="headerlink" title="使用apache集合操作类ComparatorUtils实现多条件排序"></a>使用apache集合操作类ComparatorUtils实现多条件排序</h3><p>上述Java原生类实现的多条件排序可读性可维护性都比较差，特别是排序条件多了以后，我们要写更多的if判断和比较器。<br>这里使用apache提供的集合操作类ComparatorUtils可以很快实现上面的排序功能。ComparatorChain排序链类使我们更方便的定义第一排序、第二排序，第三排序等等。<br>首先需要引入Apache-common的beanutils、collections、logging三个包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.ComparatorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparableComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparatorChain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		Comparator mycmp = ComparableComparator.getInstance();</span><br><span class="line">		mycmp = ComparatorUtils.nullLowComparator(mycmp);<span class="comment">// 允许null</span></span><br><span class="line">		mycmp = ComparatorUtils.reversedComparator(mycmp);<span class="comment">// 逆序</span></span><br><span class="line"></span><br><span class="line">		ArrayList&lt;Object&gt; sortFields = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"score"</span>, mycmp));<span class="comment">// 第一排序，分数逆序</span></span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"birth"</span>));<span class="comment">// 第二排序，出生时间顺序</span></span><br><span class="line"></span><br><span class="line">		ComparatorChain multiSort = <span class="keyword">new</span> ComparatorChain(sortFields);</span><br><span class="line">		Collections.sort(list, multiSort);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/Java列表组合排序.html" data-id="cimvnh33h0002zgqe2hft4f3b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-Java列表组合排序" data-title="Java中List列表排序" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-函数声明-表达式-匿名函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/learning/函数声明-表达式-匿名函数.html" class="article-date">
-  <time datetime="2016-04-11T02:57:38.243Z" itemprop="datePublished">2016-04-11</time>
+  <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     
   <div class="article-category">
@@ -133,7 +214,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/函数声明-表达式-匿名函数.html" data-id="cimvn6rk6000hjcqeraribyu5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/函数声明-表达式-匿名函数.html" data-id="cimvnh343000gzgqesj2ovrny" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,10 +247,160 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 搜索引擎优化 end-->
   
+    <article id="post-vim-xml-format" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/vim-xml-format.html" class="article-date">
+  <time datetime="2016-03-28T16:00:00.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/vim-xml-format.html">Vim下XML文件格式化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-打开需要格式化的文件"><a href="#1-打开需要格式化的文件" class="headerlink" title="1.打开需要格式化的文件"></a>1.打开需要格式化的文件</h3><p>使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。<br>现有一个如下的未格式化的文件：<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png" alt="origin image"></p>
+<h3 id="2-保存临时修改"><a href="#2-保存临时修改" class="headerlink" title="2.保存临时修改"></a>2.保存临时修改</h3><p>如果我们打开后有对文件进行编辑操作，需要保存所做的修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w</span><br></pre></td></tr></table></figure>
+<p>在命令模式下输入上面的命令，保存改动，不退出文件</p>
+<h3 id="3-启用自动缩进选项"><a href="#3-启用自动缩进选项" class="headerlink" title="3.启用自动缩进选项"></a>3.启用自动缩进选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:filetype indent on</span><br></pre></td></tr></table></figure>
+<h3 id="4-设置文件类型"><a href="#4-设置文件类型" class="headerlink" title="4.设置文件类型"></a>4.设置文件类型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> filetype=xml</span><br></pre></td></tr></table></figure>
+<h3 id="5-全局格式化"><a href="#5-全局格式化" class="headerlink" title="5.全局格式化"></a>5.全局格式化</h3><p>回到文件头：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gg</span><br></pre></td></tr></table></figure>
+<p>使用缩进（格式化）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=</span><br></pre></td></tr></table></figure></p>
+<p>格式化到文件尾:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G</span><br></pre></td></tr></table></figure>
+<h3 id="6-格式化结果"><a href="#6-格式化结果" class="headerlink" title="6.格式化结果"></a>6.格式化结果</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png" alt="origin image"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/vim-xml-format.html" data-id="cimvnh33v0009zgqedh94t09x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-vim-xml-format" data-title="Vim下XML文件格式化" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/sublime-package-control.html" class="article-date">
+  <time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
+<p>打开sublime，查看是否存在以下目录</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
+<p>如果没有，我们需要安装Package Control</p>
+<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
+<p>Sublime3:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure>
+<p>Sublime2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)<span class="keyword">else</span>None;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
+<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
+<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/sublime-package-control.html" data-id="cimvnh33p0007zgqegowuxw8t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-sublime-package-control" data-title="Sublime下的Package Control" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-javascript-closure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/learning/javascript-closure.html" class="article-date">
-  <time datetime="2016-04-11T02:57:38.241Z" itemprop="datePublished">2016-04-11</time>
+  <time datetime="2016-03-21T16:00:00.000Z" itemprop="datePublished">2016-03-22</time>
 </a>
     
   <div class="article-category">
@@ -258,7 +489,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/javascript-closure.html" data-id="cimvn6rj10003jcqe4dqpj3bm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/javascript-closure.html" data-id="cimvnh33o0006zgqebxwvz1gg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -294,7 +525,7 @@ var duoshuoQuery = {short_name:"yangdage"};
     <article id="post-hexo-github" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/learning/hexo-github.html" class="article-date">
-  <time datetime="2016-04-11T02:57:38.240Z" itemprop="datePublished">2016-04-11</time>
+  <time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished">2016-03-10</time>
 </a>
     
   <div class="article-category">
@@ -371,7 +602,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/hexo-github.html" data-id="cimvn6rjd0008jcqed9gtj2lh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/hexo-github.html" data-id="cimvnh33m0005zgqejtc3tqz0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -404,430 +635,10 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 搜索引擎优化 end-->
   
-    <article id="post-Java列表组合排序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/learning/Java列表组合排序.html" class="article-date">
-  <time datetime="2016-04-11T02:57:38.239Z" itemprop="datePublished">2016-04-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="简单类型元素排序"><a href="#简单类型元素排序" class="headerlink" title="简单类型元素排序"></a>简单类型元素排序</h3><p>Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：</p>
-<ul>
-<li>java.util.Collections.sort(java.util.List)</li>
-<li>java.util.Collections.sort(java.util.List, java.util.Comparator)</li>
-</ul>
-<p>第一个方法要求List中元素类实现java.lang.Comparable接口。<br>第二个方法需要在元素类外部使用java.util.Comparator接口。<br>Comparable需要在类内部实现排序方法，Comparator是在类外部实现的排序。<br>Comparator是一个专用的比较器，当这个对象不支持自比较时，就可以写一个比较器来比较两个对象之间大小。<br>我们常用的String和Integer内部就已经实现了Comparable接口。</p>
-<p>sort()方法可以支持对List元素的排序。我们可以简单的传一个List对象，也可以传一个List对象和一个Comparator。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Collections.sort(list);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[AAAA, BBBB, aaaa, bbbb]</span></span><br></pre></td></tr></table></figure>
-<p>以上List中元素的类型都是String类型的，排序的顺序是根据每个字符的ASCII/Unicode值顺序排序的。Unicode编码中，英文大写字母A-Z是排在小写字母a-z前面的。如果我们想让元素逆序排序，只需要传给sort()方法一个反序Comparator即可，反序Comparator对象可以直接由Connections.reverseOrder()方法获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		list.add(<span class="string">"aaaa"</span>);</span><br><span class="line">		list.add(<span class="string">"BBBB"</span>);</span><br><span class="line">		list.add(<span class="string">"AAAA"</span>);</span><br><span class="line">		list.add(<span class="string">"bbbb"</span>);</span><br><span class="line">		Comparator comp = Collections.reverseOrder();</span><br><span class="line">		Collections.sort(list, comp);</span><br><span class="line">		System.out.println(list.toString());	<span class="comment">//[bbbb, aaaa, BBBB, AAAA]</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="自定义类集合排序"><a href="#自定义类集合排序" class="headerlink" title="自定义类集合排序"></a>自定义类集合排序</h3><p>我们要对一个自定义的类进行排序，有两种方式，一种是让该类实现Comparable接口，并实现compareTo()方法。另一种是在类外部单独定义一个比较器，比较器实现Comparator接口。<br>现在我们定义一个Person类，有三个属性：name，birth，score，分别对应姓名，生日，和分数。我们实现一个按分数的排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String birth;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> score;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String birth, <span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.birth = birth;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBirth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirth</span><span class="params">(String birth)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.birth = birth;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScore</span><span class="params">(<span class="keyword">int</span> score)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.score = score;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> diff = <span class="keyword">this</span>.getScore() - other.getScore();</span><br><span class="line">		<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</span><br><span class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birth='"</span> + birth + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", score="</span> + score +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果我们不想使用Person内部定义的排序，我们可以在外部使用Comparator类来实现。下面使用Comparator类实现一个要按出生日期排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line">		Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">				<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h3><p>再来实现先按分数高到低，再按出生早晚两个条件来排序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		List&lt;Comparator&lt;Person&gt;&gt; comparatorList = <span class="keyword">new</span> ArrayList&lt;Comparator&lt;Person&gt;&gt;();</span><br><span class="line">		comparatorList.add(compareScore);</span><br><span class="line">		comparatorList.add(compareBirth);</span><br><span class="line"></span><br><span class="line">		sort(list, comparatorList);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Person&gt; list, <span class="keyword">final</span> List&lt;Comparator&lt;Person&gt;&gt; compareList)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (list == <span class="keyword">null</span> || compareList == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Comparator&lt;Person&gt; comparator = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">				<span class="keyword">for</span> (Comparator&lt;Person&gt; tmpComparatoe : compareList) &#123;</span><br><span class="line">					<span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		Collections.sort(list, comparator);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareScore = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getScore() - o2.getScore();</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareBirth = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</span><br><span class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用apache集合操作类ComparatorUtils实现多条件排序"><a href="#使用apache集合操作类ComparatorUtils实现多条件排序" class="headerlink" title="使用apache集合操作类ComparatorUtils实现多条件排序"></a>使用apache集合操作类ComparatorUtils实现多条件排序</h3><p>上述Java原生类实现的多条件排序可读性可维护性都比较差，特别是排序条件多了以后，我们要写更多的if判断和比较器。<br>这里使用apache提供的集合操作类ComparatorUtils可以很快实现上面的排序功能。ComparatorChain排序链类使我们更方便的定义第一排序、第二排序，第三排序等等。<br>首先需要引入Apache-common的beanutils、collections、logging三个包。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.ComparatorUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparableComparator;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparatorChain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</span><br><span class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</span><br><span class="line"></span><br><span class="line">		Comparator mycmp = ComparableComparator.getInstance();</span><br><span class="line">		mycmp = ComparatorUtils.nullLowComparator(mycmp);<span class="comment">// 允许null</span></span><br><span class="line">		mycmp = ComparatorUtils.reversedComparator(mycmp);<span class="comment">// 逆序</span></span><br><span class="line"></span><br><span class="line">		ArrayList&lt;Object&gt; sortFields = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"score"</span>, mycmp));<span class="comment">// 第一排序，分数逆序</span></span><br><span class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"birth"</span>));<span class="comment">// 第二排序，出生时间顺序</span></span><br><span class="line"></span><br><span class="line">		ComparatorChain multiSort = <span class="keyword">new</span> ComparatorChain(sortFields);</span><br><span class="line">		Collections.sort(list, multiSort);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></span><br><span class="line"></span><br><span class="line">		System.out.println(list.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/Java列表组合排序.html" data-id="cimvn6rio0002jcqe9k2zqvir" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-Java列表组合排序" data-title="Java中List列表排序" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
-    <article id="post-sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/learning/sublime-package-control.html" class="article-date">
-  <time datetime="2016-03-30T09:44:32.044Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
-<p>打开sublime，查看是否存在以下目录</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
-<p>如果没有，我们需要安装Package Control</p>
-<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
-<p>Sublime3:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure>
-<p>Sublime2:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)<span class="keyword">else</span>None;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
-<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
-<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/sublime-package-control.html" data-id="cimvn6rjl000cjcqe2xsgm7p0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-sublime-package-control" data-title="Sublime下的Package Control" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
-    <article id="post-vim-xml-format" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/learning/vim-xml-format.html" class="article-date">
-  <time datetime="2016-03-30T03:22:51.159Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/vim-xml-format.html">Vim下XML文件格式化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-打开需要格式化的文件"><a href="#1-打开需要格式化的文件" class="headerlink" title="1.打开需要格式化的文件"></a>1.打开需要格式化的文件</h3><p>使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。<br>现有一个如下的未格式化的文件：<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png" alt="origin image"></p>
-<h3 id="2-保存临时修改"><a href="#2-保存临时修改" class="headerlink" title="2.保存临时修改"></a>2.保存临时修改</h3><p>如果我们打开后有对文件进行编辑操作，需要保存所做的修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:w</span><br></pre></td></tr></table></figure>
-<p>在命令模式下输入上面的命令，保存改动，不退出文件</p>
-<h3 id="3-启用自动缩进选项"><a href="#3-启用自动缩进选项" class="headerlink" title="3.启用自动缩进选项"></a>3.启用自动缩进选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:filetype indent on</span><br></pre></td></tr></table></figure>
-<h3 id="4-设置文件类型"><a href="#4-设置文件类型" class="headerlink" title="4.设置文件类型"></a>4.设置文件类型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> filetype=xml</span><br></pre></td></tr></table></figure>
-<h3 id="5-全局格式化"><a href="#5-全局格式化" class="headerlink" title="5.全局格式化"></a>5.全局格式化</h3><p>回到文件头：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gg</span><br></pre></td></tr></table></figure>
-<p>使用缩进（格式化）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=</span><br></pre></td></tr></table></figure></p>
-<p>格式化到文件尾:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G</span><br></pre></td></tr></table></figure>
-<h3 id="6-格式化结果"><a href="#6-格式化结果" class="headerlink" title="6.格式化结果"></a>6.格式化结果</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png" alt="origin image"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/vim-xml-format.html" data-id="cimvn6rjf0009jcqeuozmix1q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-vim-xml-format" data-title="Vim下XML文件格式化" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
-    <article id="post-nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/learning/nsq-start.html" class="article-date">
-  <time datetime="2016-03-30T02:31:35.639Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/nsq-start.html">初识NSQ分布式实时消息架构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-NSQ知识普及"><a href="#1-NSQ知识普及" class="headerlink" title="1.NSQ知识普及"></a>1.NSQ知识普及</h3><p>NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/nsqio/nsq</span><br></pre></td></tr></table></figure>
-<p>NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩展，目前已有很多公司都是采用其作为自身企业内部的实时消息服务。而且它的灵活性很强，支持很多种协议。官方直接提供了拆箱可用的Go库和Python库。好，其他的就不废话了，随便搜索下NSQ相关的博文或者去NSQ的官方网站了解更详细的信息吧。</p>
-<h3 id="2-NSQ的四大组件"><a href="#2-NSQ的四大组件" class="headerlink" title="2.NSQ的四大组件"></a>2.NSQ的四大组件</h3><p>nsqlookupd：管理nsqd节点拓扑信息并提供最终一致性的发现服务的守护进程</p>
-<p>nsqd：负责接收、排队、转发消息到客户端的守护进程，并且定时向nsqlookupd服务发送心跳</p>
-<p>nsqadmin：nsq的web统计界面，可实时查看集群的统计数据和执行一些管理任务 </p>
-<p>utilities：常见基础功能、数据流处理工具，如nsq_stat、nsq_tail、nsq_to_file、nsq_to_http、nsq_to_nsq、to_nsq </p>
-<h3 id="3-NSQ依赖"><a href="#3-NSQ依赖" class="headerlink" title="3.NSQ依赖"></a>3.NSQ依赖</h3><h4 id="3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"><a href="#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。" class="headerlink" title="3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"></a>3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。</h4><p>（i）首先自然是去官网找到对应系统的较新较稳定的版本安装包，中文站地址：<a href="http://golangtc.com/download" target="_blank" rel="external">http://golangtc.com/download</a></p>
-<p>由于其官方地址在国外，下载速度可能比较慢，推荐使用本地下载的链接进行下载。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://golangtc.com/static/go/go1.5beta1.linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
-<p>（ii）下载完安装包后解压并且复制到/usr/local/目录下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf go1.5beta1.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line">mv go /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
-<p>（iii）GO环境变量配置</p>
-<p>打开环境变量配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
-<p>然后在文件的最后追加以下配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=/usr/<span class="built_in">local</span>/go</span><br><span class="line"><span class="built_in">export</span> GOPATH=\<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=\<span class="variable">$PATH</span>:\<span class="variable">$GOPATH</span></span><br></pre></td></tr></table></figure>
-<p>配置好环境变量后再让它马上生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-<p>最后查看是否安装成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure>
-<p>如果控制台打印出了对应的版本号信息，那就恭喜你了，等等。。。别急，这才刚刚开始。</p>
-<h4 id="3-2-GIT：因为稍候需要从github上获取NSQ的安装文件"><a href="#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件" class="headerlink" title="3.2 GIT：因为稍候需要从github上获取NSQ的安装文件"></a>3.2 GIT：因为稍候需要从github上获取NSQ的安装文件</h4><p>直接命令安装就好</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
-<h3 id="4-安装NSQ"><a href="#4-安装NSQ" class="headerlink" title="4.安装NSQ"></a>4.安装NSQ</h3><p>命令行直接执行下面的命令安装NSQ</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/kr/godep</span><br><span class="line">go get github.com/bmizerany/assert</span><br><span class="line">godep get github.com/bitly/nsq/...</span><br></pre></td></tr></table></figure>
-<p><strong>注：godev为GO的语言依赖管理包，assert为GO的测试框架，至于最后一个嘛，自己猜吧</strong></p>
-<p>到此，NSQ就安装好了，接下来就可以一起愉快的玩耍了</p>
-<h3 id="5-启动部署和测试"><a href="#5-启动部署和测试" class="headerlink" title="5.启动部署和测试"></a>5.启动部署和测试</h3><p>这节的内容就直接翻译了官网的原文了，有兴趣的可以自己去看下</p>
-<p><a href="http://nsq.io/overview/quick_start.html" target="_blank" rel="external">http://nsq.io/overview/quick_start.html</a></p>
-<h4 id="5-1-打开一个终端，启动nsqlookupd"><a href="#5-1-打开一个终端，启动nsqlookupd" class="headerlink" title="5.1 打开一个终端，启动nsqlookupd"></a>5.1 打开一个终端，启动nsqlookupd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqlookupd</span><br></pre></td></tr></table></figure>
-<h4 id="5-2-再打开一个终端，启动nsq"><a href="#5-2-再打开一个终端，启动nsq" class="headerlink" title="5.2 再打开一个终端，启动nsq"></a>5.2 再打开一个终端，启动nsq</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqd --lookupd-tcp-address=127.0.0.1:4160</span><br></pre></td></tr></table></figure>
-<h4 id="5-3-再打开一个终端，启动nsqadmin"><a href="#5-3-再打开一个终端，启动nsqadmin" class="headerlink" title="5.3 再打开一个终端，启动nsqadmin"></a>5.3 再打开一个终端，启动nsqadmin</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqadmin --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
-<h4 id="5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"><a href="#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。" class="headerlink" title="5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"></a>5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 1'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
-<h4 id="5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><a href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。" class="headerlink" title="5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。"></a>5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsq_to_file --topic=<span class="built_in">test</span> --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
-<h4 id="5-6-我们再发布两条消息，看看日志文件中的变化。"><a href="#5-6-我们再发布两条消息，看看日志文件中的变化。" class="headerlink" title="5.6 我们再发布两条消息，看看日志文件中的变化。"></a>5.6 我们再发布两条消息，看看日志文件中的变化。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 2'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 3'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
-<h4 id="5-7特别说明"><a href="#5-7特别说明" class="headerlink" title="5.7特别说明"></a>5.7特别说明</h4><p>需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png" alt="nsq start"></p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png" alt="nsq start"></p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png" alt="nsq start"></p>
-<h3 id="6-nsqadmin的web统计"><a href="#6-nsqadmin的web统计" class="headerlink" title="6.nsqadmin的web统计"></a>6.nsqadmin的web统计</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png" alt="nsq start"></p>
-<p>nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。</p>
-<h4 id="6-1浏览器打开nsqadmin的web页"><a href="#6-1浏览器打开nsqadmin的web页" class="headerlink" title="6.1浏览器打开nsqadmin的web页"></a>6.1浏览器打开nsqadmin的web页</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:4171/</span><br></pre></td></tr></table></figure>
-<p>由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A  INPUT -p tcp --dport 4171 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>参数讲解：<br>–A 添加一条规则的意思<br>–p 指定是什么协议，这里是tcp协议<br>–dport 就是目标端口，当数据从外部进入服务器为目标端口<br>–sport 数据从服务器出去，则为数据源端口使用<br>–j 就是指定是 ACCEPT -接收 或者 DROP 不接收</li>
-</ul>
-<h4 id="6-2-Topics界面"><a href="#6-2-Topics界面" class="headerlink" title="6.2 Topics界面"></a>6.2 Topics界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png" alt="nsq start"></p>
-<p>这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。</p>
-<h4 id="6-3-Nodes节点列表"><a href="#6-3-Nodes节点列表" class="headerlink" title="6.3 Nodes节点列表"></a>6.3 Nodes节点列表</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png" alt="nsq start"></p>
-<p>这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。</p>
-<h4 id="6-4-Counter消息计数页"><a href="#6-4-Counter消息计数页" class="headerlink" title="6.4 Counter消息计数页"></a>6.4 Counter消息计数页</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png" alt="nsq start"></p>
-<p>这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。</p>
-<h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png" alt="nsq start"></p>
-<p>这里我们可以创建消息主题和消息通道。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/nsq-start.html" data-id="cimvn6rkd000kjcqeirhlf7gi" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
-    <article id="post-windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/learning/windows-port-used.html" class="article-date">
-  <time datetime="2016-03-30T02:18:32.655Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/windows-port-used.html">Windows下端口占用程序查询</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
-<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
-<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
-<p>控制台会输出该进程的程序信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/windows-port-used.html" data-id="cimvn6rk3000gjcqe3x7wm5sp" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-windows-port-used" data-title="Windows下端口占用程序查询" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
     <article id="post-api-design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/learning/api-design.html" class="article-date">
-  <time datetime="2016-03-28T10:54:50.415Z" itemprop="datePublished">2016-03-28</time>
+  <time datetime="2016-03-03T16:00:00.000Z" itemprop="datePublished">2016-03-04</time>
 </a>
     
   <div class="article-category">
@@ -911,7 +722,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/api-design.html" data-id="cimvn6rji000ajcqeybjju8k9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/learning/api-design.html" data-id="cimvnh33j0003zgqe1v5vbskh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -925,6 +736,195 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 多说评论框 start -->
 <div class="ds-thread" data-thread-key="post-api-design" data-title="API接口文档设计" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/nsq-start.html" class="article-date">
+  <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/nsq-start.html">初识NSQ分布式实时消息架构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-NSQ知识普及"><a href="#1-NSQ知识普及" class="headerlink" title="1.NSQ知识普及"></a>1.NSQ知识普及</h3><p>NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/nsqio/nsq</span><br></pre></td></tr></table></figure>
+<p>NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩展，目前已有很多公司都是采用其作为自身企业内部的实时消息服务。而且它的灵活性很强，支持很多种协议。官方直接提供了拆箱可用的Go库和Python库。好，其他的就不废话了，随便搜索下NSQ相关的博文或者去NSQ的官方网站了解更详细的信息吧。</p>
+<h3 id="2-NSQ的四大组件"><a href="#2-NSQ的四大组件" class="headerlink" title="2.NSQ的四大组件"></a>2.NSQ的四大组件</h3><p>nsqlookupd：管理nsqd节点拓扑信息并提供最终一致性的发现服务的守护进程</p>
+<p>nsqd：负责接收、排队、转发消息到客户端的守护进程，并且定时向nsqlookupd服务发送心跳</p>
+<p>nsqadmin：nsq的web统计界面，可实时查看集群的统计数据和执行一些管理任务 </p>
+<p>utilities：常见基础功能、数据流处理工具，如nsq_stat、nsq_tail、nsq_to_file、nsq_to_http、nsq_to_nsq、to_nsq </p>
+<h3 id="3-NSQ依赖"><a href="#3-NSQ依赖" class="headerlink" title="3.NSQ依赖"></a>3.NSQ依赖</h3><h4 id="3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"><a href="#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。" class="headerlink" title="3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"></a>3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。</h4><p>（i）首先自然是去官网找到对应系统的较新较稳定的版本安装包，中文站地址：<a href="http://golangtc.com/download" target="_blank" rel="external">http://golangtc.com/download</a></p>
+<p>由于其官方地址在国外，下载速度可能比较慢，推荐使用本地下载的链接进行下载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://golangtc.com/static/go/go1.5beta1.linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>（ii）下载完安装包后解压并且复制到/usr/local/目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf go1.5beta1.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line">mv go /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+<p>（iii）GO环境变量配置</p>
+<p>打开环境变量配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>然后在文件的最后追加以下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=/usr/<span class="built_in">local</span>/go</span><br><span class="line"><span class="built_in">export</span> GOPATH=\<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=\<span class="variable">$PATH</span>:\<span class="variable">$GOPATH</span></span><br></pre></td></tr></table></figure>
+<p>配置好环境变量后再让它马上生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<p>最后查看是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure>
+<p>如果控制台打印出了对应的版本号信息，那就恭喜你了，等等。。。别急，这才刚刚开始。</p>
+<h4 id="3-2-GIT：因为稍候需要从github上获取NSQ的安装文件"><a href="#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件" class="headerlink" title="3.2 GIT：因为稍候需要从github上获取NSQ的安装文件"></a>3.2 GIT：因为稍候需要从github上获取NSQ的安装文件</h4><p>直接命令安装就好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h3 id="4-安装NSQ"><a href="#4-安装NSQ" class="headerlink" title="4.安装NSQ"></a>4.安装NSQ</h3><p>命令行直接执行下面的命令安装NSQ</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/kr/godep</span><br><span class="line">go get github.com/bmizerany/assert</span><br><span class="line">godep get github.com/bitly/nsq/...</span><br></pre></td></tr></table></figure>
+<p><strong>注：godev为GO的语言依赖管理包，assert为GO的测试框架，至于最后一个嘛，自己猜吧</strong></p>
+<p>到此，NSQ就安装好了，接下来就可以一起愉快的玩耍了</p>
+<h3 id="5-启动部署和测试"><a href="#5-启动部署和测试" class="headerlink" title="5.启动部署和测试"></a>5.启动部署和测试</h3><p>这节的内容就直接翻译了官网的原文了，有兴趣的可以自己去看下</p>
+<p><a href="http://nsq.io/overview/quick_start.html" target="_blank" rel="external">http://nsq.io/overview/quick_start.html</a></p>
+<h4 id="5-1-打开一个终端，启动nsqlookupd"><a href="#5-1-打开一个终端，启动nsqlookupd" class="headerlink" title="5.1 打开一个终端，启动nsqlookupd"></a>5.1 打开一个终端，启动nsqlookupd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqlookupd</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-再打开一个终端，启动nsq"><a href="#5-2-再打开一个终端，启动nsq" class="headerlink" title="5.2 再打开一个终端，启动nsq"></a>5.2 再打开一个终端，启动nsq</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqd --lookupd-tcp-address=127.0.0.1:4160</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-再打开一个终端，启动nsqadmin"><a href="#5-3-再打开一个终端，启动nsqadmin" class="headerlink" title="5.3 再打开一个终端，启动nsqadmin"></a>5.3 再打开一个终端，启动nsqadmin</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqadmin --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
+<h4 id="5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"><a href="#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。" class="headerlink" title="5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"></a>5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 1'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><a href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。" class="headerlink" title="5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。"></a>5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsq_to_file --topic=<span class="built_in">test</span> --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
+<h4 id="5-6-我们再发布两条消息，看看日志文件中的变化。"><a href="#5-6-我们再发布两条消息，看看日志文件中的变化。" class="headerlink" title="5.6 我们再发布两条消息，看看日志文件中的变化。"></a>5.6 我们再发布两条消息，看看日志文件中的变化。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 2'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 3'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-7特别说明"><a href="#5-7特别说明" class="headerlink" title="5.7特别说明"></a>5.7特别说明</h4><p>需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png" alt="nsq start"></p>
+<h3 id="6-nsqadmin的web统计"><a href="#6-nsqadmin的web统计" class="headerlink" title="6.nsqadmin的web统计"></a>6.nsqadmin的web统计</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png" alt="nsq start"></p>
+<p>nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。</p>
+<h4 id="6-1浏览器打开nsqadmin的web页"><a href="#6-1浏览器打开nsqadmin的web页" class="headerlink" title="6.1浏览器打开nsqadmin的web页"></a>6.1浏览器打开nsqadmin的web页</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:4171/</span><br></pre></td></tr></table></figure>
+<p>由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A  INPUT -p tcp --dport 4171 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数讲解：<br>–A 添加一条规则的意思<br>–p 指定是什么协议，这里是tcp协议<br>–dport 就是目标端口，当数据从外部进入服务器为目标端口<br>–sport 数据从服务器出去，则为数据源端口使用<br>–j 就是指定是 ACCEPT -接收 或者 DROP 不接收</li>
+</ul>
+<h4 id="6-2-Topics界面"><a href="#6-2-Topics界面" class="headerlink" title="6.2 Topics界面"></a>6.2 Topics界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png" alt="nsq start"></p>
+<p>这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。</p>
+<h4 id="6-3-Nodes节点列表"><a href="#6-3-Nodes节点列表" class="headerlink" title="6.3 Nodes节点列表"></a>6.3 Nodes节点列表</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png" alt="nsq start"></p>
+<p>这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。</p>
+<h4 id="6-4-Counter消息计数页"><a href="#6-4-Counter消息计数页" class="headerlink" title="6.4 Counter消息计数页"></a>6.4 Counter消息计数页</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png" alt="nsq start"></p>
+<p>这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。</p>
+<h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png" alt="nsq start"></p>
+<p>这里我们可以创建消息主题和消息通道。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/nsq-start.html" data-id="cimvnh33y000bzgqe7lvub6ou" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/windows-port-used.html" class="article-date">
+  <time datetime="2015-05-15T16:00:00.000Z" itemprop="datePublished">2015-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/windows-port-used.html">Windows下端口占用程序查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
+<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
+<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
+<p>控制台会输出该进程的程序信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/windows-port-used.html" data-id="cimvnh341000ezgqehq1ph668" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-windows-port-used" data-title="Windows下端口占用程序查询" data-url="undefined"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -968,7 +968,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li></ul>
     </div>
   </div>
 
@@ -981,23 +981,23 @@ var duoshuoQuery = {short_name:"yangdage"};
       <ul>
         
           <li>
-            <a href="/blog/learning/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/javascript-closure.html">Javascript闭包(Closure)</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/hexo-github.html">Hexo+Github一步两步搭建博客</a>
-          </li>
-        
-          <li>
             <a href="/blog/learning/Java列表组合排序.html">Java中List列表排序</a>
           </li>
         
           <li>
+            <a href="/blog/learning/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/vim-xml-format.html">Vim下XML文件格式化</a>
+          </li>
+        
+          <li>
             <a href="/blog/learning/sublime-package-control.html">Sublime下的Package Control</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/javascript-closure.html">Javascript闭包(Closure)</a>
           </li>
         
       </ul>
