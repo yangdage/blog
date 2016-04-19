@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Go中gob序列化反序列化 | Marks &amp; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="gob序列化反序列化当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。
+普通string与[]byte转换string转换为byte数组
+123456789101112package mainimport (	&quot;fmt&quot;)func main() &amp;#123;	var s string = &quot;abcdefg&quot;	bs :=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go中gob序列化反序列化">
+<meta property="og:url" content="http://yoursite.com/learning/learning/go-gob.html">
+<meta property="og:site_name" content="Marks & Notes">
+<meta property="og:description" content="gob序列化反序列化当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。
+普通string与[]byte转换string转换为byte数组
+123456789101112package mainimport (	&quot;fmt&quot;)func main() &amp;#123;	var s string = &quot;abcdefg&quot;	bs :=">
+<meta property="og:updated_time" content="2016-04-19T10:13:53.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Go中gob序列化反序列化">
+<meta name="twitter:description" content="gob序列化反序列化当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。
+普通string与[]byte转换string转换为byte数组
+123456789101112package mainimport (	&quot;fmt&quot;)func main() &amp;#123;	var s string = &quot;abcdefg&quot;	bs :=">
+  
+    <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Marks &amp; Notes</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-learning/go-gob" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/learning/go-gob.html" class="article-date">
+  <time datetime="2016-04-18T16:00:00.000Z" itemprop="datePublished">2016-04-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Go中gob序列化反序列化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="gob序列化反序列化"><a href="#gob序列化反序列化" class="headerlink" title="gob序列化反序列化"></a>gob序列化反序列化</h3><p>当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。</p>
+<h3 id="普通string与-byte转换"><a href="#普通string与-byte转换" class="headerlink" title="普通string与[]byte转换"></a>普通<strong>string</strong>与<strong>[]byte</strong>转换</h3><p>string转换为byte数组</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	bs := []<span class="keyword">byte</span>(s)</span><br><span class="line">	<span class="comment">//[97 98 99 100 101 102 103]</span></span><br><span class="line">	fmt.Println(bs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>byte数组转string</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">var</span> bs1 = []<span class="keyword">byte</span>&#123;<span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">102</span>, <span class="number">103</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="keyword">string</span>(bs1)</span><br><span class="line">	<span class="comment">//abcdefg</span></span><br><span class="line">	fmt.Println(s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用gob转换string和-byte"><a href="#使用gob转换string和-byte" class="headerlink" title="使用gob转换string和[]byte"></a>使用gob转换<strong>string</strong>和<strong>[]byte</strong></h3><p>string转byte数组</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"encoding/gob"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	buf := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	gob.NewEncoder(buf).Encode(&amp;s)</span><br><span class="line">	bs := buf.Bytes()</span><br><span class="line">	<span class="comment">//[10 12 0 7 97 98 99 100 101 102 103]</span></span><br><span class="line">	fmt.Println(bs)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//     abcdefg</span></span><br><span class="line">	fmt.Println(s1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>gob将string转byte数组时候会在最前面加上4个字节的头数据，这时如果使用普通方式将这个字节数组转string，前面会多出莫名奇妙的字符（显示为空格）。其中Encode()方法和Decode()方法都需传一个指针参数。Go会根据反射机制自动查找对应的数据结构类型。</p>
+<p>byte数组转string</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"encoding/gob"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main() &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	buf := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	gob.NewEncoder(buf).Encode(&amp;s)</span><br><span class="line">	<span class="keyword">var</span> s1 <span class="keyword">string</span></span><br><span class="line">	gob.NewDecoder(buf).Decode(&amp;s1)</span><br><span class="line">	<span class="comment">//abcdefg</span></span><br><span class="line">	fmt.Println(s1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/learning/go-gob.html" data-id="cin79x0cm00079cqefpgfkdln" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/learning/learning/markdown-mathjax.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mathjax in Markdown</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-learning/go-gob" data-title="Go中gob序列化反序列化" data-url="http://yoursite.com/blog/learning/learning/go-gob.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>     
+
+<!-- 搜索引擎优化 end--></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/learning/">学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/learning/learning/go-gob.html">Go中gob序列化反序列化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/learning/markdown-mathjax.html">Mathjax in Markdown</a>
+          </li>
+        
+          <li>
+            <a href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
+          </li>
+        
+          <li>
+            <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/learning/vim-xml-format.html">Vim下XML文件格式化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yangdage<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
+//<![CDATA[
+if (typeof jQuery == 'undefined') {
+document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+// ]]>
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

