@@ -75,14 +75,14 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-learning/windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mark/nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/learning/learning/windows-port-used.html" class="article-date">
-  <time datetime="2015-05-15T16:00:00.000Z" itemprop="datePublished">2015-05-16</time>
+    <a href="/blog/mark/mark/nsq-start.html" class="article-date">
+  <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished">2015-08-26</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
   </div>
 
   </div>
@@ -93,7 +93,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/learning/windows-port-used.html">Windows下端口占用程序查询</a>
+      <a class="article-title" href="/blog/mark/mark/nsq-start.html">初识NSQ分布式实时消息架构</a>
     </h1>
   
 
@@ -101,18 +101,67 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
-<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
-<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
-<p>控制台会输出该进程的程序信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+        <h3 id="1-NSQ知识普及"><a href="#1-NSQ知识普及" class="headerlink" title="1.NSQ知识普及"></a>1.NSQ知识普及</h3><p>NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/nsqio/nsq</span><br></pre></td></tr></table></figure>
+<p>NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩展，目前已有很多公司都是采用其作为自身企业内部的实时消息服务。而且它的灵活性很强，支持很多种协议。官方直接提供了拆箱可用的Go库和Python库。好，其他的就不废话了，随便搜索下NSQ相关的博文或者去NSQ的官方网站了解更详细的信息吧。</p>
+<h3 id="2-NSQ的四大组件"><a href="#2-NSQ的四大组件" class="headerlink" title="2.NSQ的四大组件"></a>2.NSQ的四大组件</h3><p>nsqlookupd：管理nsqd节点拓扑信息并提供最终一致性的发现服务的守护进程</p>
+<p>nsqd：负责接收、排队、转发消息到客户端的守护进程，并且定时向nsqlookupd服务发送心跳</p>
+<p>nsqadmin：nsq的web统计界面，可实时查看集群的统计数据和执行一些管理任务 </p>
+<p>utilities：常见基础功能、数据流处理工具，如nsq_stat、nsq_tail、nsq_to_file、nsq_to_http、nsq_to_nsq、to_nsq </p>
+<h3 id="3-NSQ依赖"><a href="#3-NSQ依赖" class="headerlink" title="3.NSQ依赖"></a>3.NSQ依赖</h3><h4 id="3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"><a href="#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。" class="headerlink" title="3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"></a>3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。</h4><p>（i）首先自然是去官网找到对应系统的较新较稳定的版本安装包，中文站地址：<a href="http://golangtc.com/download" target="_blank" rel="external">http://golangtc.com/download</a></p>
+<p>由于其官方地址在国外，下载速度可能比较慢，推荐使用本地下载的链接进行下载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://golangtc.com/static/go/go1.5beta1.linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>（ii）下载完安装包后解压并且复制到/usr/local/目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf go1.5beta1.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line">mv go /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+<p>（iii）GO环境变量配置</p>
+<p>打开环境变量配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+<p>然后在文件的最后追加以下配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=/usr/<span class="built_in">local</span>/go</span><br><span class="line"><span class="built_in">export</span> GOPATH=\<span class="variable">$GOROOT</span>/bin</span><br><span class="line"><span class="built_in">export</span> PATH=\<span class="variable">$PATH</span>:\<span class="variable">$GOPATH</span></span><br></pre></td></tr></table></figure>
+<p>配置好环境变量后再让它马上生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<p>最后查看是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br></pre></td></tr></table></figure>
+<p>如果控制台打印出了对应的版本号信息，那就恭喜你了，等等。。。别急，这才刚刚开始。</p>
+<h4 id="3-2-GIT：因为稍候需要从github上获取NSQ的安装文件"><a href="#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件" class="headerlink" title="3.2 GIT：因为稍候需要从github上获取NSQ的安装文件"></a>3.2 GIT：因为稍候需要从github上获取NSQ的安装文件</h4><p>直接命令安装就好</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h3 id="4-安装NSQ"><a href="#4-安装NSQ" class="headerlink" title="4.安装NSQ"></a>4.安装NSQ</h3><p>命令行直接执行下面的命令安装NSQ</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/kr/godep</span><br><span class="line">go get github.com/bmizerany/assert</span><br><span class="line">godep get github.com/bitly/nsq/...</span><br></pre></td></tr></table></figure>
+<p><strong>注：godev为GO的语言依赖管理包，assert为GO的测试框架，至于最后一个嘛，自己猜吧</strong></p>
+<p>到此，NSQ就安装好了，接下来就可以一起愉快的玩耍了</p>
+<h3 id="5-启动部署和测试"><a href="#5-启动部署和测试" class="headerlink" title="5.启动部署和测试"></a>5.启动部署和测试</h3><p>这节的内容就直接翻译了官网的原文了，有兴趣的可以自己去看下</p>
+<p><a href="http://nsq.io/overview/quick_start.html" target="_blank" rel="external">http://nsq.io/overview/quick_start.html</a></p>
+<h4 id="5-1-打开一个终端，启动nsqlookupd"><a href="#5-1-打开一个终端，启动nsqlookupd" class="headerlink" title="5.1 打开一个终端，启动nsqlookupd"></a>5.1 打开一个终端，启动nsqlookupd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqlookupd</span><br></pre></td></tr></table></figure>
+<h4 id="5-2-再打开一个终端，启动nsq"><a href="#5-2-再打开一个终端，启动nsq" class="headerlink" title="5.2 再打开一个终端，启动nsq"></a>5.2 再打开一个终端，启动nsq</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqd --lookupd-tcp-address=127.0.0.1:4160</span><br></pre></td></tr></table></figure>
+<h4 id="5-3-再打开一个终端，启动nsqadmin"><a href="#5-3-再打开一个终端，启动nsqadmin" class="headerlink" title="5.3 再打开一个终端，启动nsqadmin"></a>5.3 再打开一个终端，启动nsqadmin</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsqadmin --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
+<h4 id="5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"><a href="#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。" class="headerlink" title="5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"></a>5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 1'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><a href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。" class="headerlink" title="5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。"></a>5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nsq_to_file --topic=<span class="built_in">test</span> --output-dir=/tmp --lookupd-http-address=127.0.0.1:4161</span><br></pre></td></tr></table></figure>
+<h4 id="5-6-我们再发布两条消息，看看日志文件中的变化。"><a href="#5-6-我们再发布两条消息，看看日志文件中的变化。" class="headerlink" title="5.6 我们再发布两条消息，看看日志文件中的变化。"></a>5.6 我们再发布两条消息，看看日志文件中的变化。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 2'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br><span class="line">curl <span class="_">-d</span> <span class="string">'hello world 3'</span> <span class="string">'http://127.0.0.1:4151/put?topic=test'</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-7特别说明"><a href="#5-7特别说明" class="headerlink" title="5.7特别说明"></a>5.7特别说明</h4><p>需要特别注意的是这里的nsq_to_file客户端进程并不确定消息什么时候会发布，所以它会在连接没有断开的情况下定时去nsqlookupd中检索消息，确保消息不丢失。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214529061.png" alt="nsq start"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214544464.png" alt="nsq start"></p>
+<h3 id="6-nsqadmin的web统计"><a href="#6-nsqadmin的web统计" class="headerlink" title="6.nsqadmin的web统计"></a>6.nsqadmin的web统计</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214340984.png" alt="nsq start"></p>
+<p>nsq自身提供了一个便于查看和操作的web界面，可以实时查看统计信息和执行一些管理任务。</p>
+<h4 id="6-1浏览器打开nsqadmin的web页"><a href="#6-1浏览器打开nsqadmin的web页" class="headerlink" title="6.1浏览器打开nsqadmin的web页"></a>6.1浏览器打开nsqadmin的web页</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:4171/</span><br></pre></td></tr></table></figure>
+<p>由于默认情况下linux系统，nsqadmin的默认端口4171限制了对外访问，所以我们要打开4171端口的路由访问限制，便于外部系统的浏览器访问。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A  INPUT -p tcp --dport 4171 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数讲解：<br>–A 添加一条规则的意思<br>–p 指定是什么协议，这里是tcp协议<br>–dport 就是目标端口，当数据从外部进入服务器为目标端口<br>–sport 数据从服务器出去，则为数据源端口使用<br>–j 就是指定是 ACCEPT -接收 或者 DROP 不接收</li>
+</ul>
+<h4 id="6-2-Topics界面"><a href="#6-2-Topics界面" class="headerlink" title="6.2 Topics界面"></a>6.2 Topics界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213809966.png" alt="nsq start"></p>
+<p>这里详细的列出了所有的发布的topic主题列表，可以点进去查看单个主题的详细统计信息。还可以管理主题，比如清空主题的消息队列，删除主题，暂停主题等等。</p>
+<h4 id="6-3-Nodes节点列表"><a href="#6-3-Nodes节点列表" class="headerlink" title="6.3 Nodes节点列表"></a>6.3 Nodes节点列表</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830213848425.png" alt="nsq start"></p>
+<p>这个页面可以查看当前nsqlookupd协调管理的节点列表，以及一些连接信息，比如端口，连接数，主题和主题数量等等。</p>
+<h4 id="6-4-Counter消息计数页"><a href="#6-4-Counter消息计数页" class="headerlink" title="6.4 Counter消息计数页"></a>6.4 Counter消息计数页</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214013450.png" alt="nsq start"></p>
+<p>这个页面最简洁，中间一个硕大的计数牌，展示已经处理过的消息数目。</p>
+<h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png" alt="nsq start"></p>
+<p>这里我们可以创建消息主题和消息通道。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/learning/windows-port-used.html" data-id="cin79x0d6000k9cqe424hv9hc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/nsq-start.html" data-id="cin8c7s11000lckqen44hj6fu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -125,7 +174,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-learning/windows-port-used" data-title="Windows下端口占用程序查询" data-url="undefined"></div>
+<div class="ds-thread" data-thread-key="post-mark/nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="undefined"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -145,14 +194,14 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 搜索引擎优化 end-->
   
-    <article id="post-learning/csrf和xss攻击与防御" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mark/windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/learning/learning/csrf和xss攻击与防御.html" class="article-date">
-  <time datetime="2015-04-05T16:00:00.000Z" itemprop="datePublished">2015-04-06</time>
+    <a href="/blog/mark/mark/windows-port-used.html" class="article-date">
+  <time datetime="2015-05-15T16:00:00.000Z" itemprop="datePublished">2015-05-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/learning/">学习</a>
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
   </div>
 
   </div>
@@ -163,7 +212,143 @@ var duoshuoQuery = {short_name:"yangdage"};
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/learning/learning/csrf和xss攻击与防御.html">CSRF和XSS防御与攻击</a>
+      <a class="article-title" href="/blog/mark/mark/windows-port-used.html">Windows下端口占用程序查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
+<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
+<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
+<p>控制台会输出该进程的程序信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html" data-id="cin8c7s19000uckqec9vp8c3i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/windows-port-used" data-title="Windows下端口占用程序查询" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-mark/sublime关闭分组" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/sublime关闭分组.html" class="article-date">
+  <time datetime="2015-04-19T16:00:00.000Z" itemprop="datePublished">2015-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/mark/mark/sublime关闭分组.html">sublime关闭分组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="打开分组"><a href="#打开分组" class="headerlink" title="打开分组"></a>打开分组</h3><p>可以使用快捷键打开多个分组，常同时编辑多个文件，或比较两个文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alt+shilt+数字</span><br></pre></td></tr></table></figure>
+<p>其中数字可以是1-9任意数字，一般最多只会开启3个分组，即数字大于等于3时都是开启3个分组。</p>
+<h3 id="关闭分组"><a href="#关闭分组" class="headerlink" title="关闭分组"></a>关闭分组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alt+shift+1</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/mark/mark/sublime关闭分组.html" data-id="cin8c7s12000nckqebt8anq9z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/sublime关闭分组" data-title="sublime关闭分组" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-mark/csrf和xss攻击与防御" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/csrf和xss攻击与防御.html" class="article-date">
+  <time datetime="2015-04-05T16:00:00.000Z" itemprop="datePublished">2015-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/mark/mark/csrf和xss攻击与防御.html">CSRF和XSS防御与攻击</a>
     </h1>
   
 
@@ -292,7 +477,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/learning/learning/csrf和xss攻击与防御.html" data-id="cin79x0co00089cqetl8bjvwf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/csrf和xss攻击与防御.html" data-id="cin8c7s0t000hckqevti93rw3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +490,7 @@ var duoshuoQuery = {short_name:"yangdage"};
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-learning/csrf和xss攻击与防御" data-title="CSRF和XSS防御与攻击" data-url="undefined"></div>
+<div class="ds-thread" data-thread-key="post-mark/csrf和xss攻击与防御" data-title="CSRF和XSS防御与攻击" data-url="undefined"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -353,38 +538,38 @@ var duoshuoQuery = {short_name:"yangdage"};
       
         <h3 id="声明提升的定义"><a href="#声明提升的定义" class="headerlink" title="声明提升的定义"></a>声明提升的定义</h3><p>声明提升就是将变量和函数的声明提升到作用域的顶端定义，<strong>但不赋值</strong>。</p>
 <h3 id="变量声明提升"><a href="#变量声明提升" class="headerlink" title="变量声明提升"></a>变量声明提升</h3><p>我们先看一个简单的例子</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	console.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	a=1;</span><br><span class="line">	console.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	a=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>就问你这两段控制台是不是输出1，是，就是这么傲娇的肯定。答对了，状态不错，我们稍微修改下上面的代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	var a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">2</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	a=<span class="number">2</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面的代码我们将控制台输出语句跟变量声明换了个位置，而且我还换了个值，就问你这个会打印什么？<br>是2？天真！！！这里第一个输出的是<strong>undefined</strong>，第二个<strong>undefined</strong>都不会输出直接报错。为什么会出现这种情况呢？这里就涉及到了javascript中的声明提升的概念了。</p>
 <p>我们知道<strong>var a=2;</strong>是一个变量声明，根据前面的声明提升的定义，可以知道，这句代码里的a变量会提升到作用于顶端定义，因此下面两段代码是等价的。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	console.log(a);</span><br><span class="line">	var a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">2</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a;</span><br><span class="line">	console.log(a);</span><br><span class="line">	a=2;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a;</span><br><span class="line">	<span class="built_in">console</span>.log(a);</span><br><span class="line">	a=<span class="number">2</span>;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>由于变量声明中提升到顶端的只是变量的定义，不会赋值，所以这里打印<strong>undefined</strong>就在情理之中了。如果事先没有定义这个变量，我们使用了，运行的时候就会报错。</p>
 <h3 id="函数声明提升"><a href="#函数声明提升" class="headerlink" title="函数声明提升"></a>函数声明提升</h3><p>和变量声明一样，函数的声明也会被提升。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	functest();</span><br><span class="line">	var functest=function()&#123;</span><br><span class="line">		console.log("functest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	functest();</span><br><span class="line">	<span class="keyword">var</span> functest=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"functest"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var functest;</span><br><span class="line">	functest();</span><br><span class="line">	functest=function()&#123;</span><br><span class="line">		console.log("functest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> functest;</span><br><span class="line">	functest();</span><br><span class="line">	functest=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"functest"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面<strong>var functest=function(){…}</strong>的方式定义的函数不是函数声明，而是函数表达式，虽然变量<strong>functest</strong>的定义也会被提升，但是并没有将对应的匿名函数的引用赋值给它，所以执行的时候会报出错误信息:<strong>TypeError: funtest is not a function</strong></p>
 <p>下面来看下函数声明的提升</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	funtest();</span><br><span class="line">	function funtest()&#123;</span><br><span class="line">		console.log("funtest");</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	funtest();</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funtest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"funtest"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	function funtest()&#123;</span><br><span class="line">		console.log("funtest");</span><br><span class="line">	&#125;</span><br><span class="line">	funtest();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funtest</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"funtest"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	funtest();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>关键字function+函数名称+函数体，这种方式定义的函数就是我们所说的函数声明。可以看到这种方式定义的函数，不管调用执行它的代码在它前面还是后面都能正确的找到相关函数的引用，并执行。</p>
-<h3 id="链式作用域"><a href="#链式作用域" class="headerlink" title="链式作用域"></a>链式作用域</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		var a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			var a=3;</span><br><span class="line">			console.log(a);	//3</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		var a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			console.log(a);	//2</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			console.log(a);	//1</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="链式作用域"><a href="#链式作用域" class="headerlink" title="链式作用域"></a>链式作用域</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a=<span class="number">2</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> a=<span class="number">3</span>;</span><br><span class="line">			<span class="built_in">console</span>.log(a);	<span class="comment">//3</span></span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> a=<span class="number">2</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(a);	<span class="comment">//2</span></span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(a);	<span class="comment">//1</span></span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>当一个函数内部用到一个变量时，首先会在当前函数作用域中查找这个变量，如果当前函数作用域中没有，就逐层往上到上一级函数作用域中查找，一直找到window对象层，只到找到为止，如果找不到就会报变量未定义错误。这就是Javascript的链式作用域。</p>
 <p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/js-scope.jpg" alt="js作用域"></p>
 <p>注意，任何函数内未加<strong>var</strong>定义的变量，函数执行的时候都会被提升为全局变量。直属于<strong>window</strong>对象，而且永驻内存不会被释放，除非手动删除，或关闭浏览器，window对象已有的该属性会被覆盖。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><br><span class="line">	var a=1;</span><br><span class="line">	function func_outer()&#123;</span><br><span class="line">		a=2;</span><br><span class="line">		function func_inner()&#123;</span><br><span class="line">			;</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line">	console.log(a);	//2</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		a=<span class="number">2</span>;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			;</span><br><span class="line">		&#125;</span><br><span class="line">		func_inner();</span><br><span class="line">	&#125;</span><br><span class="line">	func_outer();</span><br><span class="line">	<span class="built_in">console</span>.log(a);	<span class="comment">//2</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cin79x0cc00039cqel2vsth0e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cin8c7s1c000wckqechdtr7yw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -430,7 +615,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/learning/">学习</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mark/">mark</a></li></ul>
     </div>
   </div>
 
@@ -458,11 +643,15 @@ var duoshuoQuery = {short_name:"yangdage"};
       <ul>
         
           <li>
-            <a href="/blog/learning/learning/go-gob.html">Go中gob序列化反序列化</a>
+            <a href="/blog/mark/mark/docker常用命令.html">Docker常用命令</a>
           </li>
         
           <li>
-            <a href="/blog/learning/learning/markdown-mathjax.html">Mathjax in Markdown</a>
+            <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
           </li>
         
           <li>
@@ -471,10 +660,6 @@ var duoshuoQuery = {short_name:"yangdage"};
         
           <li>
             <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
-          </li>
-        
-          <li>
-            <a href="/blog/learning/learning/vim-xml-format.html">Vim下XML文件格式化</a>
           </li>
         
       </ul>
@@ -519,6 +704,23 @@ document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/java
 
 <script src="/blog/js/script.js"></script>
 
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>
