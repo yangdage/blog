@@ -3,27 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Windows下端口占用程序查询 | Marks &amp; Notes</title>
+  <title>为用户节省流量之API接口设计 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
+  <meta name="description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows下端口占用程序查询">
-<meta property="og:url" content="http://yoursite.com/mark/mark/windows-port-used.html">
+<meta property="og:title" content="为用户节省流量之API接口设计">
+<meta property="og:url" content="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html">
 <meta property="og:site_name" content="Marks & Notes">
-<meta property="og:description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.611Z">
+<meta property="og:description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
+<meta property="og:updated_time" content="2016-07-19T06:43:42.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows下端口占用程序查询">
-<meta name="twitter:description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
+<meta name="twitter:title" content="为用户节省流量之API接口设计">
+<meta name="twitter:description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -87,10 +78,10 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-mark/windows-port-used" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-mark/为用户节省流量之API接口设计" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/mark/mark/windows-port-used.html" class="article-date">
-  <time datetime="2015-05-15T16:00:00.000Z" itemprop="datePublished">2015-05-16</time>
+    <a href="/blog/mark/mark/为用户节省流量之API接口设计.html" class="article-date">
+  <time datetime="2015-02-22T16:00:00.000Z" itemprop="datePublished">2015-02-23</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +96,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Windows下端口占用程序查询
+      为用户节省流量之API接口设计
     </h1>
   
 
@@ -113,18 +104,16 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
-<p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
-<h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
-<p>控制台会输出该进程的程序信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立socket长连接，这里只是记录几种使用TCP/HTTP协议短连接来实现类似功能的方案。</p>
+<p>获取好友列表最先想到的实现方法可能就是每次开QQ时都会去拉取一次所有的好友列表数据，数据中包括用户昵称，备注，头像，个性签名，在线状态，等等。然后客户端在一直打开的情况下，还会定时轮询去拉取最新的好友列表，同步到客户端，这种可能也是最耗流量的实现方式了。下面提供两种优化的方式。</p>
+<h3 id="两次请求，客户端比对时间戳"><a href="#两次请求，客户端比对时间戳" class="headerlink" title="两次请求，客户端比对时间戳"></a>两次请求，客户端比对时间戳</h3><p>还是以上面客户端获取最新好友列表为例，首先，假设客户端已经获取过一次好友列表数据，数据中包含每个用户信息的最后更新的时间戳，然后我们拉取所有好友的最后时间戳数据，跟客户端已有好友时间戳数据比对，找出不同的用户id，也许100个好友中只有10个不同，这样我们接下来只要更新下这10个用户的数据就好了，这样可以节省将近了90%的流量消耗。</p>
+<p>这种方式有个缺点就是每次跟新数据都要请求两次服务器，一次获取用户时间戳，一次获取有差异的用户列表数据。</p>
+<h3 id="一次请求，服务器比对时间戳"><a href="#一次请求，服务器比对时间戳" class="headerlink" title="一次请求，服务器比对时间戳"></a>一次请求，服务器比对时间戳</h3><p>客户端将本地好友ID和时间戳数据全部提交到服务器，服务器负责比较用户好友列表时间戳，返回有更新的用户列表。这种方式会增加服务端的压力。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html" data-id="ciqt3hcu0000to0qepbo2dpsy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html" data-id="ciqt3hcty000ro0qeyvcugevr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,20 +122,15 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/blog/mark/mark/nsq-start.html" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/javascript/javascript/javascript中声明提升和函数作用域.html" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          初识NSQ分布式实时消息架构
+          Javascript中声明提升和链式作用域
         
       </div>
     </a>
   
-  
-    <a href="/blog/mark/mark/sublime关闭分组.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sublime关闭分组</div>
-    </a>
   
 </nav>
 
@@ -158,7 +142,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/windows-port-used" data-title="Windows下端口占用程序查询" data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html"></div>
+<div class="ds-thread" data-thread-key="post-mark/为用户节省流量之API接口设计" data-title="为用户节省流量之API接口设计" data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

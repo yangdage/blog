@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Redis缓存失效策略 | Marks &amp; Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。
+最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis缓存失效策略">
+<meta property="og:url" content="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html">
+<meta property="og:site_name" content="Marks & Notes">
+<meta property="og:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。
+最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
+<meta property="og:updated_time" content="2016-07-19T06:43:42.363Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis缓存失效策略">
+<meta name="twitter:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。
+最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
+  
+    <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Marks &amp; Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">The more I know, the less.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cache/Redis缓存失效更新策略" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/cache/cache/Redis缓存失效更新策略.html" class="article-date">
+  <time datetime="2016-04-23T16:00:00.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/cache/">cache</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis缓存失效策略
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。</p>
+<p>最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情况。</p>
+<p>这里有几种缓存更新的策略。</p>
+<h3 id="定时器查询数据更新到缓存"><a href="#定时器查询数据更新到缓存" class="headerlink" title="定时器查询数据更新到缓存"></a>定时器查询数据更新到缓存</h3><p>系统启动指定的定时器去定时更新缓存中的数据。所有用户的请求都只查询缓存中的数据，缓存中没有也不会去查询DB。这种方式适合能够确定查询的数据一定是热数据、小数据的情况。如果是针对无法区分冷热的数据，也不知道到底要查哪些数据放到缓存中合适，这种情况就不适合用这种方式更新缓存。</p>
+<h3 id="查询DB任务加锁"><a href="#查询DB任务加锁" class="headerlink" title="查询DB任务加锁"></a>查询DB任务加锁</h3><p>当缓存中取不到数据时，在查询DB的方法上加锁，保证只有一个线程查询DB。如果确定只有一个web服务的话，这种方式是最方便快速的解决方式，但是我们不能保证我们的系统以后不会部署分布式集群里。如果部署到集群里，我们在任务上加锁也没用，实际上还是有并发的DB查询。</p>
+<h3 id="使用缓存锁查询DB任务"><a href="#使用缓存锁查询DB任务" class="headerlink" title="使用缓存锁查询DB任务"></a>使用缓存锁查询DB任务</h3><p>Redis提供了<code>SETNX</code>命令设置一个key，这个命令意思是，如果要设置的key不存在则返回1，如果已存在则返回0，memcached也提供了类似的<code>add</code>命令。无论是单点系统还是分布式系统都能保证同一时间只有一个查询DB的任务。缓存锁最好加上一个很短的失效时间，确保这个时间内任务能够执行完就好，一般定为3-5秒，设置缓存失效时间的另一个重要原因是考虑到任务可能执行失败的情况，后续请求能继续使用这个缓存锁。</p>
+<h3 id="双key缓存，一个缓存数据，一个缓存失效时间"><a href="#双key缓存，一个缓存数据，一个缓存失效时间" class="headerlink" title="双key缓存，一个缓存数据，一个缓存失效时间"></a>双key缓存，一个缓存数据，一个缓存失效时间</h3><p>假设要缓存一个用户信息，并且缓存将在30分钟后失效。</p>
+<p>设计一个key（userInfo_{userId}）缓存用户信息数据，并且设置失效时间为30分钟。<br>再设计一个key（expire<em>userInfo</em>{userId}）,值随便定，并且设置失效时间为25分钟，一定要在主要信息失效之前失效。<br>查询数据时先查key（expire<em>userInfo</em>{userId}）是否存在，如果不存在，则继续按上一个解决方式使用缓存锁启动一个任务查询用户信息数据追加到缓存里，并且设置失效时间为30分钟，另增对应缓存失效key，设置缓存失效时间为25分钟。如果存在则继续查询用户信息key（userInfo_{userId}）对应的数据返回。</p>
+<h3 id="双key缓存，一个用作缓存锁，一个缓存数据，缓存数据最前面加上系统时间"><a href="#双key缓存，一个用作缓存锁，一个缓存数据，缓存数据最前面加上系统时间" class="headerlink" title="双key缓存，一个用作缓存锁，一个缓存数据，缓存数据最前面加上系统时间"></a>双key缓存，一个用作缓存锁，一个缓存数据，缓存数据最前面加上系统时间</h3><p>缓存锁功能还是跟上面的一样，缓存数据，设置失效时间为30分钟，数据最前面加上系统时间类似（time_value）,当读取缓存数据的时候，如果缓存中没有或者当前时间减time小于5分钟，使用缓存锁查询DB任务，并更新缓存。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/cache/cache/Redis缓存失效更新策略.html" data-id="ciqt3hcst0003o0qe5dsa3sm9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/mark/mark/docker常用命令.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Docker常用命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-cache/Redis缓存失效更新策略" data-title="Redis缓存失效策略" data-url="http://yoursite.com/blog/cache/cache/Redis缓存失效更新策略.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>     
+
+<!-- 搜索引擎优化 end--></section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cache/">cache</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mark/">mark</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/cache/cache/Redis缓存失效更新策略.html">Redis缓存失效策略</a>
+          </li>
+        
+          <li>
+            <a href="/blog/mark/mark/docker常用命令.html">Docker常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
+          </li>
+        
+          <li>
+            <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
+          </li>
+        
+          <li>
+            <a href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yangdage<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
+//<![CDATA[
+if (typeof jQuery == 'undefined') {
+document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+// ]]>
+</script>
+
+
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/blog/js/script.js"></script>
+
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
