@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Marks &amp; Notes</title>
-  
+  <subtitle>The more I know, the less.</subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -1037,7 +1037,7 @@
     <link href="http://yoursite.com/mark/mark/csrf%E5%92%8Cxss%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1.html"/>
     <id>http://yoursite.com/mark/mark/csrf和xss攻击与防御.html</id>
     <published>2015-04-05T16:00:00.000Z</published>
-    <updated>2016-04-20T04:05:51.608Z</updated>
+    <updated>2016-07-19T06:36:19.359Z</updated>
     
     <content type="html">&lt;h3 id=&quot;CSRF概述&quot;&gt;&lt;a href=&quot;#CSRF概述&quot; class=&quot;headerlink&quot; title=&quot;CSRF概述&quot;&gt;&lt;/a&gt;CSRF概述&lt;/h3&gt;&lt;p&gt;CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。&lt;br&gt;攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使&lt;br&gt;一个Web应用程序的用户去执行攻击者精心构造的操作。&lt;/p&gt;
 &lt;h4 id=&quot;实例解释&quot;&gt;&lt;a href=&quot;#实例解释&quot; class=&quot;headerlink&quot; title=&quot;实例解释&quot;&gt;&lt;/a&gt;实例解释&lt;/h4&gt;&lt;p&gt;假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了自己喜欢的论坛去逛逛，如果攻击者在论坛事先已经构造了一个恶意转账的链接并诱使该用户点击了该链接，那么该用户在网络银行帐户中的资金就有可能被转移到攻击者指定的帐户中。&lt;/p&gt;
@@ -1152,6 +1152,8 @@
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png&quot; alt=&quot;csrf&quot;&gt;&lt;/p&gt;
 &lt;h3 id=&quot;XSS防御&quot;&gt;&lt;a href=&quot;#XSS防御&quot; class=&quot;headerlink&quot; title=&quot;XSS防御&quot;&gt;&lt;/a&gt;XSS防御&lt;/h3&gt;&lt;p&gt;对用户提交的数据中的html标签特殊字符编码处理。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;switch(c) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;amp;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;amp;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;lt;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;lt;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;gt;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;gt;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos;&amp;quot;&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;quot;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;case &amp;apos; &amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return&amp;quot;&amp;amp;nbsp;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return c +&amp;quot;&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;java中处理方式:&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;StringEscapeUtils.escapeHtml(&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;script&amp;gt;alert(&#39;1111&#39;)&amp;lt;/script&amp;gt;&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//输出：&amp;amp;lt;script&amp;amp;gt;alert(&#39;1111&#39;)&amp;amp;lt;/script&amp;amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;社会工程学&quot;&gt;&lt;a href=&quot;#社会工程学&quot; class=&quot;headerlink&quot; title=&quot;社会工程学&quot;&gt;&lt;/a&gt;社会工程学&lt;/h3&gt;&lt;p&gt;社会工程学以顺从你的意愿、满足你的欲望的方式，让你上当的一些方法、一门艺术与学问。&lt;br&gt;一种利用人的本能反应、好奇心、信任、贪便宜等弱点进行诸如欺骗、伤害等危害手段，获取自身利益的手法。&lt;/p&gt;
 &lt;p&gt;社会工程攻击不是传统的信息安全的范畴，也被称为 “非传统信息安全”.&lt;/p&gt;
 &lt;p&gt;信息安全预测：&lt;br&gt;“社会工程学是未来最大信息系统入侵与反入侵对抗领域，许多破坏力最大的行为是由于社会工程学&lt;br&gt;而不是黑客或破坏行为造成的。”&lt;/p&gt;

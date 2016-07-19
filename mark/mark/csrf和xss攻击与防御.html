@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040600.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040601.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.608Z">
+<meta property="og:updated_time" content="2016-07-19T06:36:19.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSRF和XSS防御与攻击">
 <meta name="twitter:description" content="CSRF概述CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使一个Web应用程序的用户去执行攻击者精心构造的操作。
@@ -57,6 +57,10 @@ var _hmt = _hmt || [];
       <h1 id="logo-wrap">
         <a href="/blog/" id="logo">Marks &amp; Notes</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">The more I know, the less.</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -220,6 +224,8 @@ var _hmt = _hmt || [];
 <p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png" alt="csrf"></p>
 <h3 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h3><p>对用户提交的数据中的html标签特殊字符编码处理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">switch(c) &#123;</span><br><span class="line">case &apos;&amp;&apos;:</span><br><span class="line">    return&quot;&amp;amp;&quot;;</span><br><span class="line">case &apos;&lt;&apos;:</span><br><span class="line">    return&quot;&amp;lt;&quot;;</span><br><span class="line">case &apos;&gt;&apos;:</span><br><span class="line">    return&quot;&amp;gt;&quot;;</span><br><span class="line">case &apos;&quot;&apos;:</span><br><span class="line">    return&quot;&amp;quot;&quot;;</span><br><span class="line">case &apos; &apos;:</span><br><span class="line">    return&quot;&amp;nbsp;&quot;;</span><br><span class="line">default:</span><br><span class="line">    return c +&quot;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>java中处理方式:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringEscapeUtils.escapeHtml(<span class="string">"&lt;script&gt;alert('1111')&lt;/script&gt;"</span>);</span><br><span class="line"><span class="comment">//输出：&amp;lt;script&amp;gt;alert('1111')&amp;lt;/script&amp;gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h3><p>社会工程学以顺从你的意愿、满足你的欲望的方式，让你上当的一些方法、一门艺术与学问。<br>一种利用人的本能反应、好奇心、信任、贪便宜等弱点进行诸如欺骗、伤害等危害手段，获取自身利益的手法。</p>
 <p>社会工程攻击不是传统的信息安全的范畴，也被称为 “非传统信息安全”.</p>
 <p>信息安全预测：<br>“社会工程学是未来最大信息系统入侵与反入侵对抗领域，许多破坏力最大的行为是由于社会工程学<br>而不是黑客或破坏行为造成的。”</p>
@@ -228,7 +234,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/csrf和xss攻击与防御.html" data-id="cin8c7s0t000hckqevti93rw3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/csrf和xss攻击与防御.html" data-id="ciqt3bnns000cp8qebywep5wp" class="article-share-link">Share</a>
       
       
     </footer>
