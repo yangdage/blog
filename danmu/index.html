@@ -37,7 +37,11 @@ function do_barrager(){
 	color:'#fff', //颜色,默认白色 
 	old_ie_color:'#000000' //ie低版兼容色,不能与网页背景相同,默认黑色 
   }
-  $('body').barrager(data);
+  var size=$('.barrage').size();
+  if(size<15){
+  	$('body').barrager(data);	
+  }
+  
 }
 </script>
 
