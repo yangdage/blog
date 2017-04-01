@@ -79,6 +79,119 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-mark/hexo-github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/hexo-github.html" class="article-date">
+  <time datetime="2016-03-09T16:00:00.000Z" itemprop="datePublished">2016-03-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/mark/mark/hexo-github.html">Hexo+Github一步两步搭建博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="NodeJS、NPM安装"><a href="#NodeJS、NPM安装" class="headerlink" title="NodeJS、NPM安装"></a>NodeJS、NPM安装</h3><p>由于Hexo是基于NodeJS的静态博客框架，首先我们必须要在机器上安装NodeJS运行环境。<br>到NodeJS<a href="https://nodejs.org/en/" target="_blank" rel="external">官网</a>下载好对应系统版本的安装文件，这里以Windows系统为例。<br>Windows下的NodeJS安装比较简单，下载好安装文件以后，双击运行一路next就好，中间注意选择安装到自己喜欢的路径下面。</p>
+<p>NPM为NodeJS的插件管理器，就类似于我们系统里的应用商店，默认已经随NodeJS一起安装了。</p>
+<h3 id="Git安装"><a href="#Git安装" class="headerlink" title="Git安装"></a>Git安装</h3><p>Git安装跟NodeJS安装一样简单，到Git的<a href="https://git-scm.com/download/" target="_blank" rel="external">官网</a>下载对应系统版本的最新安装文件，运行安装，一路next默认就好。</p>
+<h3 id="github账号注册"><a href="#github账号注册" class="headerlink" title="github账号注册"></a>github账号注册</h3><p>到<a href="http://github.com" target="_blank" rel="external">github</a>上注册一个个人账号，已注册过的默默飘过。</p>
+<h3 id="SSHKEY"><a href="#SSHKEY" class="headerlink" title="SSHKEY"></a>SSHKEY</h3><p>想要在自己本地机器上方便的上传/更新文件，我们需要在github上添加一个本机的SSH公钥。<br>首先我们在桌面空白出右键打开右键菜单选择<strong>Git Bash</strong>选项</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401013051.png" alt="git bash"></p>
+<p>输入下面的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>一路回车，如果之前已经生成过SSH Key的，中间有一步会询问是否进行覆盖操作，输入<strong>y</strong>就会覆盖重新生成一个新的SSH密钥对。</p>
+<p>接下来我们到我们当前用户的用户目录下找到.ssh的文件夹，这个文件夹windows下默认是隐藏的，需要设置显示隐藏的项目。如果当前用户是Administrator，那么.ssh文件夹就在C:\Users\Administrator\目录下。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401012837.png" alt=".ssh dir"></p>
+<p>使用文本编辑器打开id_rsa.pub文件，复制全部内容。</p>
+<p>浏览器打开<a href="http://github.com" target="_blank" rel="external">github</a>，登录已注册过的账号，点击右上角的用户头像，会弹出下面的菜单项</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401011320.png" alt="settings"></p>
+<p>选择<strong>Settings</strong>选项进入设置页面，设置页面左边侧边栏有个<strong>SSH Keys</strong>菜单选项，我们点击打开。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401011421.png" alt="ssh keys"></p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401014113.png" alt="ssh keys"></p>
+<p>点击New SSH key按钮，输入一个title，以及粘贴我们刚复制的id_rsa.pub文件内容到Key编辑框里，保存。</p>
+<h3 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h3><p>快捷键<strong>win+r</strong>输入<strong>cmd</strong>打开命令行终端，执行以下命令安装hexo-cli和hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<p>如果上面的命令执行失败，或者较慢，我们可以替换npm的官方源到淘宝提供的国内镜像源，使用下面命令替换源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><p>在喜欢的目录下创建一个blog文件夹，进入文件夹，在资源管理器地址栏输入<strong>cmd</strong>命令，可以快速的打开命令行终端，且路径已在当前目录。输入下面两个命令，创建一个博客项目。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401015906.png" alt="hexo init"></p>
+<p>创建完成以后我们看下文件夹下的文件和目录。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401020226.png" alt="hexo init"></p>
+<p>下面简单说明下这些目录和文件的作用</p>
+<ul>
+<li>node_modules node插件文件夹</li>
+<li>scaffolds 工具模板</li>
+<li>source 博客资源</li>
+<li>source/_posts 文章文件夹（存放会发布的博客文件）</li>
+<li>themes 主题样式文件夹</li>
+<li>themes/landscape 默认皮肤文件夹</li>
+<li>_config.yml 全局配置文件</li>
+<li>package.json node插件配置文件</li>
+</ul>
+<p>到这里我们博客项目就已经构建好了，现在我们本地启动服务可以查看下效果。</p>
+<p>首先我们需要生成静态文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>上述命令也可以使用简写方式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>控制台打印以下内容，说明生成成功。<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401021857.png" alt="hexo generate"></p>
+<p>生成静态文件后，就可以启动服务了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>也可以使用简写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>hexo启动的服务默认端口为<strong>4000</strong>，我们可以打开浏览器，地址栏输入<strong> <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> </strong>访问查看效果。</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/20160401022212.png" alt="hexo hello world"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/mark/mark/hexo-github.html" data-id="cj0ywiuze000dp4qeqwswn6bn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/hexo-github" data-title="Hexo+Github一步两步搭建博客" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-mark/api-design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/mark/mark/api-design.html" class="article-date">
@@ -166,7 +279,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/api-design.html" data-id="ciqt3hct70007o0qev9d5149g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/api-design.html" data-id="cj0ywiuza000cp4qey3w8zvww" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +398,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/nsq-start.html" data-id="ciqt3hcu3000vo0qe4vvmnvvt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/nsq-start.html" data-id="cj0ywiuzu000lp4qe8qx98b3q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -355,7 +468,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html" data-id="ciqt3hcu0000to0qepbo2dpsy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html" data-id="cj0ywiv0i0018p4qem0rfltgw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -421,7 +534,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/sublime关闭分组.html" data-id="ciqt3hctq000jo0qexdz7u4sf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/sublime关闭分组.html" data-id="cj0ywiuzs000kp4qe4qclyqsi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -603,7 +716,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/csrf和xss攻击与防御.html" data-id="ciqt3hctk000eo0qegwx2bhf9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/csrf和xss攻击与防御.html" data-id="cj0ywiv01000qp4qet5dlyt9d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,7 +808,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="ciqt3hcui000yo0qeks3gebx3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cj0ywiv0k0019p4qewnuclhae" class="article-share-link">Share</a>
       
       
     </footer>
@@ -763,7 +876,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html" data-id="ciqt3hcty000ro0qeyvcugevr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html" data-id="cj0ywiv0b000yp4qels0fx45q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -824,7 +937,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
@@ -835,6 +948,10 @@ var duoshuoQuery = {short_name:"yangdage"};
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
+          </li>
         
           <li>
             <a href="/blog/cache/cache/Redis缓存失效更新策略.html">Redis缓存失效策略</a>
@@ -852,10 +969,6 @@ var duoshuoQuery = {short_name:"yangdage"};
             <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
           </li>
         
-          <li>
-            <a href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -868,7 +981,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 yangdage<br>
+      &copy; 2017 yangdage<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

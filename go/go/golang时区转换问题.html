@@ -3,36 +3,24 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Sublime下的Package Control | Marks &amp; Notes</title>
+  <title>golang时区转换问题 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。
-打开sublime，查看是否存在以下目录
-
-如果没有，我们需要安装Package Control
-通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。
-Sublime3:">
+  <meta name="description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。
+这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。
+1234t1, _ := time.Parse(&quot;20">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sublime下的Package Control">
-<meta property="og:url" content="http://yoursite.com/mark/mark/sublime-package-control.html">
+<meta property="og:title" content="golang时区转换问题">
+<meta property="og:url" content="http://yoursite.com/go/go/golang时区转换问题.html">
 <meta property="og:site_name" content="Marks & Notes">
-<meta property="og:description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。
-打开sublime，查看是否存在以下目录
-
-如果没有，我们需要安装Package Control
-通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。
-Sublime3:">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.610Z">
+<meta property="og:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。
+这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。
+1234t1, _ := time.Parse(&quot;20">
+<meta property="og:updated_time" content="2017-04-01T06:58:46.523Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sublime下的Package Control">
-<meta name="twitter:description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。
-打开sublime，查看是否存在以下目录
-
-如果没有，我们需要安装Package Control
-通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。
-Sublime3:">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png">
+<meta name="twitter:title" content="golang时区转换问题">
+<meta name="twitter:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。
+这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。
+1234t1, _ := time.Parse(&quot;20">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -96,14 +84,14 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-mark/sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-go/golang时区转换问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/mark/mark/sublime-package-control.html" class="article-date">
-  <time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished">2016-03-23</time>
+    <a href="/blog/go/go/golang时区转换问题.html" class="article-date">
+  <time datetime="2017-03-31T16:00:00.000Z" itemprop="datePublished">2017-04-01</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+    <a class="article-category-link" href="/blog/categories/go/">go</a>
   </div>
 
   </div>
@@ -114,7 +102,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Sublime下的Package Control
+      golang时区转换问题
     </h1>
   
 
@@ -122,23 +110,16 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
-<p>打开sublime，查看是否存在以下目录</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
-<p>如果没有，我们需要安装Package Control</p>
-<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
-<p>Sublime3:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure>
-<p>Sublime2:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)<span class="keyword">else</span>None;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
-<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
-<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
+        <h3 id="time-Parse默认转换时间为UTC时区"><a href="#time-Parse默认转换时间为UTC时区" class="headerlink" title="time.Parse默认转换时间为UTC时区"></a>time.Parse默认转换时间为UTC时区</h3><p>golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。</p>
+<p>这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1, _ := time.Parse(<span class="string">"2006-01-02 15:04:05"</span>, <span class="string">"2017-04-01 13:02:01"</span>)</span><br><span class="line">t2, _ := time.ParseInLocation(<span class="string">"2006-01-02 15:04:05"</span>, <span class="string">"2017-04-01 13:02:01"</span>, time.Local)</span><br><span class="line"><span class="comment">//结果:Parse:8</span></span><br><span class="line">fmt.Printf(<span class="string">"Parse:%v\n"</span>, t1.Sub(t2).Seconds() / <span class="number">3600</span>)</span><br></pre></td></tr></table></figure>
+<p>以上结果Parse函数转换的时间是跟本地时间相差了8个小时。</p>
+<p>如果有需求计算两个时间间隔的，最好使用ParseInLocation函数转换成本地时区的时间进行计算。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/sublime-package-control.html" data-id="cj0ywiuzz000op4qenwdc5rba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/blog/go/go/golang时区转换问题.html" data-id="cj0ywiuyf0003p4qexh3x0nw2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -147,19 +128,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/blog/mark/mark/vim-xml-format.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Vim下XML文件格式化
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/javascript/javascript/javascript-closure.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/cache/cache/Redis缓存失效更新策略.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Javascript闭包(Closure)</div>
+      <div class="article-nav-title">Redis缓存失效策略</div>
     </a>
   
 </nav>
@@ -172,7 +144,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/sublime-package-control" data-title="Sublime下的Package Control" data-url="http://yoursite.com/blog/mark/mark/sublime-package-control.html"></div>
+<div class="ds-thread" data-thread-key="post-go/golang时区转换问题" data-title="golang时区转换问题" data-url="http://yoursite.com/blog/go/go/golang时区转换问题.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-19T06:43:42.363Z</updated>
+  <updated>2017-04-01T06:58:46.523Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang时区转换问题</title>
+    <link href="http://yoursite.com/go/go/golang%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98.html"/>
+    <id>http://yoursite.com/go/go/golang时区转换问题.html</id>
+    <published>2017-03-31T16:00:00.000Z</published>
+    <updated>2017-04-01T06:58:46.523Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;time-Parse默认转换时间为UTC时区&quot;&gt;&lt;a href=&quot;#time-Parse默认转换时间为UTC时区&quot; class=&quot;headerlink&quot; title=&quot;time.Parse默认转换时间为UTC时区&quot;&gt;&lt;/a&gt;time.Parse默认转换时间为UTC时区&lt;/h3&gt;&lt;p&gt;golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。&lt;/p&gt;
+&lt;p&gt;这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;t1, _ := time.Parse(&lt;span class=&quot;string&quot;&gt;&quot;2006-01-02 15:04:05&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;2017-04-01 13:02:01&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;t2, _ := time.ParseInLocation(&lt;span class=&quot;string&quot;&gt;&quot;2006-01-02 15:04:05&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;2017-04-01 13:02:01&quot;&lt;/span&gt;, time.Local)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//结果:Parse:8&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;fmt.Printf(&lt;span class=&quot;string&quot;&gt;&quot;Parse:%v\n&quot;&lt;/span&gt;, t1.Sub(t2).Seconds() / &lt;span class=&quot;number&quot;&gt;3600&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以上结果Parse函数转换的时间是跟本地时间相差了8个小时。&lt;/p&gt;
+&lt;p&gt;如果有需求计算两个时间间隔的，最好使用ParseInLocation函数转换成本地时区的时间进行计算。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;time-Parse默认转换时间为UTC时区&quot;&gt;&lt;a href=&quot;#time-Parse默认转换时间为UTC时区&quot; class=&quot;headerlink&quot; title=&quot;time.Parse默认转换时间为UTC时区&quot;&gt;&lt;/a&gt;time.Parse默认转换时间为UTC
+    
+    </summary>
+    
+      <category term="go" scheme="http://yoursite.com/categories/go/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Redis缓存失效策略</title>
