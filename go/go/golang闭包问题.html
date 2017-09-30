@@ -3,19 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>golang时区转换问题 | Marks &amp; Notes</title>
+  <title>golang闭包问题 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
+  <meta name="description" content="关于闭包，网上有这样一句描述 “类是有行为的数据，而闭包是有数据的行为” 说的通俗一点：闭包是有上下文的 下面是一段程序的示例123456789func main() &amp;#123;    arr := []int&amp;#123;1, 2, 3, 4&amp;#125;    for _, x := range arr &amp;#123;        go func() &amp;#123;            fmt.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang时区转换问题">
-<meta property="og:url" content="http://yoursite.com/go/go/golang时区转换问题.html">
+<meta property="og:title" content="golang闭包问题">
+<meta property="og:url" content="http://yoursite.com/go/go/golang闭包问题.html">
 <meta property="og:site_name" content="Marks &amp; Notes">
-<meta property="og:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
+<meta property="og:description" content="关于闭包，网上有这样一句描述 “类是有行为的数据，而闭包是有数据的行为” 说的通俗一点：闭包是有上下文的 下面是一段程序的示例123456789func main() &amp;#123;    arr := []int&amp;#123;1, 2, 3, 4&amp;#125;    for _, x := range arr &amp;#123;        go func() &amp;#123;            fmt.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-04-01T06:58:46.524Z">
+<meta property="og:updated_time" content="2017-09-30T07:17:27.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="golang时区转换问题">
-<meta name="twitter:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
+<meta name="twitter:title" content="golang闭包问题">
+<meta name="twitter:description" content="关于闭包，网上有这样一句描述 “类是有行为的数据，而闭包是有数据的行为” 说的通俗一点：闭包是有上下文的 下面是一段程序的示例123456789func main() &amp;#123;    arr := []int&amp;#123;1, 2, 3, 4&amp;#125;    for _, x := range arr &amp;#123;        go func() &amp;#123;            fmt.">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -79,10 +79,10 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-go/golang时区转换问题" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-go/golang闭包问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/go/go/golang时区转换问题.html" class="article-date">
-  <time datetime="2017-03-31T16:00:00.000Z" itemprop="datePublished">2017-04-01</time>
+    <a href="/blog/go/go/golang闭包问题.html" class="article-date">
+  <time datetime="2017-05-31T16:00:00.000Z" itemprop="datePublished">2017-06-01</time>
 </a>
     
   <div class="article-category">
@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      golang时区转换问题
+      golang闭包问题
     </h1>
   
 
@@ -105,16 +105,28 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="time-Parse默认转换时间为UTC时区"><a href="#time-Parse默认转换时间为UTC时区" class="headerlink" title="time.Parse默认转换时间为UTC时区"></a>time.Parse默认转换时间为UTC时区</h3><p>golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。</p>
-<p>这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">t1, _ := time.Parse(<span class="string">"2006-01-02 15:04:05"</span>, <span class="string">"2017-04-01 13:02:01"</span>)</div><div class="line">t2, _ := time.ParseInLocation(<span class="string">"2006-01-02 15:04:05"</span>, <span class="string">"2017-04-01 13:02:01"</span>, time.Local)</div><div class="line"><span class="comment">//结果:Parse:8</span></div><div class="line">fmt.Printf(<span class="string">"Parse:%v\n"</span>, t1.Sub(t2).Seconds() / <span class="number">3600</span>)</div></pre></td></tr></table></figure>
-<p>以上结果Parse函数转换的时间是跟本地时间相差了8个小时。</p>
-<p>如果有需求计算两个时间间隔的，最好使用ParseInLocation函数转换成本地时区的时间进行计算。</p>
+        <p>关于闭包，网上有这样一句描述</p>
+<p><strong>“类是有行为的数据，而闭包是有数据的行为”</strong></p>
+<p>说的通俗一点：闭包是有上下文的</p>
+<p>下面是一段程序的示例<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</div><div class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">            fmt.Println(x)</div><div class="line">        &#125;()</div><div class="line">    &#125;</div><div class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行上面的程序，会有多种输出结果</p>
+<blockquote>
+<p>4<br>3<br>4<br>4</p>
+</blockquote>
+<p>或者</p>
+<blockquote>
+<p>4<br>4<br>4<br>4</p>
+</blockquote>
+<p>等等…</p>
+<p>for循环里每次遍历都会启动一个goroutine执行匿名函数打印变量x的值，x是4个goroutine共享的外部变量。随着main线程for循环的执行，x的值也会随着修改。</p>
+<p>由于闭包中使用的非参数传递变量属于引用传递，所以4个goroutine中都是使用的是外部变量x的引用，因此输出x的值自然也就具有了不确定性。</p>
+<p>如果想要4个goroutine分别输出1,2,3,4，只需要将x传递方式改成参数传递即可，修改如下<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</div><div class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">            fmt.Println(x)</div><div class="line">        &#125;(x)</div><div class="line">    &#125;</div><div class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样每个goroutine中的x都是值传递，值也不相同，避免了使用闭包时引用外部变量导致的莫名其妙问题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/go/go/golang时区转换问题.html" data-id="cj86zm2ca0009xoj73cuth45r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/go/go/golang闭包问题.html" data-id="cj86zm2cb000axoj7yfkkv9pu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -123,19 +135,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/blog/go/go/golang闭包问题.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          golang闭包问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/cache/cache/Redis缓存失效更新策略.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/go/go/golang时区转换问题.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Redis缓存失效策略</div>
+      <div class="article-nav-title">golang时区转换问题</div>
     </a>
   
 </nav>
@@ -148,7 +151,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-go/golang时区转换问题" data-title="golang时区转换问题" data-url="http://yoursite.com/go/go/golang时区转换问题.html"></div>
+<div class="ds-thread" data-thread-key="post-go/golang闭包问题" data-title="golang闭包问题" data-url="http://yoursite.com/go/go/golang闭包问题.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

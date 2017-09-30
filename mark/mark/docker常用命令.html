@@ -5,34 +5,17 @@
   
   <title>Docker常用命令 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版本查看1docker version
-搜索镜像1docker search $imageName$
-下载镜像1docker pull $imageName$
-查看所有镜像1docker images
-查看镜像历史1docker history $imageName$
-删除所有镜像1docker rmi $(docker images -q)
-删除所有未打标签的镜像1docker rmi $(do">
+  <meta name="description" content="版本查看1docker version 搜索镜像1docker search $imageName$ 下载镜像1docker pull $imageName$ 查看所有镜像1docker images 查看镜像历史1docker history $imageName$ 删除所有镜像1docker rmi $(docker images -q) 删除所有未打标签的镜像1docker rmi $(do">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker常用命令">
 <meta property="og:url" content="http://yoursite.com/mark/mark/docker常用命令.html">
-<meta property="og:site_name" content="Marks & Notes">
-<meta property="og:description" content="版本查看1docker version
-搜索镜像1docker search $imageName$
-下载镜像1docker pull $imageName$
-查看所有镜像1docker images
-查看镜像历史1docker history $imageName$
-删除所有镜像1docker rmi $(docker images -q)
-删除所有未打标签的镜像1docker rmi $(do">
-<meta property="og:updated_time" content="2016-04-20T04:05:01.006Z">
+<meta property="og:site_name" content="Marks &amp; Notes">
+<meta property="og:description" content="版本查看1docker version 搜索镜像1docker search $imageName$ 下载镜像1docker pull $imageName$ 查看所有镜像1docker images 查看镜像历史1docker history $imageName$ 删除所有镜像1docker rmi $(docker images -q) 删除所有未打标签的镜像1docker rmi $(do">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-04-20T04:05:01.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker常用命令">
-<meta name="twitter:description" content="版本查看1docker version
-搜索镜像1docker search $imageName$
-下载镜像1docker pull $imageName$
-查看所有镜像1docker images
-查看镜像历史1docker history $imageName$
-删除所有镜像1docker rmi $(docker images -q)
-删除所有未打标签的镜像1docker rmi $(do">
+<meta name="twitter:description" content="版本查看1docker version 搜索镜像1docker search $imageName$ 下载镜像1docker pull $imageName$ 查看所有镜像1docker images 查看镜像历史1docker history $imageName$ 删除所有镜像1docker rmi $(docker images -q) 删除所有未打标签的镜像1docker rmi $(do">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -90,7 +73,7 @@ var _hmt = _hmt || [];
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -122,26 +105,26 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="版本查看"><a href="#版本查看" class="headerlink" title="版本查看"></a>版本查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
-<h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search <span class="variable">$imageName</span>$</span><br></pre></td></tr></table></figure>
-<h3 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="variable">$imageName</span>$</span><br></pre></td></tr></table></figure>
-<h3 id="查看所有镜像"><a href="#查看所有镜像" class="headerlink" title="查看所有镜像"></a>查看所有镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-<h3 id="查看镜像历史"><a href="#查看镜像历史" class="headerlink" title="查看镜像历史"></a>查看镜像历史</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">history</span> <span class="variable">$imageName</span>$</span><br></pre></td></tr></table></figure>
-<h3 id="删除所有镜像"><a href="#删除所有镜像" class="headerlink" title="删除所有镜像"></a>删除所有镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
-<h3 id="删除所有未打标签的镜像"><a href="#删除所有未打标签的镜像" class="headerlink" title="删除所有未打标签的镜像"></a>删除所有未打标签的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q <span class="_">-f</span> dangling=<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="上传镜像"><a href="#上传镜像" class="headerlink" title="上传镜像"></a>上传镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push <span class="variable">$imageName</span>$</span><br></pre></td></tr></table></figure>
-<h3 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="_">-a</span></span><br></pre></td></tr></table></figure>
-<h3 id="查看最近启动的容器"><a href="#查看最近启动的容器" class="headerlink" title="查看最近启动的容器"></a>查看最近启动的容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="_">-l</span></span><br></pre></td></tr></table></figure>
-<h3 id="查看所有容器ID"><a href="#查看所有容器ID" class="headerlink" title="查看所有容器ID"></a>查看所有容器ID</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps <span class="_">-a</span> -q</span><br></pre></td></tr></table></figure>
-<h3 id="杀死所有启动的容器"><a href="#杀死所有启动的容器" class="headerlink" title="杀死所有启动的容器"></a>杀死所有启动的容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps <span class="_">-a</span> -q)</span><br></pre></td></tr></table></figure>
-<h3 id="删除所有容器"><a href="#删除所有容器" class="headerlink" title="删除所有容器"></a>删除所有容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm $(docker ps <span class="_">-a</span> -q)</span><br></pre></td></tr></table></figure>
-<h3 id="保存容器为镜像"><a href="#保存容器为镜像" class="headerlink" title="保存容器为镜像"></a>保存容器为镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit <span class="variable">$containerID</span>$ <span class="variable">$newImageName</span>$</span><br></pre></td></tr></table></figure>
-<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]</span><br><span class="line"></span><br><span class="line">OPTIONS:</span><br><span class="line">-i:标准输入给容器</span><br><span class="line">-t:分配一个虚拟终端</span><br><span class="line"><span class="_">-d</span>:以守护进程方式运行</span><br><span class="line">-P:默认匹配docker容器的5000端口号到宿主机的49153 to 65535端口</span><br><span class="line">-p HOT_PORT:CONTAINER_PORT:指定端口号</span><br><span class="line">--name:指定容器的名称</span><br><span class="line">--rm:退出时删除容器</span><br></pre></td></tr></table></figure>
-<h3 id="进入容器终端"><a href="#进入容器终端" class="headerlink" title="进入容器终端"></a>进入容器终端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -i -t <span class="variable">$imageName</span>$ /bin/bash</span><br></pre></td></tr></table></figure>
+        <h3 id="版本查看"><a href="#版本查看" class="headerlink" title="版本查看"></a>版本查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker version</div></pre></td></tr></table></figure>
+<h3 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker search <span class="variable">$imageName</span>$</div></pre></td></tr></table></figure>
+<h3 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull <span class="variable">$imageName</span>$</div></pre></td></tr></table></figure>
+<h3 id="查看所有镜像"><a href="#查看所有镜像" class="headerlink" title="查看所有镜像"></a>查看所有镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
+<h3 id="查看镜像历史"><a href="#查看镜像历史" class="headerlink" title="查看镜像历史"></a>查看镜像历史</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">history</span> <span class="variable">$imageName</span>$</div></pre></td></tr></table></figure>
+<h3 id="删除所有镜像"><a href="#删除所有镜像" class="headerlink" title="删除所有镜像"></a>删除所有镜像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi $(docker images -q)</div></pre></td></tr></table></figure>
+<h3 id="删除所有未打标签的镜像"><a href="#删除所有未打标签的镜像" class="headerlink" title="删除所有未打标签的镜像"></a>删除所有未打标签的镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi $(docker images -q -f dangling=<span class="literal">true</span>)</div></pre></td></tr></table></figure>
+<h3 id="上传镜像"><a href="#上传镜像" class="headerlink" title="上传镜像"></a>上传镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker push <span class="variable">$imageName</span>$</div></pre></td></tr></table></figure>
+<h3 id="查看所有容器"><a href="#查看所有容器" class="headerlink" title="查看所有容器"></a>查看所有容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a</div></pre></td></tr></table></figure>
+<h3 id="查看最近启动的容器"><a href="#查看最近启动的容器" class="headerlink" title="查看最近启动的容器"></a>查看最近启动的容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -l</div></pre></td></tr></table></figure>
+<h3 id="查看所有容器ID"><a href="#查看所有容器ID" class="headerlink" title="查看所有容器ID"></a>查看所有容器ID</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps -a -q</div></pre></td></tr></table></figure>
+<h3 id="杀死所有启动的容器"><a href="#杀死所有启动的容器" class="headerlink" title="杀死所有启动的容器"></a>杀死所有启动的容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">kill</span> $(docker ps -a -q)</div></pre></td></tr></table></figure>
+<h3 id="删除所有容器"><a href="#删除所有容器" class="headerlink" title="删除所有容器"></a>删除所有容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm $(docker ps -a -q)</div></pre></td></tr></table></figure>
+<h3 id="保存容器为镜像"><a href="#保存容器为镜像" class="headerlink" title="保存容器为镜像"></a>保存容器为镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker commit <span class="variable">$containerID</span>$ <span class="variable">$newImageName</span>$</div></pre></td></tr></table></figure>
+<h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]</div><div class="line"></div><div class="line">OPTIONS:</div><div class="line">-i:标准输入给容器</div><div class="line">-t:分配一个虚拟终端</div><div class="line">-d:以守护进程方式运行</div><div class="line">-P:默认匹配docker容器的5000端口号到宿主机的49153 to 65535端口</div><div class="line">-p HOT_PORT:CONTAINER_PORT:指定端口号</div><div class="line">--name:指定容器的名称</div><div class="line">--rm:退出时删除容器</div></pre></td></tr></table></figure>
+<h3 id="进入容器终端"><a href="#进入容器终端" class="headerlink" title="进入容器终端"></a>进入容器终端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -i -t <span class="variable">$imageName</span>$ /bin/bash</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/docker常用命令.html" data-id="cj0ywiv09000vp4qepufas6kv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/docker常用命令.html" data-id="cj86zm2d3000nxoj7shnmk2la" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +158,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/docker常用命令" data-title="Docker常用命令" data-url="http://yoursite.com/blog/mark/mark/docker常用命令.html"></div>
+<div class="ds-thread" data-thread-key="post-mark/docker常用命令" data-title="Docker常用命令" data-url="http://yoursite.com/mark/mark/docker常用命令.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -225,7 +208,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
@@ -236,6 +219,10 @@ var duoshuoQuery = {short_name:"yangdage"};
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
+          </li>
         
           <li>
             <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
@@ -251,10 +238,6 @@ var duoshuoQuery = {short_name:"yangdage"};
         
           <li>
             <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
           </li>
         
       </ul>
@@ -313,7 +296,7 @@ document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/java
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

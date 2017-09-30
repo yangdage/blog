@@ -5,25 +5,17 @@
   
   <title>Windows下端口占用程序查询 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
+  <meta name="description" content="1.打开命令行工具输入以下命令： 1netstat -aon|findstr 8082 可以看到类似以下的输出，最后一列为占用端口的程序的进程id 12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下端口占用程序查询">
 <meta property="og:url" content="http://yoursite.com/mark/mark/windows-port-used.html">
-<meta property="og:site_name" content="Marks & Notes">
-<meta property="og:description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.611Z">
+<meta property="og:site_name" content="Marks &amp; Notes">
+<meta property="og:description" content="1.打开命令行工具输入以下命令： 1netstat -aon|findstr 8082 可以看到类似以下的输出，最后一列为占用端口的程序的进程id 12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-04-20T04:05:51.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows下端口占用程序查询">
-<meta name="twitter:description" content="1.打开命令行工具输入以下命令：
-1netstat -aon|findstr 8082
-可以看到类似以下的输出，最后一列为占用端口的程序的进程id
-12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
+<meta name="twitter:description" content="1.打开命令行工具输入以下命令： 1netstat -aon|findstr 8082 可以看到类似以下的输出，最后一列为占用端口的程序的进程id 12TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480TCP    [::]:8082              [::]:0">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -81,7 +73,7 @@ var _hmt = _hmt || [];
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -114,17 +106,17 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -aon|findstr 8082</div></pre></td></tr></table></figure>
 <p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</div><div class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</div></pre></td></tr></table></figure>
 <h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tasklist|findstr 2480</div></pre></td></tr></table></figure>
 <p>控制台会输出该进程的程序信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.exe                      2480 Console                    3    253,168 K</div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html" data-id="cj0ywiv0i0018p4qem0rfltgw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/windows-port-used.html" data-id="cj86zm2di0012xoj7ye3y2qva" class="article-share-link">Share</a>
       
       
     </footer>
@@ -158,7 +150,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/windows-port-used" data-title="Windows下端口占用程序查询" data-url="http://yoursite.com/blog/mark/mark/windows-port-used.html"></div>
+<div class="ds-thread" data-thread-key="post-mark/windows-port-used" data-title="Windows下端口占用程序查询" data-url="http://yoursite.com/mark/mark/windows-port-used.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -208,7 +200,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
@@ -219,6 +211,10 @@ var duoshuoQuery = {short_name:"yangdage"};
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
+          </li>
         
           <li>
             <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
@@ -234,10 +230,6 @@ var duoshuoQuery = {short_name:"yangdage"};
         
           <li>
             <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
           </li>
         
       </ul>

@@ -9,8 +9,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="为用户节省流量之API接口设计">
 <meta property="og:url" content="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html">
-<meta property="og:site_name" content="Marks & Notes">
+<meta property="og:site_name" content="Marks &amp; Notes">
 <meta property="og:description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-07-19T06:43:42.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为用户节省流量之API接口设计">
@@ -72,7 +73,7 @@ var _hmt = _hmt || [];
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
     </div>
   </div>
@@ -113,7 +114,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html" data-id="cj0ywiv0b000yp4qels0fx45q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html" data-id="cj86zm2dk0013xoj7mpoo9bax" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +143,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/为用户节省流量之API接口设计" data-title="为用户节省流量之API接口设计" data-url="http://yoursite.com/blog/mark/mark/为用户节省流量之API接口设计.html"></div>
+<div class="ds-thread" data-thread-key="post-mark/为用户节省流量之API接口设计" data-title="为用户节省流量之API接口设计" data-url="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -192,7 +193,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
@@ -203,6 +204,10 @@ var duoshuoQuery = {short_name:"yangdage"};
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
+          </li>
         
           <li>
             <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
@@ -218,10 +223,6 @@ var duoshuoQuery = {short_name:"yangdage"};
         
           <li>
             <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
           </li>
         
       </ul>
