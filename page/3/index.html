@@ -3,11 +3,11 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>归档: 2016/4 | Marks &amp; Notes</title>
+  <title>Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Marks &amp; Notes">
-<meta property="og:url" content="http://yoursite.com/archives/2016/04/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Marks &amp; Notes">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -77,133 +77,79 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/cache/cache/Redis缓存失效更新策略.html" class="archive-article-date">
-  <time datetime="2016-04-23T16:00:00.000Z" itemprop="datePublished">4月 24</time>
+    <article id="post-mark/为用户节省流量之API接口设计" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/为用户节省流量之API接口设计.html" class="article-date">
+  <time datetime="2015-02-22T16:00:00.000Z" itemprop="datePublished">2015-02-23</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/cache/cache/Redis缓存失效更新策略.html">Redis缓存失效策略</a>
+      <a class="article-title" href="/blog/mark/mark/为用户节省流量之API接口设计.html">为用户节省流量之API接口设计</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/mark/mark/docker常用命令.html" class="archive-article-date">
-  <time datetime="2016-04-19T16:00:00.000Z" itemprop="datePublished">4月 20</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/mark/mark/docker常用命令.html">Docker常用命令</a>
-    </h1>
-  
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立socket长连接，这里只是记录几种使用TCP/HTTP协议短连接来实现类似功能的方案。</p>
+<p>获取好友列表最先想到的实现方法可能就是每次开QQ时都会去拉取一次所有的好友列表数据，数据中包括用户昵称，备注，头像，个性签名，在线状态，等等。然后客户端在一直打开的情况下，还会定时轮询去拉取最新的好友列表，同步到客户端，这种可能也是最耗流量的实现方式了。下面提供两种优化的方式。</p>
+<h3 id="两次请求，客户端比对时间戳"><a href="#两次请求，客户端比对时间戳" class="headerlink" title="两次请求，客户端比对时间戳"></a>两次请求，客户端比对时间戳</h3><p>还是以上面客户端获取最新好友列表为例，首先，假设客户端已经获取过一次好友列表数据，数据中包含每个用户信息的最后更新的时间戳，然后我们拉取所有好友的最后时间戳数据，跟客户端已有好友时间戳数据比对，找出不同的用户id，也许100个好友中只有10个不同，这样我们接下来只要更新下这10个用户的数据就好了，这样可以节省将近了90%的流量消耗。</p>
+<p>这种方式有个缺点就是每次跟新数据都要请求两次服务器，一次获取用户时间戳，一次获取有差异的用户列表数据。</p>
+<h3 id="一次请求，服务器比对时间戳"><a href="#一次请求，服务器比对时间戳" class="headerlink" title="一次请求，服务器比对时间戳"></a>一次请求，服务器比对时间戳</h3><p>客户端将本地好友ID和时间戳数据全部提交到服务器，服务器负责比较用户好友列表时间戳，返回有更新的用户列表。这种方式会增加服务端的压力。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/go/go/go-gob.html" class="archive-article-date">
-  <time datetime="2016-04-18T16:00:00.000Z" itemprop="datePublished">4月 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/mark/mark/markdown-mathjax.html" class="archive-article-date">
-  <time datetime="2016-04-11T16:00:00.000Z" itemprop="datePublished">4月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html" data-id="cjfdrwoxt0015l8j7tuplm4m8" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/mark/mark/markdown-mathjax.html">Mathjax in Markdown</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/java/java/Java列表组合排序.html" class="archive-article-date">
-  <time datetime="2016-04-09T16:00:00.000Z" itemprop="datePublished">4月 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html" class="archive-article-date">
-  <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">4月 2</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html">JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</a>
-    </h1>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/为用户节省流量之API接口设计" data-title="为用户节省流量之API接口设计" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/blog/page/2/">&laquo; __('prev')</a><a class="page-number" href="/blog/">1</a><a class="page-number" href="/blog/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 </section>
         
           <aside id="sidebar">

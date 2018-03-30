@@ -77,6 +77,156 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-mark/vim-xml-format" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/vim-xml-format.html" class="article-date">
+  <time datetime="2016-03-28T16:00:00.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/mark/mark/vim-xml-format.html">Vim下XML文件格式化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-打开需要格式化的文件"><a href="#1-打开需要格式化的文件" class="headerlink" title="1.打开需要格式化的文件"></a>1.打开需要格式化的文件</h3><p>使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。<br>现有一个如下的未格式化的文件：<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png" alt="origin image"></p>
+<h3 id="2-保存临时修改"><a href="#2-保存临时修改" class="headerlink" title="2.保存临时修改"></a>2.保存临时修改</h3><p>如果我们打开后有对文件进行编辑操作，需要保存所做的修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:w</div></pre></td></tr></table></figure>
+<p>在命令模式下输入上面的命令，保存改动，不退出文件</p>
+<h3 id="3-启用自动缩进选项"><a href="#3-启用自动缩进选项" class="headerlink" title="3.启用自动缩进选项"></a>3.启用自动缩进选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:filetype indent on</div></pre></td></tr></table></figure>
+<h3 id="4-设置文件类型"><a href="#4-设置文件类型" class="headerlink" title="4.设置文件类型"></a>4.设置文件类型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="built_in">set</span> filetype=xml</div></pre></td></tr></table></figure>
+<h3 id="5-全局格式化"><a href="#5-全局格式化" class="headerlink" title="5.全局格式化"></a>5.全局格式化</h3><p>回到文件头：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gg</div></pre></td></tr></table></figure>
+<p>使用缩进（格式化）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">=</div></pre></td></tr></table></figure></p>
+<p>格式化到文件尾:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">G</div></pre></td></tr></table></figure>
+<h3 id="6-格式化结果"><a href="#6-格式化结果" class="headerlink" title="6.格式化结果"></a>6.格式化结果</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png" alt="origin image"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/mark/mark/vim-xml-format.html" data-id="cjfdrwoxs0013l8j7ebkiuchl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/vim-xml-format" data-title="Vim下XML文件格式化" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
+    <article id="post-mark/sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/mark/mark/sublime-package-control.html" class="article-date">
+  <time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished">2016-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/mark/mark/sublime-package-control.html">Sublime下的Package Control</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
+<p>打开sublime，查看是否存在以下目录</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
+<p>如果没有，我们需要安装Package Control</p>
+<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
+<p>Sublime3:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>())</div></pre></td></tr></table></figure>
+<p>Sublime2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)elseNone;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</div></pre></td></tr></table></figure>
+<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
+<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
+<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/mark/mark/sublime-package-control.html" data-id="cjfdrwoxr0011l8j7r4vs11ii" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-mark/sublime-package-control" data-title="Sublime下的Package Control" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-javascript/javascript-closure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/javascript/javascript/javascript-closure.html" class="article-date">
@@ -169,7 +319,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/javascript/javascript/javascript-closure.html" data-id="cj86zm2ck000exoj7r32hmfo5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/javascript/javascript/javascript-closure.html" data-id="cjfdrwowu000jl8j7v7qb8iwx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +432,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/hexo-github.html" data-id="cj86zm2d5000qxoj75ydnp1km" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/hexo-github.html" data-id="cjfdrwowz000ql8j7ncmodzrp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -402,7 +552,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/api-design.html" data-id="cj86zm2cq000ixoj74xmj4shp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/api-design.html" data-id="cjfdrwowr000hl8j783pyorsc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -521,7 +671,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/nsq-start.html" data-id="cj86zm2db000uxoj72bx4ziyc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/nsq-start.html" data-id="cjfdrwoxf000wl8j7armyjhkj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -591,7 +741,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/windows-port-used.html" data-id="cj86zm2di0012xoj7ye3y2qva" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/windows-port-used.html" data-id="cjfdrwoy9001gl8j7osbwqm26" class="article-share-link">Share</a>
       
       
     </footer>
@@ -657,7 +807,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/sublime关闭分组.html" data-id="cj86zm2de000yxoj74r557b7x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/sublime关闭分组.html" data-id="cjfdrwoxp000zl8j7s4i1yhlz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -839,7 +989,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/csrf和xss攻击与防御.html" data-id="cj86zm2d1000lxoj7s9tmlna5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/csrf和xss攻击与防御.html" data-id="cjfdrwoxv0017l8j78mxzr5i1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -900,38 +1050,38 @@ var duoshuoQuery = {short_name:"yangdage"};
       
         <h3 id="声明提升的定义"><a href="#声明提升的定义" class="headerlink" title="声明提升的定义"></a>声明提升的定义</h3><p>声明提升就是将变量和函数的声明提升到作用域的顶端定义，<strong>但不赋值</strong>。</p>
 <h3 id="变量声明提升"><a href="#变量声明提升" class="headerlink" title="变量声明提升"></a>变量声明提升</h3><p>我们先看一个简单的例子</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a=1;</span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	a=1;</span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	a=1;</span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>就问你这两段控制台是不是输出1，是，就是这么傲娇的肯定。答对了，状态不错，我们稍微修改下上面的代码</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined">	var a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined">	a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">2</span>;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="undefined">	a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>上面的代码我们将控制台输出语句跟变量声明换了个位置，而且我还换了个值，就问你这个会打印什么？<br>是2？天真！！！这里第一个输出的是<strong>undefined</strong>，第二个<strong>undefined</strong>都不会输出直接报错。为什么会出现这种情况呢？这里就涉及到了javascript中的声明提升的概念了。</p>
 <p>我们知道<strong>var a=2;</strong>是一个变量声明，根据前面的声明提升的定义，可以知道，这句代码里的a变量会提升到作用于顶端定义，因此下面两段代码是等价的。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined">	var a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">2</span>;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a;</span></div><div class="line"><span class="undefined">	console.log(a);</span></div><div class="line"><span class="undefined">	a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a;</span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);</span></div><div class="line"><span class="undefined">	a=2;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>由于变量声明中提升到顶端的只是变量的定义，不会赋值，所以这里打印<strong>undefined</strong>就在情理之中了。如果事先没有定义这个变量，我们使用了，运行的时候就会报错。</p>
 <h3 id="函数声明提升"><a href="#函数声明提升" class="headerlink" title="函数声明提升"></a>函数声明提升</h3><p>和变量声明一样，函数的声明也会被提升。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	functest();</span></div><div class="line"><span class="undefined">	var functest=function()&#123;</span></div><div class="line"><span class="undefined">		console.log("functest");</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	functest();</span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> functest=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="built_in">console</span>.log(<span class="string">"functest"</span>);</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var functest;</span></div><div class="line"><span class="undefined">	functest();</span></div><div class="line"><span class="undefined">	functest=function()&#123;</span></div><div class="line"><span class="undefined">		console.log("functest");</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> functest;</span></div><div class="line"><span class="undefined">	functest();</span></div><div class="line"><span class="javascript">	functest=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="built_in">console</span>.log(<span class="string">"functest"</span>);</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>上面<strong>var functest=function(){…}</strong>的方式定义的函数不是函数声明，而是函数表达式，虽然变量<strong>functest</strong>的定义也会被提升，但是并没有将对应的匿名函数的引用赋值给它，所以执行的时候会报出错误信息:<strong>TypeError: funtest is not a function</strong></p>
 <p>下面来看下函数声明的提升</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	funtest();</span></div><div class="line"><span class="undefined">	function funtest()&#123;</span></div><div class="line"><span class="undefined">		console.log("funtest");</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	funtest();</span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">funtest</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="built_in">console</span>.log(<span class="string">"funtest"</span>);</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	function funtest()&#123;</span></div><div class="line"><span class="undefined">		console.log("funtest");</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	funtest();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">funtest</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="built_in">console</span>.log(<span class="string">"funtest"</span>);</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	funtest();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>关键字function+函数名称+函数体，这种方式定义的函数就是我们所说的函数声明。可以看到这种方式定义的函数，不管调用执行它的代码在它前面还是后面都能正确的找到相关函数的引用，并执行。</p>
-<h3 id="链式作用域"><a href="#链式作用域" class="headerlink" title="链式作用域"></a>链式作用域</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a=1;</span></div><div class="line"><span class="undefined">	function func_outer()&#123;</span></div><div class="line"><span class="undefined">		var a=2;</span></div><div class="line"><span class="undefined">		function func_inner()&#123;</span></div><div class="line"><span class="undefined">			var a=3;</span></div><div class="line"><span class="undefined">			console.log(a);	//3</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a=1;</span></div><div class="line"><span class="undefined">	function func_outer()&#123;</span></div><div class="line"><span class="undefined">		var a=2;</span></div><div class="line"><span class="undefined">		function func_inner()&#123;</span></div><div class="line"><span class="undefined">			console.log(a);	//2</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a=1;</span></div><div class="line"><span class="undefined">	function func_outer()&#123;</span></div><div class="line"><span class="undefined">		function func_inner()&#123;</span></div><div class="line"><span class="undefined">			console.log(a);	//1</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="链式作用域"><a href="#链式作用域" class="headerlink" title="链式作用域"></a>链式作用域</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="keyword">var</span> a=<span class="number">2</span>;</span></div><div class="line"><span class="javascript">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">			<span class="keyword">var</span> a=<span class="number">3</span>;</span></div><div class="line"><span class="javascript">			<span class="built_in">console</span>.log(a);	<span class="comment">//3</span></span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="keyword">var</span> a=<span class="number">2</span>;</span></div><div class="line"><span class="javascript">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">			<span class="built_in">console</span>.log(a);	<span class="comment">//2</span></span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="javascript">			<span class="built_in">console</span>.log(a);	<span class="comment">//1</span></span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>当一个函数内部用到一个变量时，首先会在当前函数作用域中查找这个变量，如果当前函数作用域中没有，就逐层往上到上一级函数作用域中查找，一直找到window对象层，只到找到为止，如果找不到就会报变量未定义错误。这就是Javascript的链式作用域。</p>
 <p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160401/js-scope.jpg" alt="js作用域"></p>
 <p>注意，任何函数内未加<strong>var</strong>定义的变量，函数执行的时候都会被提升为全局变量。直属于<strong>window</strong>对象，而且永驻内存不会被释放，除非手动删除，或关闭浏览器，window对象已有的该属性会被覆盖。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">	var a=1;</span></div><div class="line"><span class="undefined">	function func_outer()&#123;</span></div><div class="line"><span class="undefined">		a=2;</span></div><div class="line"><span class="undefined">		function func_inner()&#123;</span></div><div class="line"><span class="undefined">			;</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="undefined">	console.log(a);	//2</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">	<span class="keyword">var</span> a=<span class="number">1</span>;</span></div><div class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">func_outer</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="undefined">		a=2;</span></div><div class="line"><span class="javascript">		<span class="function"><span class="keyword">function</span> <span class="title">func_inner</span>(<span class="params"></span>)</span>&#123;</span></div><div class="line"><span class="undefined">			;</span></div><div class="line"><span class="undefined">		&#125;</span></div><div class="line"><span class="undefined">		func_inner();</span></div><div class="line"><span class="undefined">	&#125;</span></div><div class="line"><span class="undefined">	func_outer();</span></div><div class="line"><span class="javascript">	<span class="built_in">console</span>.log(a);	<span class="comment">//2</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cj86zm2cg000bxoj7biq30t7d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/javascript/javascript/javascript中声明提升和函数作用域.html" data-id="cjfdrwoxc000vl8j7iwjbliy6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -964,78 +1114,10 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 搜索引擎优化 end-->
   
-    <article id="post-mark/为用户节省流量之API接口设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/mark/mark/为用户节省流量之API接口设计.html" class="article-date">
-  <time datetime="2015-02-22T16:00:00.000Z" itemprop="datePublished">2015-02-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/mark/mark/为用户节省流量之API接口设计.html">为用户节省流量之API接口设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立socket长连接，这里只是记录几种使用TCP/HTTP协议短连接来实现类似功能的方案。</p>
-<p>获取好友列表最先想到的实现方法可能就是每次开QQ时都会去拉取一次所有的好友列表数据，数据中包括用户昵称，备注，头像，个性签名，在线状态，等等。然后客户端在一直打开的情况下，还会定时轮询去拉取最新的好友列表，同步到客户端，这种可能也是最耗流量的实现方式了。下面提供两种优化的方式。</p>
-<h3 id="两次请求，客户端比对时间戳"><a href="#两次请求，客户端比对时间戳" class="headerlink" title="两次请求，客户端比对时间戳"></a>两次请求，客户端比对时间戳</h3><p>还是以上面客户端获取最新好友列表为例，首先，假设客户端已经获取过一次好友列表数据，数据中包含每个用户信息的最后更新的时间戳，然后我们拉取所有好友的最后时间戳数据，跟客户端已有好友时间戳数据比对，找出不同的用户id，也许100个好友中只有10个不同，这样我们接下来只要更新下这10个用户的数据就好了，这样可以节省将近了90%的流量消耗。</p>
-<p>这种方式有个缺点就是每次跟新数据都要请求两次服务器，一次获取用户时间戳，一次获取有差异的用户列表数据。</p>
-<h3 id="一次请求，服务器比对时间戳"><a href="#一次请求，服务器比对时间戳" class="headerlink" title="一次请求，服务器比对时间戳"></a>一次请求，服务器比对时间戳</h3><p>客户端将本地好友ID和时间戳数据全部提交到服务器，服务器负责比较用户好友列表时间戳，返回有更新的用户列表。这种方式会增加服务端的压力。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/为用户节省流量之API接口设计.html" data-id="cj86zm2dk0013xoj7mpoo9bax" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/为用户节省流量之API接口设计" data-title="为用户节省流量之API接口设计" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/blog/">&laquo; __('prev')</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/blog/">&laquo; __('prev')</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -1060,7 +1142,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
@@ -1073,6 +1155,14 @@ var duoshuoQuery = {short_name:"yangdage"};
       <ul>
         
           <li>
+            <a href="/blog/mark/go/golang问题记录.html">golang问题记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/mark/mark/use-make-in-windows.html">Windows下使用make命令</a>
+          </li>
+        
+          <li>
             <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
           </li>
         
@@ -1082,14 +1172,6 @@ var duoshuoQuery = {short_name:"yangdage"};
         
           <li>
             <a href="/blog/cache/cache/Redis缓存失效更新策略.html">Redis缓存失效策略</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/docker常用命令.html">Docker常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/blog/go/go/go-gob.html">Go中gob序列化反序列化</a>
           </li>
         
       </ul>
@@ -1104,7 +1186,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 yangdage<br>
+      &copy; 2018 yangdage<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
