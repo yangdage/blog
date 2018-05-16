@@ -3,22 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Sublime下的Package Control | Marks &amp; Notes</title>
+  <title>REST API设计最佳实践 | Marks &amp; Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。 打开sublime，查看是否存在以下目录  如果没有，我们需要安装Package Control 通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。 Sublime3:">
+  <meta name="description" content="Facebook, Google, Github, Netflix等科技巨头都为开发者和产品提供了API来产生和消费的数据。即使我们写的API不用给其他开发者或者产品使用，我们也应该为我们所开发的代码编写一份精美的API文档。 关于API设计的最佳方式，网络上一直都存在很多争议，始终没有形成一个统一的标准。 API就是访问数据的接口，通过它用户可以生产和消费数据。一个好的API应该是简单易懂，开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sublime下的Package Control">
-<meta property="og:url" content="http://yoursite.com/mark/mark/sublime-package-control.html">
+<meta property="og:title" content="REST API设计最佳实践">
+<meta property="og:url" content="http://yoursite.com/mark/mark/rest-api-design.html">
 <meta property="og:site_name" content="Marks &amp; Notes">
-<meta property="og:description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。 打开sublime，查看是否存在以下目录  如果没有，我们需要安装Package Control 通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。 Sublime3:">
+<meta property="og:description" content="Facebook, Google, Github, Netflix等科技巨头都为开发者和产品提供了API来产生和消费的数据。即使我们写的API不用给其他开发者或者产品使用，我们也应该为我们所开发的代码编写一份精美的API文档。 关于API设计的最佳方式，网络上一直都存在很多争议，始终没有形成一个统一的标准。 API就是访问数据的接口，通过它用户可以生产和消费数据。一个好的API应该是简单易懂，开发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.611Z">
+<meta property="og:updated_time" content="2018-05-16T06:57:17.584Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sublime下的Package Control">
-<meta name="twitter:description" content="有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。 打开sublime，查看是否存在以下目录  如果没有，我们需要安装Package Control 通过快捷键 ctrl+` 或者 View &amp;gt; Show Console 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。 Sublime3:">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png">
+<meta name="twitter:title" content="REST API设计最佳实践">
+<meta name="twitter:description" content="Facebook, Google, Github, Netflix等科技巨头都为开发者和产品提供了API来产生和消费的数据。即使我们写的API不用给其他开发者或者产品使用，我们也应该为我们所开发的代码编写一份精美的API文档。 关于API设计的最佳方式，网络上一直都存在很多争议，始终没有形成一个统一的标准。 API就是访问数据的接口，通过它用户可以生产和消费数据。一个好的API应该是简单易懂，开发">
   
     <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
   
@@ -82,10 +79,10 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-mark/sublime-package-control" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-mark/rest-api-design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/blog/mark/mark/sublime-package-control.html" class="article-date">
-  <time datetime="2016-03-22T16:00:00.000Z" itemprop="datePublished">2016-03-23</time>
+    <a href="/blog/mark/mark/rest-api-design.html" class="article-date">
+  <time datetime="2018-05-15T16:00:00.000Z" itemprop="datePublished">2018-05-16</time>
 </a>
     
   <div class="article-category">
@@ -100,7 +97,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Sublime下的Package Control
+      REST API设计最佳实践
     </h1>
   
 
@@ -108,23 +105,57 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有时候我们安装的Sublime默认情况下没有安装Package Control(暂且叫它插件管理器)，没有安装它的情况下就不能很方便的安装官方的插件。</p>
-<p>打开sublime，查看是否存在以下目录</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330174915.png" alt="package control"></p>
-<p>如果没有，我们需要安装Package Control</p>
-<p>通过快捷键 <strong>ctrl+`</strong> 或者 <strong>View &gt; Show Console</strong> 菜单打开控制台，复制粘贴以下脚本，确保中间无换行。</p>
-<p>Sublime3:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>())</div></pre></td></tr></table></figure>
-<p>Sublime2:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)elseNone;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).<span class="built_in">read</span>());<span class="built_in">print</span>(<span class="string">'Please restart Sublime Text to finish installation'</span>)</div></pre></td></tr></table></figure>
-<p>重启sublime，通过快捷键<strong>ctrl+shift+p</strong>打开命令面板，输入package，查看Package Control是否安装正常</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330175617.png" alt="package control"></p>
-<p>出现如上命令选项证明安装已正常，可以愉快的安装乱七八糟的插件了。</p>
+        <p>Facebook, Google, Github, Netflix等科技巨头都为开发者和产品提供了API来产生和消费的数据。<br>即使我们写的API不用给其他开发者或者产品使用，我们也应该为我们所开发的代码编写一份精美的API文档。</p>
+<p>关于API设计的最佳方式，网络上一直都存在很多争议，始终没有形成一个统一的标准。</p>
+<p>API就是访问数据的接口，通过它用户可以生产和消费数据。一个好的API应该是简单易懂，开发者使用时不会产生疑惑。反之，如果一个产品有一个冗长而且看了几遍都还无法理解的API，开发者一般会选着放弃或者寻找其他更简单的替代品。<strong>开发者的使用体验是衡量一个API质量的重要指标。</strong></p>
+<p><strong>API就像一个在舞台上表演的演员，用户就是观众</strong></p>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p>以下是几个跟REST API相关的重要术语。</p>
+<ul>
+<li><p>Resource<br><code>Resource</code>表示一组可以被操作的相互关联的数据组成的抽象对象。例如：动物、学校、公司职员可以看做是资源，我们可以针对这些资源进行删除、新增、更新等操作。</p>
+</li>
+<li><p>Collections<br><code>Collections</code>表示一组资源的集合。</p>
+</li>
+<li><p>URL<br><code>URL</code>（统一资源定位符）表示访问和操作指定资源的路径。</p>
+</li>
+</ul>
+<h3 id="API路由"><a href="#API路由" class="headerlink" title="API路由"></a>API路由</h3><p>便于理解，以下列举了一些有关公司和职员的<strong>传统API</strong>示例。</p>
+<p><code>/getAllEmployees</code></p>
+<p><code>/addNewEmployee</code></p>
+<p><code>/updateEmployee</code></p>
+<p><code>/deleteEmployee</code></p>
+<p><code>/promoteEmployee</code></p>
+<p>实际中，还有大量的类似上面定义用于不同操作的的API路由。所有这些定义中都包含了多余的动作。因此，随着数量的增加，这些API将变得非常繁杂和难用。</p>
+<p><strong>错在哪里？</strong></p>
+<p>既然URL表示的是资源，资源应该是名词，而不应该含有动词。<code>/addNewEmployee</code>就包含了<code>addNew</code>的动作在里面。</p>
+<p><strong>最佳实践</strong></p>
+<p><code>资源名称统一使用复数形式</code></p>
+<p><code>/companies</code>这个URL就是一个比较好的示例，那么如何在这个资源上表示出增加、修改、删除的操作呢。</p>
+<p>HTTP方法GET、POST、DELETE、PUT就可以很好的表示这些动作。</p>
+<p><code>GET /companies</code>表示获取所有公司列表</p>
+<p><code>GET /companies/34</code>表示获取ID为34的公司信息</p>
+<p><code>DELETE /companies/34</code>表示删除公司ID为34的信息</p>
+<p><code>POST /companies</code>表示新建一个新的公司信息，并返回所创建的信息</p>
+<p>有时候，我们需要操作资源下的资源，比如要访问或操作公司下的职员信息，可以如下定义API。</p>
+<p><code>GET /companies/3/employees</code>表示获取ID为3的公司下的所有职员信息</p>
+<p><code>GET /companies/3/employees/45</code>表示获取ID为3的公司下ID为45的职员信息</p>
+<p>对于有些HTTP方法表示不了的动作，如解雇、升值、加薪，这种情况可以使用PUT方法和在API的最后附加相关的动作来实现。</p>
+<p><code>PUT /companies/3/employees/45/promote</code></p>
+<h3 id="条件查询、排序、分页"><a href="#条件查询、排序、分页" class="headerlink" title="条件查询、排序、分页"></a>条件查询、排序、分页</h3><p>这些动作都是基于相同资源的查询操作，我们没有必要再重新为每一个动作设计一个新的API，只需要将相关的参数附加到GET方式的API后面即可。</p>
+<p><strong>条件查询</strong></p>
+<p><code>GET /companies?category=banking&amp;location=india</code></p>
+<p><strong>排序</strong></p>
+<p><code>GET /companies?sort=rank_asc</code></p>
+<p><strong>分页</strong></p>
+<p><code>GET /companies?page=23</code></p>
+<p><strong>注：GET方式的请求参数不能太长，太长的话服务器一般会返回一个错误<code>414 URI Too long</code>。这种情况下就需要将GET方式改成POST，并且请求参数放到请求体里面。</strong></p>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>随着产品的迭代，我们的API可能会用在很多产品中，有时候会做出颠覆性的更新，所以前期就需要针对这些API加上版本标识。</p>
+<p><code>/v1/companies/34/employees</code></p>
+<p><code>/v2/companies/34/employees</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/sublime-package-control.html" data-id="cjh8qs0tq000nooj7btwrj447" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/rest-api-design.html" data-id="cjh8qs0tj000eooj7w1u60xvy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,19 +164,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/blog/mark/mark/vim-xml-format.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Vim下XML文件格式化
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/javascript/javascript/javascript-closure.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/mark/go/golang问题记录.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Javascript闭包(Closure)</div>
+      <div class="article-nav-title">golang问题记录</div>
     </a>
   
 </nav>
@@ -158,7 +180,7 @@ var _hmt = _hmt || [];
 -->
 
 <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/sublime-package-control" data-title="Sublime下的Package Control" data-url="http://yoursite.com/mark/mark/sublime-package-control.html"></div>
+<div class="ds-thread" data-thread-key="post-mark/rest-api-design" data-title="REST API设计最佳实践" data-url="http://yoursite.com/mark/mark/rest-api-design.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
