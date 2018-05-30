@@ -153,7 +153,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/rest-api-design.html" data-id="cjhajs0ri00125cj77ivhrz11" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/rest-api-design.html" data-id="cjhsqnuw1001idkj76j39ijpq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,11 +232,17 @@ var duoshuoQuery = {short_name:"yangdage"};
 <p>在golang中，nil只能赋值给指针、channel、func、interface、map或slice类型的变量。</p>
 <p>interface{}表示任意类型，可以接收任意类型的值。interface{}变量在底是由类型和值两部分组成，表示为(T,V)，interface{}变量比较特殊，判断它是nil时，要求它的类型和值都是nil，即(nil, nil)。<br>其它类型变量，只要值是nil，那么此变量就是nil（为什么？变量类型不是nil，那当然只能用值来判断了）</p>
 <p>声明变量interface{}，它默认就是nil，底层类型与值表示是(nil, nil)。<br>当任何类型T的变量值V给interface{}变量赋值时，interface{}变量的底层表示是(T, V)。只要T非nil，即使V是nil，interface{}变量也不是nil。</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>go语言自带了内存回收机制，因此一般情况下不会存在内存泄漏问题。但是以下两种常用情况很容易导致内存泄漏。</p>
+<p><strong>数组引用切片</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	dataMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">byte</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fileName := <span class="string">"./main.go"</span></div><div class="line">		data, err := ioutil.ReadFile(fileName)</div><div class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">			<span class="built_in">panic</span>(err)</div><div class="line">		&#125;</div><div class="line">		dataMap[fileName] = data[<span class="number">0</span>:]</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	fmt.Printf(<span class="string">"%v"</span>, dataMap)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案：克隆一份数据</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	dataMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>][]<span class="keyword">byte</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		fileName := <span class="string">"./main.go"</span></div><div class="line">		data, err := ioutil.ReadFile(fileName)</div><div class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</div><div class="line">			<span class="built_in">panic</span>(err)</div><div class="line">		&#125;</div><div class="line">		dataMap[fileName] = <span class="built_in">append</span>([]<span class="keyword">byte</span>&#123;&#125;,data[<span class="number">0</span>:]...)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	fmt.Printf(<span class="string">"%v"</span>, dataMap)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>goroutine不能正常退出</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	ch := <span class="function"><span class="keyword">func</span><span class="params">()</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</div><div class="line">		ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</div><div class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">			<span class="keyword">for</span> i := <span class="number">0</span>; ; i++ &#123;</div><div class="line">				ch &lt;- i</div><div class="line">			&#125;</div><div class="line">		&#125;()</div><div class="line">		<span class="keyword">return</span> ch</div><div class="line">	&#125;()</div><div class="line"></div><div class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</div><div class="line">		fmt.Println(v)</div><div class="line">		<span class="keyword">if</span> v == <span class="number">5</span> &#123;</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>解决方案：引入Context或者自定义通知channel</strong><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	ctx, cancel := context.WithCancel(context.Background())</div><div class="line">	ch := <span class="function"><span class="keyword">func</span><span class="params">()</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</div><div class="line">		ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</div><div class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">			<span class="keyword">for</span> i := <span class="number">0</span>; ; i++ &#123;</div><div class="line">				<span class="keyword">select</span> &#123;</div><div class="line">				<span class="keyword">case</span> &lt;-ctx.Done():</div><div class="line">					<span class="keyword">return</span></div><div class="line">				<span class="keyword">case</span> ch &lt;- i:</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;()</div><div class="line">		<span class="keyword">return</span> ch</div><div class="line">	&#125;()</div><div class="line"></div><div class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</div><div class="line">		fmt.Println(v)</div><div class="line">		<span class="keyword">if</span> v == <span class="number">5</span> &#123;</div><div class="line">			cancel()</div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	done := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>)</div><div class="line">	ch := <span class="function"><span class="keyword">func</span><span class="params">()</span> &lt;-<span class="title">chan</span> <span class="title">int</span></span> &#123;</div><div class="line">		ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</div><div class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">			<span class="keyword">for</span> i := <span class="number">0</span>; ; i++ &#123;</div><div class="line">				<span class="keyword">select</span> &#123;</div><div class="line">				<span class="keyword">case</span> &lt;-done:</div><div class="line">					<span class="keyword">return</span></div><div class="line">				<span class="keyword">case</span> ch &lt;- i:</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;()</div><div class="line">		<span class="keyword">return</span> ch</div><div class="line">	&#125;()</div><div class="line"></div><div class="line">	<span class="keyword">for</span> v := <span class="keyword">range</span> ch &#123;</div><div class="line">		fmt.Println(v)</div><div class="line">		<span class="keyword">if</span> v == <span class="number">5</span> &#123;</div><div class="line">			done &lt;- <span class="literal">true</span></div><div class="line">			<span class="keyword">break</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/go/golang问题记录.html" data-id="cjhajs0r1000c5cj79a64s5wf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/go/golang问题记录.html" data-id="cjhsqnuuw0006dkj7sw589505" class="article-share-link">Share</a>
       
       
     </footer>
@@ -305,7 +311,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/use-make-in-windows.html" data-id="cjhajs0rm00185cj74pavb1lr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/use-make-in-windows.html" data-id="cjhsqnuw0001hdkj7y2nnv12s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,7 +391,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/go/go/golang闭包问题.html" data-id="cjhajs0qy00095cj7antp1q7e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/go/go/golang闭包问题.html" data-id="cjhsqnuv3000bdkj7y2p060pd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -453,7 +459,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/go/go/golang时区转换问题.html" data-id="cjhajs0qt00055cj70jad8gcd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/go/go/golang时区转换问题.html" data-id="cjhsqnuv4000ddkj7v72l4j99" class="article-share-link">Share</a>
       
       
     </footer>
@@ -580,7 +586,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/mysql-engines.html" data-id="cjhajs0rf000x5cj70mjj144e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/mysql-engines.html" data-id="cjhsqnuvr0015dkj7mti9flck" class="article-share-link">Share</a>
       
       
     </footer>
@@ -652,7 +658,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html" data-id="cjhajs0qx00085cj72ft7dob2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html" data-id="cjhsqnuuv0005dkj7nk55xyq6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -730,7 +736,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/docker常用命令.html" data-id="cjhajs0ra000q5cj78bvvgpl5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/docker常用命令.html" data-id="cjhsqnuvj000vdkj7jzidmzat" class="article-share-link">Share</a>
       
       
     </footer>
@@ -802,7 +808,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/go/go/go-gob.html" data-id="cjhajs0qv00065cj7xgls4dve" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/go/go/go-gob.html" data-id="cjhsqnuv2000adkj7srg3f3oi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1288,7 +1294,7 @@ var duoshuoQuery = {short_name:"yangdage"};
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/markdown-mathjax.html" data-id="cjhajs0rb000s5cj7q1rtzrke" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/mark/mark/markdown-mathjax.html" data-id="cjhsqnuvl000xdkj7vgcghy84" class="article-share-link">Share</a>
       
       
     </footer>
