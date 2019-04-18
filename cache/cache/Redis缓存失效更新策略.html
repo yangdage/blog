@@ -3,13 +3,13 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Redis缓存失效策略 | Marks &amp; Notes</title>
+  <title>Redis缓存失效策略 | Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis缓存失效策略">
 <meta property="og:url" content="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html">
-<meta property="og:site_name" content="Marks &amp; Notes">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2016-07-19T06:43:42.363Z">
@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="Redis缓存失效策略">
 <meta name="twitter:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
   
-    <link rel="alternate" href="/atom.xml" title="Marks &amp; Notes" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Notes" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -49,11 +49,11 @@ var _hmt = _hmt || [];
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">Marks &amp; Notes</a>
+        <a href="/blog/" id="logo">Notes</a>
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/blog/" id="subtitle">The more I know, the less.</a>
+          <a href="/blog/" id="subtitle">When you look long into an abyss, the abyss looks into you.</a>
         </h2>
       
     </div>
@@ -118,7 +118,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html" data-id="cjum4nxuo000gaooc1t3p21zg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/cache/cache/Redis缓存失效更新策略.html" data-id="cjum5e16x0005ncoc5zcd1oax" class="article-share-link">Share</a>
       
       
     </footer>

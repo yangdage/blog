@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Marks &amp; Notes</title>
+  <title>Notes</title>
   
-  <subtitle>The more I know, the less.</subtitle>
+  <subtitle>When you look long into an abyss, the abyss looks into you.</subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
