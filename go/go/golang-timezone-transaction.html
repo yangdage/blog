@@ -9,11 +9,11 @@
     <meta name="description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang时区转换问题">
-<meta property="og:url" content="http://yangdage.github.io/go/go/golang时区转换问题.html">
+<meta property="og:url" content="http://yangdage.github.io/go/go/golang-timezone-transaction.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-04-01T06:58:46.524Z">
+<meta property="og:updated_time" content="2019-04-19T03:34:56.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="golang时区转换问题">
 <meta name="twitter:description" content="time.Parse默认转换时间为UTC时区golang中转换时间的时候都是习惯性的直接使用time.Parse()函数，没有注意这个函数转换出来的时间默认会是UTC国际标准时间。 这个时间是伦敦时间时间为准，中国大陆、中国香港、中国澳门、中国台湾、蒙古国、新加坡、马来西亚、菲律宾、西澳大利亚州的时间与UTC的时差均为+8，也就是UTC+8。 1234t1, _ := time.Parse(&quot;20">
@@ -71,7 +71,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/blog/go/go/golang闭包问题.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/go/go/golang-closure.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/blog/mark/mark/mysql-engines.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -87,16 +87,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/golang时区转换问题.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/golang时区转换问题.html&text=golang时区转换问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/golang时区转换问题.html&is_video=false&description=golang时区转换问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=golang时区转换问题&body=Check out this article: http://yangdage.github.io/go/go/golang时区转换问题.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/golang时区转换问题.html&name=golang时区转换问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/golang-timezone-transaction.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&text=golang时区转换问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&is_video=false&description=golang时区转换问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=golang时区转换问题&body=Check out this article: http://yangdage.github.io/go/go/golang-timezone-transaction.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&name=golang时区转换问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -180,16 +180,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/golang时区转换问题.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/golang时区转换问题.html&text=golang时区转换问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/golang时区转换问题.html&is_video=false&description=golang时区转换问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=golang时区转换问题&body=Check out this article: http://yangdage.github.io/go/go/golang时区转换问题.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/golang时区转换问题.html&title=golang时区转换问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/golang时区转换问题.html&name=golang时区转换问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/golang-timezone-transaction.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&text=golang时区转换问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&is_video=false&description=golang时区转换问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=golang时区转换问题&body=Check out this article: http://yangdage.github.io/go/go/golang-timezone-transaction.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&title=golang时区转换问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/golang-timezone-transaction.html&name=golang时区转换问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

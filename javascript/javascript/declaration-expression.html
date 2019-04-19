@@ -9,11 +9,11 @@
     <meta name="description" content="函数声明函数声明必须首先有个function关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：123function funName()&amp;#123;	//do something&amp;#125; 匿名函数匿名函数不需要定义函数名字，只有一个function关键字，其他跟函数声明一样。123function()&amp;#123;	//do something&amp;#125; 函数表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS里的函数声明&#x2F;匿名函数&#x2F;函数表达式&#x2F;立即执行函数&#x2F;立即调用表达式">
-<meta property="og:url" content="http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html">
+<meta property="og:url" content="http://yangdage.github.io/javascript/javascript/declaration-expression.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="函数声明函数声明必须首先有个function关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：123function funName()&amp;#123;	//do something&amp;#125; 匿名函数匿名函数不需要定义函数名字，只有一个function关键字，其他跟函数声明一样。123function()&amp;#123;	//do something&amp;#125; 函数表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.607Z">
+<meta property="og:updated_time" content="2019-04-19T03:39:11.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS里的函数声明&#x2F;匿名函数&#x2F;函数表达式&#x2F;立即执行函数&#x2F;立即调用表达式">
 <meta name="twitter:description" content="函数声明函数声明必须首先有个function关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：123function funName()&amp;#123;	//do something&amp;#125; 匿名函数匿名函数不需要定义函数名字，只有一个function关键字，其他跟函数声明一样。123function()&amp;#123;	//do something&amp;#125; 函数表">
@@ -71,7 +71,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/blog/java/java/Java列表组合排序.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/java/java/Java-list-sort.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/blog/mark/mark/vim-xml-format.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -87,16 +87,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&text=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&is_video=false&description=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&body=Check out this article: http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&name=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/javascript/javascript/declaration-expression.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&text=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&is_video=false&description=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&body=Check out this article: http://yangdage.github.io/javascript/javascript/declaration-expression.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&name=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -203,16 +203,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&text=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&is_video=false&description=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&body=Check out this article: http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html&name=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/javascript/javascript/declaration-expression.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&text=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&is_video=false&description=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&body=Check out this article: http://yangdage.github.io/javascript/javascript/declaration-expression.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&title=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/javascript/javascript/declaration-expression.html&name=JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -9,14 +9,14 @@
     <meta name="description" content="CSRF概述CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使一个Web应用程序的用户去执行攻击者精心构造的操作。 实例解释假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSRF和XSS防御与攻击">
-<meta property="og:url" content="http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/csrf-and-xss.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="CSRF概述CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使一个Web应用程序的用户去执行攻击者精心构造的操作。 实例解释假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040600.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040601.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150406/2015040602.png">
-<meta property="og:updated_time" content="2016-07-19T06:36:19.359Z">
+<meta property="og:updated_time" content="2019-04-19T03:40:24.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSRF和XSS防御与攻击">
 <meta name="twitter:description" content="CSRF概述CSRF(Cross-Site Request Forgery)，翻译过来叫做跨站请求伪造。是一种挟制终端用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。攻击者只要借助少许的社会工程诡计，例如通过电子邮件或者是聊天软件发送的链接，攻击者就能迫使一个Web应用程序的用户去执行攻击者精心构造的操作。 实例解释假设某用户登录网络银行去查看其存款余额，他没有退出网络银行系统就去了">
@@ -75,10 +75,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/blog/mark/mark/sublime关闭分组.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/mark/mark/sublime-close-group.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/blog/javascript/javascript/javascript中声明提升和函数作用域.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/javascript/javascript/javascript-scope-promotion.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -91,16 +91,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&text=CSRF和XSS防御与攻击"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&is_video=false&description=CSRF和XSS防御与攻击"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CSRF和XSS防御与攻击&body=Check out this article: http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&name=CSRF和XSS防御与攻击&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/csrf-and-xss.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&text=CSRF和XSS防御与攻击"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&is_video=false&description=CSRF和XSS防御与攻击"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSRF和XSS防御与攻击&body=Check out this article: http://yangdage.github.io/mark/mark/csrf-and-xss.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&name=CSRF和XSS防御与攻击&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -298,16 +298,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&text=CSRF和XSS防御与攻击"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&is_video=false&description=CSRF和XSS防御与攻击"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CSRF和XSS防御与攻击&body=Check out this article: http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&title=CSRF和XSS防御与攻击"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/csrf和xss攻击与防御.html&name=CSRF和XSS防御与攻击&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/csrf-and-xss.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&text=CSRF和XSS防御与攻击"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&is_video=false&description=CSRF和XSS防御与攻击"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSRF和XSS防御与攻击&body=Check out this article: http://yangdage.github.io/mark/mark/csrf-and-xss.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&title=CSRF和XSS防御与攻击"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/csrf-and-xss.html&name=CSRF和XSS防御与攻击&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

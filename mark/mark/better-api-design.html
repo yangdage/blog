@@ -9,11 +9,11 @@
     <meta name="description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为用户节省流量之API接口设计">
-<meta property="og:url" content="http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/better-api-design.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-07-19T06:43:42.364Z">
+<meta property="og:updated_time" content="2019-04-19T03:42:29.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为用户节省流量之API接口设计">
 <meta name="twitter:description" content="前言移动互联网时代，在没有WIFI的情况下，用户对流量异常的敏感。往往在打开一个APP的时候，APP后台会请求服务器获取最新的数据，如果返回的数据非常多，就会很费流量。在技术层面可以利用一些技巧来设计请求的API，帮助用户节省不必要的流量消耗，也提高APP自身的可用性。这里以我们常用的QQ获取最新的好友列表为例，当然QQ具体肯定不是这么实现的，QQ客户端跟服务器的交互一般使用TCP/UDP协议建立">
@@ -71,7 +71,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/blog/javascript/javascript/javascript中声明提升和函数作用域.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/javascript/javascript/javascript-scope-promotion.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -85,16 +85,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&text=为用户节省流量之API接口设计"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&is_video=false&description=为用户节省流量之API接口设计"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=为用户节省流量之API接口设计&body=Check out this article: http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&name=为用户节省流量之API接口设计&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/better-api-design.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/better-api-design.html&text=为用户节省流量之API接口设计"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/better-api-design.html&is_video=false&description=为用户节省流量之API接口设计"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=为用户节省流量之API接口设计&body=Check out this article: http://yangdage.github.io/mark/mark/better-api-design.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/better-api-design.html&name=为用户节省流量之API接口设计&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -178,16 +178,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&text=为用户节省流量之API接口设计"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&is_video=false&description=为用户节省流量之API接口设计"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=为用户节省流量之API接口设计&body=Check out this article: http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&title=为用户节省流量之API接口设计"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/为用户节省流量之API接口设计.html&name=为用户节省流量之API接口设计&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/better-api-design.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/better-api-design.html&text=为用户节省流量之API接口设计"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/better-api-design.html&is_video=false&description=为用户节省流量之API接口设计"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=为用户节省流量之API接口设计&body=Check out this article: http://yangdage.github.io/mark/mark/better-api-design.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/better-api-design.html&title=为用户节省流量之API接口设计"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/better-api-design.html&name=为用户节省流量之API接口设计&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

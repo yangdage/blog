@@ -9,11 +9,11 @@
     <meta name="description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis缓存失效策略">
-<meta property="og:url" content="http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html">
+<meta property="og:url" content="http://yangdage.github.io/cache/cache/redis-cache-invalid.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-07-19T06:43:42.363Z">
+<meta property="og:updated_time" content="2019-04-19T03:39:44.616Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis缓存失效策略">
 <meta name="twitter:description" content="当缓存失效时，一般会去DB查询数据，再次加载到缓存，并设置好失效时间。但是在高并发的情况下，缓存失效会导致DB的压力陡增，也叫做缓存穿透。 最理想的状态是，我们缓存中一直有需要查询的数据，查询永远不会直接穿透到DB层。当然，这只是理想状态，一般情况下我们只要防止在缓存失效的时候不让高并发请求打到我们DB的查询上就行。解决方式是在DB查询时保证只有一个任务在执行就行。这里要区分单系统和分布式系统的情">
@@ -74,7 +74,7 @@
         <li><a class="icon" href="/blog/mark/mark/mysql-engines.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/blog/mark/mark/docker常用命令.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/mark/mark/docker-command.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -87,16 +87,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&text=Redis缓存失效策略"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&is_video=false&description=Redis缓存失效策略"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Redis缓存失效策略&body=Check out this article: http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&name=Redis缓存失效策略&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/cache/cache/redis-cache-invalid.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&text=Redis缓存失效策略"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&is_video=false&description=Redis缓存失效策略"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Redis缓存失效策略&body=Check out this article: http://yangdage.github.io/cache/cache/redis-cache-invalid.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&name=Redis缓存失效策略&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -184,16 +184,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&text=Redis缓存失效策略"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&is_video=false&description=Redis缓存失效策略"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Redis缓存失效策略&body=Check out this article: http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&title=Redis缓存失效策略"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html&name=Redis缓存失效策略&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/cache/cache/redis-cache-invalid.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&text=Redis缓存失效策略"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&is_video=false&description=Redis缓存失效策略"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Redis缓存失效策略&body=Check out this article: http://yangdage.github.io/cache/cache/redis-cache-invalid.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&title=Redis缓存失效策略"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/cache/cache/redis-cache-invalid.html&name=Redis缓存失效策略&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

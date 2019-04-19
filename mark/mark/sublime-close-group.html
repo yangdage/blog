@@ -9,11 +9,11 @@
     <meta name="description" content="打开分组可以使用快捷键打开多个分组，常同时编辑多个文件，或比较两个文件。 1alt+shilt+数字 其中数字可以是1-9任意数字，一般最多只会开启3个分组，即数字大于等于3时都是开启3个分组。 关闭分组1alt+shift+1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sublime关闭分组">
-<meta property="og:url" content="http://yangdage.github.io/mark/mark/sublime关闭分组.html">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/sublime-close-group.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="打开分组可以使用快捷键打开多个分组，常同时编辑多个文件，或比较两个文件。 1alt+shilt+数字 其中数字可以是1-9任意数字，一般最多只会开启3个分组，即数字大于等于3时都是开启3个分组。 关闭分组1alt+shift+1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.611Z">
+<meta property="og:updated_time" content="2019-04-19T03:41:42.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sublime关闭分组">
 <meta name="twitter:description" content="打开分组可以使用快捷键打开多个分组，常同时编辑多个文件，或比较两个文件。 1alt+shilt+数字 其中数字可以是1-9任意数字，一般最多只会开启3个分组，即数字大于等于3时都是开启3个分组。 关闭分组1alt+shift+1">
@@ -74,7 +74,7 @@
         <li><a class="icon" href="/blog/mark/mark/windows-port-used.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/blog/mark/mark/csrf和xss攻击与防御.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/mark/mark/csrf-and-xss.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -87,16 +87,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/sublime关闭分组.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&text=sublime关闭分组"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&is_video=false&description=sublime关闭分组"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=sublime关闭分组&body=Check out this article: http://yangdage.github.io/mark/mark/sublime关闭分组.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&name=sublime关闭分组&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/sublime-close-group.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&text=sublime关闭分组"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&is_video=false&description=sublime关闭分组"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sublime关闭分组&body=Check out this article: http://yangdage.github.io/mark/mark/sublime-close-group.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&name=sublime关闭分组&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -178,16 +178,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/sublime关闭分组.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&text=sublime关闭分组"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&is_video=false&description=sublime关闭分组"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=sublime关闭分组&body=Check out this article: http://yangdage.github.io/mark/mark/sublime关闭分组.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&title=sublime关闭分组"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/sublime关闭分组.html&name=sublime关闭分组&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/sublime-close-group.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&text=sublime关闭分组"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&is_video=false&description=sublime关闭分组"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=sublime关闭分组&body=Check out this article: http://yangdage.github.io/mark/mark/sublime-close-group.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&title=sublime关闭分组"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/sublime-close-group.html&name=sublime关闭分组&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

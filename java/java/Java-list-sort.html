@@ -9,11 +9,11 @@
     <meta name="description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：  java.util.Collections.sort(java.util.List) java.util.Collections.s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中List列表排序">
-<meta property="og:url" content="http://yangdage.github.io/java/java/Java列表组合排序.html">
+<meta property="og:url" content="http://yangdage.github.io/java/java/Java-list-sort.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：  java.util.Collections.sort(java.util.List) java.util.Collections.s">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-04-20T04:05:51.606Z">
+<meta property="og:updated_time" content="2019-04-19T03:36:06.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中List列表排序">
 <meta name="twitter:description" content="简单类型元素排序Java中定义的List实现类有：Vector，ArrayList，LinkedList。这些集合类提供了对列表中元素的索引访问和对元素的添加与删除支持，然而并没有提供排序支持。但是java.util.Collections类提供了两种支持，如下：  java.util.Collections.sort(java.util.List) java.util.Collections.s">
@@ -74,7 +74,7 @@
         <li><a class="icon" href="/blog/mark/mark/markdown-mathjax.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/blog/javascript/javascript/declaration-expression.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -87,16 +87,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/java/java/Java列表组合排序.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/java/java/Java列表组合排序.html&text=Java中List列表排序"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/java/java/Java列表组合排序.html&is_video=false&description=Java中List列表排序"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java中List列表排序&body=Check out this article: http://yangdage.github.io/java/java/Java列表组合排序.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/java/java/Java列表组合排序.html&name=Java中List列表排序&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/java/java/Java-list-sort.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/java/java/Java-list-sort.html&text=Java中List列表排序"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/java/java/Java-list-sort.html&is_video=false&description=Java中List列表排序"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java中List列表排序&body=Check out this article: http://yangdage.github.io/java/java/Java-list-sort.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/java/java/Java-list-sort.html&name=Java中List列表排序&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -193,16 +193,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/java/java/Java列表组合排序.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/java/java/Java列表组合排序.html&text=Java中List列表排序"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/java/java/Java列表组合排序.html&is_video=false&description=Java中List列表排序"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Java中List列表排序&body=Check out this article: http://yangdage.github.io/java/java/Java列表组合排序.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/java/java/Java列表组合排序.html&title=Java中List列表排序"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/java/java/Java列表组合排序.html&name=Java中List列表排序&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/java/java/Java-list-sort.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/java/java/Java-list-sort.html&text=Java中List列表排序"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/java/java/Java-list-sort.html&is_video=false&description=Java中List列表排序"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Java中List列表排序&body=Check out this article: http://yangdage.github.io/java/java/Java-list-sort.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/java/java/Java-list-sort.html&title=Java中List列表排序"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/java/java/Java-list-sort.html&name=Java中List列表排序&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
