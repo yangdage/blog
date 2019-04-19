@@ -669,7 +669,25 @@
         })();
     </script>
 
-<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<!-- Disqus Comments -->
+
+
+    
+    <div id="container"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+    var gitment = new Gitment({
+      // id: '页面 ID', // 可选。默认为 location.href
+      owner: 'yangdage',
+      // repo: '存储评论的 repo',
+      oauth: {
+        client_id: '46017db3b142281b63d3',
+        client_secret: 'ae47b2a006d12e56fcc86001144a51b9e2763912',
+      },
+    })
+    gitment.render('container')
+    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -687,7 +705,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
+    
 </body>
 </html>
