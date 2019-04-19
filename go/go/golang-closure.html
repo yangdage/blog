@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="关于闭包，网上有这样一句描述 “类是有行为的数据，而闭包是有数据的行为” 说的通俗一点：闭包是有上下文的 下面是一段程序的示例123456789func main() &amp;#123;    arr := []int&amp;#123;1, 2, 3, 4&amp;#125;    for _, x := range arr &amp;#123;        go func() &amp;#123;            fmt.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang闭包问题">
@@ -43,13 +43,13 @@
     
       <link rel="stylesheet" href="/blog/css/rtl.css">
     
-    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- rss -->
     
     
 </head>
 
 <body class="max-width mx-auto px3 ltr">    
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+      <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
@@ -67,7 +67,7 @@
         
       </ul>
     </span>
-    <br/>
+    <br>
     <span id="actions">
       <ul>
         
@@ -84,7 +84,7 @@
       <span id="i-top" class="info" style="display:none;">返回顶部</span>
       <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
-    <br/>
+    <br>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/golang-closure.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -148,7 +148,7 @@
     <p>关于闭包，网上有这样一句描述</p>
 <p><strong>“类是有行为的数据，而闭包是有数据的行为”</strong></p>
 <p>说的通俗一点：闭包是有上下文的</p>
-<p>下面是一段程序的示例<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</div><div class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</div><div class="line">            fmt.Println(x)</div><div class="line">        &#125;()</div><div class="line">    &#125;</div><div class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面是一段程序的示例<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">            fmt.Println(x)</span><br><span class="line">        &#125;()</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行上面的程序，会有多种输出结果</p>
 <blockquote>
 <p>4<br>3<br>4<br>4</p>
@@ -160,7 +160,7 @@
 <p>等等…</p>
 <p>for循环里每次遍历都会启动一个goroutine执行匿名函数打印变量x的值，x是4个goroutine共享的外部变量。随着main线程for循环的执行，x的值也会随着修改。</p>
 <p>由于闭包中使用的非参数传递变量属于引用传递，所以4个goroutine中都是使用的是外部变量x的引用，因此输出x的值自然也就具有了不确定性。</p>
-<p>如果想要4个goroutine分别输出1,2,3,4，只需要将x传递方式改成参数传递即可，修改如下<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</div><div class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">            fmt.Println(x)</div><div class="line">        &#125;(x)</div><div class="line">    &#125;</div><div class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果想要4个goroutine分别输出1,2,3,4，只需要将x传递方式改成参数传递即可，修改如下<br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">    <span class="keyword">for</span> _, x := <span class="keyword">range</span> arr &#123;</span><br><span class="line">        <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">            fmt.Println(x)</span><br><span class="line">        &#125;(x)</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;-time.After(<span class="number">1</span> * time.Second)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样每个goroutine中的x都是值传递，值也不相同，避免了使用闭包时引用外部变量导致的莫名其妙问题。</p>
 
   </div>
@@ -282,24 +282,7 @@
       },
     })
     gitment.render('container')
-    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    </script>
     
 </body>
 </html>

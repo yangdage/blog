@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="gob序列化反序列化当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。 普通string与[]byte转换string转换为byte数组 123456789101112package mainimport (	&quot;fmt&quot;)func main() &amp;#123;	var s string = &quot;abcdefg&quot;	bs :=">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go中gob序列化反序列化">
@@ -43,13 +43,13 @@
     
       <link rel="stylesheet" href="/blog/css/rtl.css">
     
-    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- rss -->
     
     
 </head>
 
 <body class="max-width mx-auto px3 ltr">    
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+      <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
@@ -67,7 +67,7 @@
         
       </ul>
     </span>
-    <br/>
+    <br>
     <span id="actions">
       <ul>
         
@@ -84,7 +84,7 @@
       <span id="i-top" class="info" style="display:none;">返回顶部</span>
       <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
-    <br/>
+    <br>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/go-gob.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -147,14 +147,14 @@
   <div class="content" itemprop="articleBody">
     <h3 id="gob序列化反序列化"><a href="#gob序列化反序列化" class="headerlink" title="gob序列化反序列化"></a>gob序列化反序列化</h3><p>当使用了gob序列化一个对象，反序列化时一定要同样使用gob反序列化。因为使用gob序列化对象时会在字节数组最前面加上字节头数据。</p>
 <h3 id="普通string与-byte转换"><a href="#普通string与-byte转换" class="headerlink" title="普通string与[]byte转换"></a>普通<strong>string</strong>与<strong>[]byte</strong>转换</h3><p>string转换为byte数组</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></div><div class="line">	bs := []<span class="keyword">byte</span>(s)</div><div class="line">	<span class="comment">//[97 98 99 100 101 102 103]</span></div><div class="line">	fmt.Println(bs)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	bs := []<span class="keyword">byte</span>(s)</span><br><span class="line">	<span class="comment">//[97 98 99 100 101 102 103]</span></span><br><span class="line">	fmt.Println(bs)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>byte数组转string</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> bs1 = []<span class="keyword">byte</span>&#123;<span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">102</span>, <span class="number">103</span>&#125;</div><div class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="keyword">string</span>(bs1)</div><div class="line">	<span class="comment">//abcdefg</span></div><div class="line">	fmt.Println(s)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> bs1 = []<span class="keyword">byte</span>&#123;<span class="number">97</span>, <span class="number">98</span>, <span class="number">99</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">102</span>, <span class="number">103</span>&#125;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="keyword">string</span>(bs1)</span><br><span class="line">	<span class="comment">//abcdefg</span></span><br><span class="line">	fmt.Println(s)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="使用gob转换string和-byte"><a href="#使用gob转换string和-byte" class="headerlink" title="使用gob转换string和[]byte"></a>使用gob转换<strong>string</strong>和<strong>[]byte</strong></h3><p>string转byte数组</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"bytes"</span></div><div class="line">	<span class="string">"encoding/gob"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></div><div class="line">	buf := &amp;bytes.Buffer&#123;&#125;</div><div class="line">	gob.NewEncoder(buf).Encode(&amp;s)</div><div class="line">	bs := buf.Bytes()</div><div class="line">	<span class="comment">//[10 12 0 7 97 98 99 100 101 102 103]</span></div><div class="line">	fmt.Println(bs)</div><div class="line"></div><div class="line">	<span class="comment">//     abcdefg</span></div><div class="line">	fmt.Println(s1)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"encoding/gob"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	buf := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	gob.NewEncoder(buf).Encode(&amp;s)</span><br><span class="line">	bs := buf.Bytes()</span><br><span class="line">	<span class="comment">//[10 12 0 7 97 98 99 100 101 102 103]</span></span><br><span class="line">	fmt.Println(bs)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//     abcdefg</span></span><br><span class="line">	fmt.Println(s1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>gob将string转byte数组时候会在最前面加上4个字节的头数据，这时如果使用普通方式将这个字节数组转string，前面会多出莫名奇妙的字符（显示为空格）。其中Encode()方法和Decode()方法都需传一个指针参数。Go会根据反射机制自动查找对应的数据结构类型。</p>
 <p>byte数组转string</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"bytes"</span></div><div class="line">	<span class="string">"encoding/gob"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></div><div class="line">	buf := &amp;bytes.Buffer&#123;&#125;</div><div class="line">	gob.NewEncoder(buf).Encode(&amp;s)</div><div class="line">	<span class="keyword">var</span> s1 <span class="keyword">string</span></div><div class="line">	gob.NewDecoder(buf).Decode(&amp;s1)</div><div class="line">	<span class="comment">//abcdefg</span></div><div class="line">	fmt.Println(s1)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">	<span class="string">"encoding/gob"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> s <span class="keyword">string</span> = <span class="string">"abcdefg"</span></span><br><span class="line">	buf := &amp;bytes.Buffer&#123;&#125;</span><br><span class="line">	gob.NewEncoder(buf).Encode(&amp;s)</span><br><span class="line">	<span class="keyword">var</span> s1 <span class="keyword">string</span></span><br><span class="line">	gob.NewDecoder(buf).Decode(&amp;s1)</span><br><span class="line">	<span class="comment">//abcdefg</span></span><br><span class="line">	fmt.Println(s1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </div>
 </article>
 
@@ -274,24 +274,7 @@
       },
     })
     gitment.render('container')
-    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    </script>
     
 </body>
 </html>

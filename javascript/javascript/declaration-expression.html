@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang=zh>
-<head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="函数声明函数声明必须首先有个function关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：123function funName()&amp;#123;	//do something&amp;#125; 匿名函数匿名函数不需要定义函数名字，只有一个function关键字，其他跟函数声明一样。123function()&amp;#123;	//do something&amp;#125; 函数表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS里的函数声明&#x2F;匿名函数&#x2F;函数表达式&#x2F;立即执行函数&#x2F;立即调用表达式">
@@ -43,13 +43,13 @@
     
       <link rel="stylesheet" href="/blog/css/rtl.css">
     
-    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- rss -->
     
     
 </head>
 
 <body class="max-width mx-auto px3 ltr">    
-      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+      <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
@@ -67,7 +67,7 @@
         
       </ul>
     </span>
-    <br/>
+    <br>
     <span id="actions">
       <ul>
         
@@ -84,7 +84,7 @@
       <span id="i-top" class="info" style="display:none;">返回顶部</span>
       <span id="i-share" class="info" style="display:none;">分享文章</span>
     </span>
-    <br/>
+    <br>
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/javascript/javascript/declaration-expression.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
@@ -145,17 +145,17 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>函数声明必须首先有个<strong>function</strong>关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>匿名函数不需要定义函数名字，只有一个<strong>function</strong>关键字，其他跟函数声明一样。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>将一个匿名函数赋值给一个变量来创建一个函数，就形成了函数表达式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="comment">//do something</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+    <h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>函数声明必须首先有个<strong>function</strong>关键字，再指定一个函数名称，自己随便定义，不违反函数名称的定义规则就行，如下格式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>匿名函数不需要定义函数名字，只有一个<strong>function</strong>关键字，其他跟函数声明一样。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>将一个匿名函数赋值给一个变量来创建一个函数，就形成了函数表达式。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>注意：JS解析引擎在解析js代码时，会提升函数声明。</strong></p>
 <h3 id="立即执行函数-立即调用表达式"><a href="#立即执行函数-立即调用表达式" class="headerlink" title="立即执行函数/立即调用表达式"></a>立即执行函数/立即调用表达式</h3><p>立即执行函数也叫立即调用表达式。<br>在函数表达式后面直接加一对小括号<strong>()</strong>就构成了立即执行函数。立即执行函数不需要显示调用，在函数定义的时候就直接执行。</p>
 <p><strong>强调一点，括号前面必须是函数表达式</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
 <p>上面代码等价于下面这段：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;;</div><div class="line">funName();	<span class="comment">//定义完,立即执行</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> funName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;;</span><br><span class="line">funName();	<span class="comment">//定义完,立即执行</span></span><br></pre></td></tr></table></figure>
 <p>既然前面提到了立即执行函数的括号前面必须是函数表达式，好奇心的驱使，我们可以试试函数声明是不是真的不行。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
 <p>打开浏览器，我们可以看到，确实没有弹出alert提示框。</p>
 <p>虽然函数声明不能立即执行，但是JS里提供了很多方式允许我们将函数声明转换为函数表达式。</p>
 <ul>
@@ -164,14 +164,14 @@
 <li>3.消除函数声明和函数表达式间歧义，例如在函数声明<strong>function</strong>关键字前面加!、+、-</li>
 </ul>
 <p>第一个就不用解释了，这种定义就是一个最普通的函数表达式。</p>
-<p>第二个，把函数声明用一对括号<strong>()</strong>包裹起来<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>第二个，把函数声明用一对括号<strong>()</strong>包裹起来<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>这种写法还有个变体：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;());</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
 <p>第三个，在函数声明<strong>function</strong>关键字前面加!、~、+、-</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">!<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="number">111</span>);</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="function"><span class="keyword">function</span> <span class="title">funName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="number">111</span>);</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
 <p>立即执行函数最推荐的写法是<strong>(function(){…})()</strong>，有测试发现这种写法的性能是最优的。我们看过JQuery源码的都知道，JQuery中代码就是包裹在<strong>(function(window,undefined){…})(window)</strong>块里面。</p>
 
   </div>
@@ -293,24 +293,7 @@
       },
     })
     gitment.render('container')
-    </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    </script>
     
 </body>
 </html>
