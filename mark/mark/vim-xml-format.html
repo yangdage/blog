@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>Vim下XML文件格式化 | Notes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.打开需要格式化的文件使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。现有一个如下的未格式化的文件： 2.保存临时修改如果我们打开后有对文件进行编辑操作，需要保存所做的修改 1:w 在命令模式下输入上面的命令，保存改动，不退出文件 3.启用自动缩进选项1:filetype indent on 4.设置文件类型1:set filetype">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.打开需要格式化的文件使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。现有一个如下的未格式化的文件： 2.保存临时修改如果我们打开后有对文件进行编辑操作，需要保存所做的修改 1:w 在命令模式下输入上面的命令，保存改动，不退出文件 3.启用自动缩进选项1:filetype indent on 4.设置文件类型1:set filetype">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vim下XML文件格式化">
-<meta property="og:url" content="http://yoursite.com/mark/mark/vim-xml-format.html">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/vim-xml-format.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="1.打开需要格式化的文件使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。现有一个如下的未格式化的文件： 2.保存临时修改如果我们打开后有对文件进行编辑操作，需要保存所做的修改 1:w 在命令模式下输入上面的命令，保存改动，不退出文件 3.启用自动缩进选项1:filetype indent on 4.设置文件类型1:set filetype">
 <meta property="og:locale" content="zh-CN">
@@ -19,96 +20,135 @@
 <meta name="twitter:title" content="Vim下XML文件格式化">
 <meta name="twitter:description" content="1.打开需要格式化的文件使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。现有一个如下的未格式化的文件： 2.保存临时修改如果我们打开后有对文件进行编辑操作，需要保存所做的修改 1:w 在命令模式下输入上面的命令，保存改动，不退出文件 3.启用自动缩进选项1:filetype indent on 4.设置文件类型1:set filetype">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Notes" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/blog/css/style.css">
-  
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Vim下XML文件格式化</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
 </head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">Notes</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/blog/" id="subtitle">When you look long into an abyss, the abyss looks into you.</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+<body class="max-width mx-auto px3 ltr">    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
         
-          <a class="main-nav-link" href="/blog/">Home</a>
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
         
-          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        <li><a class="icon" href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-      </nav>
-      <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li><a class="icon" href="/blog/mark/mark/sublime-package-control.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-mark/vim-xml-format" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/mark/mark/vim-xml-format.html" class="article-date">
-  <time datetime="2016-03-28T16:00:00.000Z" itemprop="datePublished">2016-03-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
-  </div>
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/vim-xml-format.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&text=Vim下XML文件格式化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&is_video=false&description=Vim下XML文件格式化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vim下XML文件格式化&body=Check out this article: http://yangdage.github.io/mark/mark/vim-xml-format.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&name=Vim下XML文件格式化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  </div>
-  <div class="article-inner">
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-打开需要格式化的文件"><span class="toc-number">1.</span> <span class="toc-text">1.打开需要格式化的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-保存临时修改"><span class="toc-number">2.</span> <span class="toc-text">2.保存临时修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启用自动缩进选项"><span class="toc-number">3.</span> <span class="toc-text">3.启用自动缩进选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-设置文件类型"><span class="toc-number">4.</span> <span class="toc-text">4.设置文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-全局格式化"><span class="toc-number">5.</span> <span class="toc-text">5.全局格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-格式化结果"><span class="toc-number">6.</span> <span class="toc-text">6.格式化结果</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
     
-    
-      <header class="article-header">
+    <div class="content index py4">
         
-  
-    <h1 class="article-title" itemprop="name">
-      Vim下XML文件格式化
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Vim下XML文件格式化
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-03-28T16:00:00.000Z" itemprop="datePublished">2016-03-29</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/mark/">mark</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-打开需要格式化的文件"><a href="#1-打开需要格式化的文件" class="headerlink" title="1.打开需要格式化的文件"></a>1.打开需要格式化的文件</h3><p>使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。<br>现有一个如下的未格式化的文件：<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png" alt="origin image"></p>
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-打开需要格式化的文件"><a href="#1-打开需要格式化的文件" class="headerlink" title="1.打开需要格式化的文件"></a>1.打开需要格式化的文件</h3><p>使用vim命令打开需要格式化的xml文件，html也属于xml的一种，因此也可使用该方法格式化html文件。<br>现有一个如下的未格式化的文件：<br><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160328154539.png" alt="origin image"></p>
 <h3 id="2-保存临时修改"><a href="#2-保存临时修改" class="headerlink" title="2.保存临时修改"></a>2.保存临时修改</h3><p>如果我们打开后有对文件进行编辑操作，需要保存所做的修改</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:w</div></pre></td></tr></table></figure>
 <p>在命令模式下输入上面的命令，保存改动，不退出文件</p>
@@ -121,167 +161,125 @@ var _hmt = _hmt || [];
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">G</div></pre></td></tr></table></figure>
 <h3 id="6-格式化结果"><a href="#6-格式化结果" class="headerlink" title="6.格式化结果"></a>6.格式化结果</h3><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20160330/20160330115035.png" alt="origin image"></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/vim-xml-format.html" data-id="cjum5e17x001dncocn12fplgk" class="article-share-link">Share</a>
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/blog/javascript/javascript/函数声明-表达式-匿名函数.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/mark/mark/sublime-package-control.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Sublime下的Package Control</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-<!--
 
--->
 
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/vim-xml-format" data-title="Vim下XML文件格式化" data-url="http://yoursite.com/mark/mark/vim-xml-format.html"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>     
-
-<!-- 搜索引擎优化 end--></section>
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cache/">cache</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mark/">mark</a></li></ul>
-    </div>
-  </div>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
-        
-          <li>
-            <a href="/blog/mark/mark/rest-api-design.html">REST API设计最佳实践</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/go/golang问题记录.html">golang问题记录</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/use-make-in-windows.html">Windows下使用make命令</a>
-          </li>
-        
-          <li>
-            <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
-          </li>
-        
-          <li>
-            <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
-          </li>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 yangdage<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-打开需要格式化的文件"><span class="toc-number">1.</span> <span class="toc-text">1.打开需要格式化的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-保存临时修改"><span class="toc-number">2.</span> <span class="toc-text">2.保存临时修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启用自动缩进选项"><span class="toc-number">3.</span> <span class="toc-text">3.启用自动缩进选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-设置文件类型"><span class="toc-number">4.</span> <span class="toc-text">4.设置文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-全局格式化"><span class="toc-number">5.</span> <span class="toc-text">5.全局格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-格式化结果"><span class="toc-number">6.</span> <span class="toc-text">6.格式化结果</span></a></li></ol>
     </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/vim-xml-format.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&text=Vim下XML文件格式化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&is_video=false&description=Vim下XML文件格式化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vim下XML文件格式化&body=Check out this article: http://yangdage.github.io/mark/mark/vim-xml-format.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&title=Vim下XML文件格式化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/vim-xml-format.html&name=Vim下XML文件格式化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 yangdage
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/blog/" class="mobile-nav-link">Home</a>
-  
-    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
-//<![CDATA[
-if (typeof jQuery == 'undefined') {
-document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
-}
-// ]]>
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
 </script>
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
 
-  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
-  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
-<script src="/blog/js/script.js"></script>
-
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

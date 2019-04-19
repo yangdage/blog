@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  
-  <title>初识NSQ分布式实时消息架构 | Notes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。 1https://github.com/nsqio/nsq NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。 1https://github.com/nsqio/nsq NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识NSQ分布式实时消息架构">
-<meta property="og:url" content="http://yoursite.com/mark/mark/nsq-start.html">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/nsq-start.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。 1https://github.com/nsqio/nsq NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
 <meta property="og:locale" content="zh-CN">
@@ -25,96 +26,135 @@
 <meta name="twitter:title" content="初识NSQ分布式实时消息架构">
 <meta name="twitter:description" content="1.NSQ知识普及NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。 1https://github.com/nsqio/nsq NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214444426.png">
-  
-    <link rel="alternate" href="/atom.xml" title="Notes" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/blog/css/style.css">
-  
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>初识NSQ分布式实时消息架构</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
 </head>
 
-<body>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">Notes</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/blog/" id="subtitle">When you look long into an abyss, the abyss looks into you.</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+<body class="max-width mx-auto px3 ltr">    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
         
-          <a class="main-nav-link" href="/blog/">Home</a>
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
         
-          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        <li><a class="icon" href="/blog/mark/mark/api-design.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-      </nav>
-      <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li><a class="icon" href="/blog/mark/mark/windows-port-used.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-mark/nsq-start" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/mark/mark/nsq-start.html" class="article-date">
-  <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished">2015-08-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/mark/">mark</a>
-  </div>
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/nsq-start.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/nsq-start.html&text=初识NSQ分布式实时消息架构"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/nsq-start.html&is_video=false&description=初识NSQ分布式实时消息架构"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初识NSQ分布式实时消息架构&body=Check out this article: http://yangdage.github.io/mark/mark/nsq-start.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/nsq-start.html&name=初识NSQ分布式实时消息架构&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
 
-  </div>
-  <div class="article-inner">
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-NSQ知识普及"><span class="toc-number">1.</span> <span class="toc-text">1.NSQ知识普及</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-NSQ的四大组件"><span class="toc-number">2.</span> <span class="toc-text">2.NSQ的四大组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-NSQ依赖"><span class="toc-number">3.</span> <span class="toc-text">3.NSQ依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 GIT：因为稍候需要从github上获取NSQ的安装文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-安装NSQ"><span class="toc-number">4.</span> <span class="toc-text">4.安装NSQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-启动部署和测试"><span class="toc-number">5.</span> <span class="toc-text">5.启动部署和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-打开一个终端，启动nsqlookupd"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 打开一个终端，启动nsqlookupd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-再打开一个终端，启动nsq"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 再打开一个终端，启动nsq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-再打开一个终端，启动nsqadmin"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 再打开一个终端，启动nsqadmin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-我们再发布两条消息，看看日志文件中的变化。"><span class="toc-number">5.6.</span> <span class="toc-text">5.6 我们再发布两条消息，看看日志文件中的变化。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7特别说明"><span class="toc-number">5.7.</span> <span class="toc-text">5.7特别说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-nsqadmin的web统计"><span class="toc-number">6.</span> <span class="toc-text">6.nsqadmin的web统计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1浏览器打开nsqadmin的web页"><span class="toc-number">6.1.</span> <span class="toc-text">6.1浏览器打开nsqadmin的web页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Topics界面"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 Topics界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-Nodes节点列表"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 Nodes节点列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-Counter消息计数页"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 Counter消息计数页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-Lookup界面"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 Lookup界面</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
     
-    
-      <header class="article-header">
+    <div class="content index py4">
         
-  
-    <h1 class="article-title" itemprop="name">
-      初识NSQ分布式实时消息架构
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        初识NSQ分布式实时消息架构
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2015-08-25T16:00:00.000Z" itemprop="datePublished">2015-08-26</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/mark/">mark</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-NSQ知识普及"><a href="#1-NSQ知识普及" class="headerlink" title="1.NSQ知识普及"></a>1.NSQ知识普及</h3><p>NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。</p>
+  <div class="content" itemprop="articleBody">
+    <h3 id="1-NSQ知识普及"><a href="#1-NSQ知识普及" class="headerlink" title="1.NSQ知识普及"></a>1.NSQ知识普及</h3><p>NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://github.com/nsqio/nsq</div></pre></td></tr></table></figure>
 <p>NSQ可用于大规模系统的实时消息服务，它的设计目标是为在分布式环境下提供一个强大的去除中心化的分布式服务架构，可以每天处理数以亿计的实时消息。NSQ的优点是无单点故障、故障容错、高可用性和信息传递的高可靠性。NSQ安装部署简单，容易水平扩展，目前已有很多公司都是采用其作为自身企业内部的实时消息服务。而且它的灵活性很强，支持很多种协议。官方直接提供了拆箱可用的Go库和Python库。好，其他的就不废话了，随便搜索下NSQ相关的博文或者去NSQ的官方网站了解更详细的信息吧。</p>
 <h3 id="2-NSQ的四大组件"><a href="#2-NSQ的四大组件" class="headerlink" title="2.NSQ的四大组件"></a>2.NSQ的四大组件</h3><p>nsqlookupd：管理nsqd节点拓扑信息并提供最终一致性的发现服务的守护进程</p>
@@ -171,170 +211,109 @@ var _hmt = _hmt || [];
 <h4 id="6-5-Lookup界面"><a href="#6-5-Lookup界面" class="headerlink" title="6.5 Lookup界面"></a>6.5 Lookup界面</h4><p><img src="https://raw.githubusercontent.com/yangdage/images/master/20150830/20150830214233531.png" alt="nsq start"></p>
 <p>这里我们可以创建消息主题和消息通道。</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/mark/mark/nsq-start.html" data-id="cjum5e17p0011ncocgvrhqex1" class="article-share-link">Share</a>
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/blog/mark/mark/api-design.html" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          API接口文档设计
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/mark/mark/windows-port-used.html" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Windows下端口占用程序查询</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-<!--
 
--->
 
-<!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="post-mark/nsq-start" data-title="初识NSQ分布式实时消息架构" data-url="http://yoursite.com/mark/mark/nsq-start.html"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"yangdage"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-   || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 搜索引擎优化 start-->
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>     
-
-<!-- 搜索引擎优化 end--></section>
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/cache/">cache</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/go/">go</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/mark/">mark</a></li></ul>
-    </div>
-  </div>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/03/">三月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/08/">八月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/05/">五月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/04/">四月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/03/">三月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/02/">二月 2015</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
-        
-          <li>
-            <a href="/blog/mark/mark/rest-api-design.html">REST API设计最佳实践</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/go/golang问题记录.html">golang问题记录</a>
-          </li>
-        
-          <li>
-            <a href="/blog/mark/mark/use-make-in-windows.html">Windows下使用make命令</a>
-          </li>
-        
-          <li>
-            <a href="/blog/go/go/golang闭包问题.html">golang闭包问题</a>
-          </li>
-        
-          <li>
-            <a href="/blog/go/go/golang时区转换问题.html">golang时区转换问题</a>
-          </li>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 yangdage<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-NSQ知识普及"><span class="toc-number">1.</span> <span class="toc-text">1.NSQ知识普及</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-NSQ的四大组件"><span class="toc-number">2.</span> <span class="toc-text">2.NSQ的四大组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-NSQ依赖"><span class="toc-number">3.</span> <span class="toc-text">3.NSQ依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 GO：NSQ是有GO语言开发的，必不可少的需要事先安装配置好GO相关的环境变量信息。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-GIT：因为稍候需要从github上获取NSQ的安装文件"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 GIT：因为稍候需要从github上获取NSQ的安装文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-安装NSQ"><span class="toc-number">4.</span> <span class="toc-text">4.安装NSQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-启动部署和测试"><span class="toc-number">5.</span> <span class="toc-text">5.启动部署和测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-打开一个终端，启动nsqlookupd"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 打开一个终端，启动nsqlookupd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-再打开一个终端，启动nsq"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 再打开一个终端，启动nsq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-再打开一个终端，启动nsqadmin"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 再打开一个终端，启动nsqadmin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 创建一个topic并且发布一条消息，由于nsq支持http协议发布消息，我们可以直接使用curl命令。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-再开一个终端，-开了好多终端了，来处理消息数据流，将消息写入-tmp文件加下的日志文件-文件名默认由主题topic-主机-日期时间戳组成。"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 再开一个终端，@~@!!!,开了好多终端了，来处理消息数据流，将消息写入/tmp文件加下的日志文件,文件名默认由主题topic+主机+日期时间戳组成。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-6-我们再发布两条消息，看看日志文件中的变化。"><span class="toc-number">5.6.</span> <span class="toc-text">5.6 我们再发布两条消息，看看日志文件中的变化。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-7特别说明"><span class="toc-number">5.7.</span> <span class="toc-text">5.7特别说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-nsqadmin的web统计"><span class="toc-number">6.</span> <span class="toc-text">6.nsqadmin的web统计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1浏览器打开nsqadmin的web页"><span class="toc-number">6.1.</span> <span class="toc-text">6.1浏览器打开nsqadmin的web页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-Topics界面"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 Topics界面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-Nodes节点列表"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 Nodes节点列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-Counter消息计数页"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 Counter消息计数页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-Lookup界面"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 Lookup界面</span></a></li></ol></li></ol>
     </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/nsq-start.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/nsq-start.html&text=初识NSQ分布式实时消息架构"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/nsq-start.html&is_video=false&description=初识NSQ分布式实时消息架构"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=初识NSQ分布式实时消息架构&body=Check out this article: http://yangdage.github.io/mark/mark/nsq-start.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/nsq-start.html&title=初识NSQ分布式实时消息架构"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/nsq-start.html&name=初识NSQ分布式实时消息架构&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 yangdage
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </footer>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/blog/" class="mobile-nav-link">Home</a>
-  
-    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
 
-<script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> <script type="text/javascript">
-//<![CDATA[
-if (typeof jQuery == 'undefined') {
-document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/javascript'%3E%3C/script%3E"));
-}
-// ]]>
-</script>
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
 
+<!-- Google Analytics -->
 
-  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
-  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<!-- Baidu Analytics -->
 
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 
-<script src="/blog/js/script.js"></script>
-
-  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -350,5 +329,7 @@ document.write(unescape("%3Cscript src='/js/jquery-2.0.3.min.js' type='text/java
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
 </body>
 </html>

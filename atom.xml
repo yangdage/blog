@@ -5,9 +5,9 @@
   <subtitle>When you look long into an abyss, the abyss looks into you.</subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://yangdage.github.io/"/>
   <updated>2018-05-16T06:57:17.584Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://yangdage.github.io/</id>
   
   <author>
     <name>yangdage</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>REST API设计最佳实践</title>
-    <link href="http://yoursite.com/mark/mark/rest-api-design.html"/>
-    <id>http://yoursite.com/mark/mark/rest-api-design.html</id>
+    <link href="http://yangdage.github.io/mark/mark/rest-api-design.html"/>
+    <id>http://yangdage.github.io/mark/mark/rest-api-design.html</id>
     <published>2018-05-15T16:00:00.000Z</published>
     <updated>2018-05-16T06:57:17.584Z</updated>
     
@@ -35,15 +35,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>golang问题记录</title>
-    <link href="http://yoursite.com/mark/go/golang%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html"/>
-    <id>http://yoursite.com/mark/go/golang问题记录.html</id>
+    <link href="http://yangdage.github.io/mark/go/golang%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95.html"/>
+    <id>http://yangdage.github.io/mark/go/golang问题记录.html</id>
     <published>2018-03-28T16:00:00.000Z</published>
     <updated>2018-05-30T06:36:50.399Z</updated>
     
@@ -58,15 +58,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Windows下使用make命令</title>
-    <link href="http://yoursite.com/mark/mark/use-make-in-windows.html"/>
-    <id>http://yoursite.com/mark/mark/use-make-in-windows.html</id>
+    <link href="http://yangdage.github.io/mark/mark/use-make-in-windows.html"/>
+    <id>http://yangdage.github.io/mark/mark/use-make-in-windows.html</id>
     <published>2018-02-28T16:00:00.000Z</published>
     <updated>2018-03-01T09:29:29.158Z</updated>
     
@@ -85,15 +85,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>golang闭包问题</title>
-    <link href="http://yoursite.com/go/go/golang%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98.html"/>
-    <id>http://yoursite.com/go/go/golang闭包问题.html</id>
+    <link href="http://yangdage.github.io/go/go/golang%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98.html"/>
+    <id>http://yangdage.github.io/go/go/golang闭包问题.html</id>
     <published>2017-05-31T16:00:00.000Z</published>
     <updated>2017-09-30T07:17:27.059Z</updated>
     
@@ -111,15 +111,15 @@
     
     </summary>
     
-      <category term="go" scheme="http://yoursite.com/categories/go/"/>
+      <category term="go" scheme="http://yangdage.github.io/categories/go/"/>
     
     
   </entry>
   
   <entry>
     <title>golang时区转换问题</title>
-    <link href="http://yoursite.com/go/go/golang%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98.html"/>
-    <id>http://yoursite.com/go/go/golang时区转换问题.html</id>
+    <link href="http://yangdage.github.io/go/go/golang%E6%97%B6%E5%8C%BA%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98.html"/>
+    <id>http://yangdage.github.io/go/go/golang时区转换问题.html</id>
     <published>2017-03-31T16:00:00.000Z</published>
     <updated>2017-04-01T06:58:46.524Z</updated>
     
@@ -134,15 +134,15 @@
     
     </summary>
     
-      <category term="go" scheme="http://yoursite.com/categories/go/"/>
+      <category term="go" scheme="http://yangdage.github.io/categories/go/"/>
     
     
   </entry>
   
   <entry>
     <title>MySql存储引擎</title>
-    <link href="http://yoursite.com/mark/mark/mysql-engines.html"/>
-    <id>http://yoursite.com/mark/mark/mysql-engines.html</id>
+    <link href="http://yangdage.github.io/mark/mark/mysql-engines.html"/>
+    <id>http://yangdage.github.io/mark/mark/mysql-engines.html</id>
     <published>2016-05-16T16:00:00.000Z</published>
     <updated>2018-05-17T13:02:18.095Z</updated>
     
@@ -157,15 +157,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Redis缓存失效策略</title>
-    <link href="http://yoursite.com/cache/cache/Redis%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5.html"/>
-    <id>http://yoursite.com/cache/cache/Redis缓存失效更新策略.html</id>
+    <link href="http://yangdage.github.io/cache/cache/Redis%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5.html"/>
+    <id>http://yangdage.github.io/cache/cache/Redis缓存失效更新策略.html</id>
     <published>2016-04-23T16:00:00.000Z</published>
     <updated>2016-07-19T06:43:42.363Z</updated>
     
@@ -181,15 +181,15 @@
     
     </summary>
     
-      <category term="cache" scheme="http://yoursite.com/categories/cache/"/>
+      <category term="cache" scheme="http://yangdage.github.io/categories/cache/"/>
     
     
   </entry>
   
   <entry>
     <title>Docker常用命令</title>
-    <link href="http://yoursite.com/mark/mark/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html"/>
-    <id>http://yoursite.com/mark/mark/docker常用命令.html</id>
+    <link href="http://yangdage.github.io/mark/mark/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.html"/>
+    <id>http://yangdage.github.io/mark/mark/docker常用命令.html</id>
     <published>2016-04-19T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:01.007Z</updated>
     
@@ -204,15 +204,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Go中gob序列化反序列化</title>
-    <link href="http://yoursite.com/go/go/go-gob.html"/>
-    <id>http://yoursite.com/go/go/go-gob.html</id>
+    <link href="http://yangdage.github.io/go/go/go-gob.html"/>
+    <id>http://yangdage.github.io/go/go/go-gob.html</id>
     <published>2016-04-18T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.605Z</updated>
     
@@ -227,15 +227,15 @@
     
     </summary>
     
-      <category term="go" scheme="http://yoursite.com/categories/go/"/>
+      <category term="go" scheme="http://yangdage.github.io/categories/go/"/>
     
     
   </entry>
   
   <entry>
     <title>Mathjax in Markdown</title>
-    <link href="http://yoursite.com/mark/mark/markdown-mathjax.html"/>
-    <id>http://yoursite.com/mark/mark/markdown-mathjax.html</id>
+    <link href="http://yangdage.github.io/mark/mark/markdown-mathjax.html"/>
+    <id>http://yangdage.github.io/mark/mark/markdown-mathjax.html</id>
     <published>2016-04-11T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.610Z</updated>
     
@@ -250,15 +250,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Java中List列表排序</title>
-    <link href="http://yoursite.com/java/java/Java%E5%88%97%E8%A1%A8%E7%BB%84%E5%90%88%E6%8E%92%E5%BA%8F.html"/>
-    <id>http://yoursite.com/java/java/Java列表组合排序.html</id>
+    <link href="http://yangdage.github.io/java/java/Java%E5%88%97%E8%A1%A8%E7%BB%84%E5%90%88%E6%8E%92%E5%BA%8F.html"/>
+    <id>http://yangdage.github.io/java/java/Java列表组合排序.html</id>
     <published>2016-04-09T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.606Z</updated>
     
@@ -273,15 +273,15 @@
     
     </summary>
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="http://yangdage.github.io/categories/java/"/>
     
     
   </entry>
   
   <entry>
     <title>JS里的函数声明/匿名函数/函数表达式/立即执行函数/立即调用表达式</title>
-    <link href="http://yoursite.com/javascript/javascript/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E-%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html"/>
-    <id>http://yoursite.com/javascript/javascript/函数声明-表达式-匿名函数.html</id>
+    <link href="http://yangdage.github.io/javascript/javascript/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E-%E8%A1%A8%E8%BE%BE%E5%BC%8F-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html"/>
+    <id>http://yangdage.github.io/javascript/javascript/函数声明-表达式-匿名函数.html</id>
     <published>2016-04-01T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.607Z</updated>
     
@@ -296,15 +296,15 @@
     
     </summary>
     
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+      <category term="javascript" scheme="http://yangdage.github.io/categories/javascript/"/>
     
     
   </entry>
   
   <entry>
     <title>Vim下XML文件格式化</title>
-    <link href="http://yoursite.com/mark/mark/vim-xml-format.html"/>
-    <id>http://yoursite.com/mark/mark/vim-xml-format.html</id>
+    <link href="http://yangdage.github.io/mark/mark/vim-xml-format.html"/>
+    <id>http://yangdage.github.io/mark/mark/vim-xml-format.html</id>
     <published>2016-03-28T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.611Z</updated>
     
@@ -319,15 +319,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Sublime下的Package Control</title>
-    <link href="http://yoursite.com/mark/mark/sublime-package-control.html"/>
-    <id>http://yoursite.com/mark/mark/sublime-package-control.html</id>
+    <link href="http://yangdage.github.io/mark/mark/sublime-package-control.html"/>
+    <id>http://yangdage.github.io/mark/mark/sublime-package-control.html</id>
     <published>2016-03-22T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.611Z</updated>
     
@@ -344,15 +344,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Javascript闭包(Closure)</title>
-    <link href="http://yoursite.com/javascript/javascript/javascript-closure.html"/>
-    <id>http://yoursite.com/javascript/javascript/javascript-closure.html</id>
+    <link href="http://yangdage.github.io/javascript/javascript/javascript-closure.html"/>
+    <id>http://yangdage.github.io/javascript/javascript/javascript-closure.html</id>
     <published>2016-03-21T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.607Z</updated>
     
@@ -367,15 +367,15 @@
     
     </summary>
     
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+      <category term="javascript" scheme="http://yangdage.github.io/categories/javascript/"/>
     
     
   </entry>
   
   <entry>
     <title>Hexo+Github一步两步搭建博客</title>
-    <link href="http://yoursite.com/mark/mark/hexo-github.html"/>
-    <id>http://yoursite.com/mark/mark/hexo-github.html</id>
+    <link href="http://yangdage.github.io/mark/mark/hexo-github.html"/>
+    <id>http://yangdage.github.io/mark/mark/hexo-github.html</id>
     <published>2016-03-09T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.609Z</updated>
     
@@ -390,15 +390,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>API接口文档设计</title>
-    <link href="http://yoursite.com/mark/mark/api-design.html"/>
-    <id>http://yoursite.com/mark/mark/api-design.html</id>
+    <link href="http://yangdage.github.io/mark/mark/api-design.html"/>
+    <id>http://yangdage.github.io/mark/mark/api-design.html</id>
     <published>2016-03-03T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.608Z</updated>
     
@@ -414,15 +414,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>初识NSQ分布式实时消息架构</title>
-    <link href="http://yoursite.com/mark/mark/nsq-start.html"/>
-    <id>http://yoursite.com/mark/mark/nsq-start.html</id>
+    <link href="http://yangdage.github.io/mark/mark/nsq-start.html"/>
+    <id>http://yangdage.github.io/mark/mark/nsq-start.html</id>
     <published>2015-08-25T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.610Z</updated>
     
@@ -437,15 +437,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>Windows下端口占用程序查询</title>
-    <link href="http://yoursite.com/mark/mark/windows-port-used.html"/>
-    <id>http://yoursite.com/mark/mark/windows-port-used.html</id>
+    <link href="http://yangdage.github.io/mark/mark/windows-port-used.html"/>
+    <id>http://yangdage.github.io/mark/mark/windows-port-used.html</id>
     <published>2015-05-15T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.612Z</updated>
     
@@ -461,15 +461,15 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
   
   <entry>
     <title>sublime关闭分组</title>
-    <link href="http://yoursite.com/mark/mark/sublime%E5%85%B3%E9%97%AD%E5%88%86%E7%BB%84.html"/>
-    <id>http://yoursite.com/mark/mark/sublime关闭分组.html</id>
+    <link href="http://yangdage.github.io/mark/mark/sublime%E5%85%B3%E9%97%AD%E5%88%86%E7%BB%84.html"/>
+    <id>http://yangdage.github.io/mark/mark/sublime关闭分组.html</id>
     <published>2015-04-19T16:00:00.000Z</published>
     <updated>2016-04-20T04:05:51.611Z</updated>
     
@@ -485,7 +485,7 @@
     
     </summary>
     
-      <category term="mark" scheme="http://yoursite.com/categories/mark/"/>
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
     
     
   </entry>
