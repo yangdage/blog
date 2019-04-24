@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+    <meta name="description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new(T) 分配内存并将内存值置零，用于一般类型在栈上分配内存，返回指针*Tmake() 只能用于slice、map、channel三种类型在堆上分配内存和初始化 指针和引用new和make都会返回一个内存地址，new返回的地址存在于栈上，make返回的地址存在于堆上指针即内存地址，go中引用类型slice、m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go语言new和make区别">
 <meta property="og:url" content="http://yangdage.github.io/go/go/go-new-and-make.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+<meta property="og:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new(T) 分配内存并将内存值置零，用于一般类型在栈上分配内存，返回指针*Tmake() 只能用于slice、map、channel三种类型在堆上分配内存和初始化 指针和引用new和make都会返回一个内存地址，new返回的地址存在于栈上，make返回的地址存在于堆上指针即内存地址，go中引用类型slice、m">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-24T07:04:38.089Z">
+<meta property="og:updated_time" content="2019-04-24T07:57:25.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go语言new和make区别">
-<meta name="twitter:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+<meta name="twitter:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new(T) 分配内存并将内存值置零，用于一般类型在栈上分配内存，返回指针*Tmake() 只能用于slice、map、channel三种类型在堆上分配内存和初始化 指针和引用new和make都会返回一个内存地址，new返回的地址存在于栈上，make返回的地址存在于堆上指针即内存地址，go中引用类型slice、m">
     
     
         
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">2.</span> <span class="toc-text">make</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#指针和引用"><span class="toc-number">1.</span> <span class="toc-text">指针和引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">2.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">3.</span> <span class="toc-text">make</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -145,7 +145,8 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数<br>new() 仅仅分配内存，用于一般类型在栈上分配内存<br>make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化</p>
+    <p>golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数<br>new(T) 分配内存并将内存值置零，用于一般类型在栈上分配内存，返回指针<code>*T</code><br>make() 只能用于slice、map、channel三种类型在堆上分配内存和初始化</p>
+<h3 id="指针和引用"><a href="#指针和引用" class="headerlink" title="指针和引用"></a>指针和引用</h3><p><code>new</code>和<code>make</code>都会返回一个内存地址，<code>new</code>返回的地址存在于栈上，<code>make</code>返回的地址存在于堆上<br>指针即内存地址，go中引用类型slice、map、channel都会被当成指针处理</p>
 <h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针</p>
 <p>一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针变量操作，如下</p>
 <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></span><br><span class="line">fmt.Println(foo) <span class="comment">// 0</span></span><br><span class="line">p = &amp;foo</span><br><span class="line">*p = <span class="number">1</span></span><br><span class="line">fmt.Println(foo) <span class="comment">// 1</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
@@ -192,7 +193,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">2.</span> <span class="toc-text">make</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#指针和引用"><span class="toc-number">1.</span> <span class="toc-text">指针和引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">2.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">3.</span> <span class="toc-text">make</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
