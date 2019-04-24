@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go语言new和make区别">
+<meta property="og:url" content="http://yangdage.github.io/go/go/go-new-and-make.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-24T07:04:38.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go语言new和make区别">
+<meta name="twitter:description" content="golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数new() 仅仅分配内存，用于一般类型在栈上分配内存make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化 new使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针 一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>go语言new和make区别</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blog/mark/mark/rest-api-design.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/blog/go/go/golang-qa.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/go-new-and-make.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/go-new-and-make.html&text=go语言new和make区别"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/go-new-and-make.html&is_video=false&description=go语言new和make区别"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=go语言new和make区别&body=Check out this article: http://yangdage.github.io/go/go/go-new-and-make.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/go-new-and-make.html&name=go语言new和make区别&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">2.</span> <span class="toc-text">make</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        go语言new和make区别
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-23T16:00:00.000Z" itemprop="datePublished">2018-04-24</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/go/">go</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>golang 中 new() 和 make() 函数都是内建的用来给变量分配内存的函数<br>new() 仅仅分配内存，用于一般类型在栈上分配内存<br>make() 主要用于slice、map、channel三种类型在堆上分配内存和初始化</p>
+<h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><p>使用new(T)可以向系统发起分配内存操作，返回值为对应类型的一个指针</p>
+<p>一般情况下可以直接将一个变量的地址赋值给另外一个具有相同类型的指针变量，然后就可以直接对这个指针变量操作，如下</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></span><br><span class="line">fmt.Println(foo) <span class="comment">// 0</span></span><br><span class="line">p = &amp;foo</span><br><span class="line">*p = <span class="number">1</span></span><br><span class="line">fmt.Println(foo) <span class="comment">// 1</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>如果直接对一个没有初始化的指针变量直接赋值会报无效指针错误</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></span><br><span class="line">*p = <span class="number">1</span></span><br><span class="line">fmt.Println(*p)</span><br></pre></td></tr></table></figure>
+<p>运行后报错结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">panic: runtime error: invalid memory address or nil pointer dereference</span><br><span class="line">[signal 0xc0000005 code=0x1 addr=0x0 pc=0x4910da]</span><br></pre></td></tr></table></figure>
+<p>这种情况下就需要使用 new() 函数来初始化一下地址</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></span><br><span class="line">fmt.Println(p) <span class="comment">// &lt;nil&gt;</span></span><br><span class="line">p = <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">fmt.Println(p) <span class="comment">// 0xc00000a0c0</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 0</span></span><br><span class="line">*p = <span class="number">1</span></span><br><span class="line">fmt.Println(*p) <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>可以看到<code>p</code>在使用 new() 函数初始化之前值为<code>nil</code>，初始化地址以后，<code>p</code>会被分配一个指针，这个指针指向的内容值为0</p>
+<p>对于不同类型的指针初始化零值有所区别</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Data <span class="keyword">struct</span> &#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age  <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> i *<span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> str *<span class="keyword">string</span></span><br><span class="line"><span class="keyword">var</span> arr *[<span class="number">2</span>]<span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> data *Data</span><br><span class="line"></span><br><span class="line">i = <span class="built_in">new</span>(<span class="keyword">int</span>)</span><br><span class="line">str = <span class="built_in">new</span>(<span class="keyword">string</span>)</span><br><span class="line">arr = <span class="built_in">new</span>([<span class="number">2</span>]<span class="keyword">int</span>)</span><br><span class="line">data = <span class="built_in">new</span>(Data)</span><br><span class="line"></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, *i) <span class="comment">// 0</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, *str) <span class="comment">// ""</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, *arr) <span class="comment">// [2]int&#123;0, 0&#125;</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, *data) <span class="comment">// main.Data&#123;Name:"", Age:0&#125;</span></span><br></pre></td></tr></table></figure>
+<p>以上是对基本类型初始化，golang中还有三种引用类型，分别为slice、map、channel，这三种类型初始化为nil值，不会分配内存地址，对它们操作时会出现不同的错误</p>
+<p><strong>slice</strong></p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> slice *[]<span class="keyword">int</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, slice) <span class="comment">// (*[]int)(nil)</span></span><br><span class="line">slice = <span class="built_in">new</span>([]<span class="keyword">int</span>)</span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, slice) <span class="comment">// &amp;[]int(nil)</span></span><br><span class="line">(*slice)[<span class="number">0</span>] = <span class="number">0</span>            <span class="comment">// panic: runtime error: index out of range</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, slice)</span><br></pre></td></tr></table></figure>
+<p><strong>map</strong></p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mp *<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, mp) <span class="comment">// (*map[string]int)(nil)</span></span><br><span class="line">mp = <span class="built_in">new</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, mp) <span class="comment">// &amp;map[string]int(nil)</span></span><br><span class="line">(*mp)[<span class="string">"value"</span>] = <span class="number">1</span>      <span class="comment">// panic: assignment to entry in nil map</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, mp)</span><br></pre></td></tr></table></figure>
+<p><strong>channel</strong></p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">new</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">fmt.Printf(<span class="string">"%#v"</span>, *ch) <span class="comment">// (chan int)(nil)</span></span><br></pre></td></tr></table></figure>
+<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">slice := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)</span><br><span class="line">mp := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, slice) <span class="comment">// []int&#123;0, 0, 0, 0, 0&#125;</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, mp)    <span class="comment">// map[string]int&#123;&#125;</span></span><br><span class="line">fmt.Printf(<span class="string">"%#v\n"</span>, ch)    <span class="comment">// (chan int)(0xc0000100c0)</span></span><br><span class="line">slice[<span class="number">0</span>] = <span class="number">10</span></span><br><span class="line">mp[<span class="string">"value"</span>] = <span class="number">10</span></span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">	ch &lt;- <span class="number">10</span></span><br><span class="line">&#125;()</span><br><span class="line">fmt.Println(&lt;-ch) <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">close</span>(ch)</span><br></pre></td></tr></table></figure>
+<p>make给引用类型在堆上分配了类型的同时还初始化了对应类型的零值，并返回对应类型的引用</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.</span> <span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#make"><span class="toc-number">2.</span> <span class="toc-text">make</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/go/go/go-new-and-make.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/go/go/go-new-and-make.html&text=go语言new和make区别"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/go/go/go-new-and-make.html&is_video=false&description=go语言new和make区别"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=go语言new和make区别&body=Check out this article: http://yangdage.github.io/go/go/go-new-and-make.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/go/go/go-new-and-make.html&title=go语言new和make区别"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/go/go/go-new-and-make.html&name=go语言new和make区别&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 yangdage
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/blog/lib/gitment/css/gitment.css">
+
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+<script src="/blog/lib/gitment/js/gitment.js"></script>
+    
+    <div id="container"></div>
+    <script>
+    var url=window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/')+1).replace(/\..*/,"");
+    var gitment = new Gitment({
+      id: id,
+      owner: 'yangdage',
+      repo: 'blog',
+      oauth: {
+        client_id: '46017db3b142281b63d3',
+        client_secret: '7ee12180b9df370a13abd2ed941e3d94fc0f3c60',
+      },
+    })
+    gitment.render('container')
+    </script>
+    
+</body>
+</html>
