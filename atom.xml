@@ -186,6 +186,30 @@
   </entry>
   
   <entry>
+    <title>LSM-Tree</title>
+    <link href="http://yangdage.github.io/mark/mark/lsm-tree.html"/>
+    <id>http://yangdage.github.io/mark/mark/lsm-tree.html</id>
+    <published>2016-04-27T16:00:00.000Z</published>
+    <updated>2019-04-28T10:04:44.843Z</updated>
+    
+    <content type="html"><![CDATA[<p>LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。</p><p>下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted String<br>Table file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTables的元素据。</p><p>每当用户插入一条键值对数据到LevelDB中的时候，首先会在日志文件中记录一条相关日志。然后才会将数据插入到内存中一个叫MemTable的有序的数据结构中。<br>MemTable维护着最近的数据更新。当数据大小增长到超过其容量的时候，MemTable将被转化为只读的数据结构<code>Immutable MemTable</code>，同时会生成一个新<br>的MemTable用于接收新的数据。这时，后台会有另外一个线程会将<code>Immutable MemTable</code>中的数据写入磁盘，并重新生成一个排好序的SSTable文件。</p><p>SSTable存储的数据按照数据项的键的排序。磁盘中的SSTable文件被分成几个等级，最年轻的等级Level0，由内存中的<code>Immutable MemTable</code>数据写入磁盘时产生。<br>只有Level0中的数据允许包含重复的键。</p><p>每一层级中都有对SSTable文件大小总量的限制，并且限制的大小随着层级的增加呈现指数级的增长。<br>比如Level1中可存储文件大小总量不超过10M，Level2中可存储的文件大小总量不可超过100M。</p><p>为了保证存储的数据结构最优化，后台的压缩线程将实时监控SSTable文件的大小变化，当该层级中的文件总大小超过限制值时，压缩线程将在该层级中选取一个SSTable文件，<br>并选取下一层级中的所有SSTable文件进行合并处理，重新生成一系列有序的SSTable文件。默认每个SSTable文件的大小为2M，每当新生成的SSTable超过2M时，将重新创建新的SSTable文件。<br>所有参与压缩的旧的文件将会全部被删除。</p><p>Level0到Level1的压缩处理比较特殊，这一层的处理由SSTable文件的数量限制触发，默认时超过4个文件时就会进行压缩操作。</p><p>通过压缩操作，可以确保越新的数据会保存在越小的层级中，越老的数据，将会被压到层级的越底层。</p><p>读取数据的操作比较复杂。当LevelDB收到读取请求时，首先会去MemTable中查找数据，然后再去<code>Immutable MemTable</code>中查找，最后再去SSTable的分层文件中查找，查找顺序从层级0开始。<br>查询到了数据后，LevelDB就会结束查找操作，</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。&lt;/p&gt;
+&lt;p&gt;下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的S
+      
+    
+    </summary>
+    
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Redis缓存失效策略</title>
     <link href="http://yangdage.github.io/cache/cache/redis-cache-invalid.html"/>
     <id>http://yangdage.github.io/cache/cache/redis-cache-invalid.html</id>
@@ -456,30 +480,6 @@
       
       
         &lt;h3 id=&quot;1-NSQ知识普及&quot;&gt;&lt;a href=&quot;#1-NSQ知识普及&quot; class=&quot;headerlink&quot; title=&quot;1.NSQ知识普及&quot;&gt;&lt;/a&gt;1.NSQ知识普及&lt;/h3&gt;&lt;p&gt;NSQ是一个基于Go语言的开源的分布式实时消息平台，他的代码托管在GitHub上。&lt;
-      
-    
-    </summary>
-    
-      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows下端口占用程序查询</title>
-    <link href="http://yangdage.github.io/mark/mark/windows-port-used.html"/>
-    <id>http://yangdage.github.io/mark/mark/windows-port-used.html</id>
-    <published>2015-05-15T16:00:00.000Z</published>
-    <updated>2016-04-20T04:05:51.612Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-打开命令行工具"><a href="#1-打开命令行工具" class="headerlink" title="1.打开命令行工具"></a>1.打开命令行工具</h3><p>输入以下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr 8082</span><br></pre></td></tr></table></figure><p>可以看到类似以下的输出，最后一列为占用端口的程序的进程id</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TCP    0.0.0.0:8082           0.0.0.0:0              LISTENING       2480</span><br><span class="line">TCP    [::]:8082              [::]:0                 LISTENING       2480</span><br></pre></td></tr></table></figure><h3 id="2-根据进程ID查询程序信息"><a href="#2-根据进程ID查询程序信息" class="headerlink" title="2.根据进程ID查询程序信息"></a>2.根据进程ID查询程序信息</h3><p>输入以下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist|findstr 2480</span><br></pre></td></tr></table></figure><p>控制台会输出该进程的程序信息</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.exe                      2480 Console                    3    253,168 K</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1-打开命令行工具&quot;&gt;&lt;a href=&quot;#1-打开命令行工具&quot; class=&quot;headerlink&quot; title=&quot;1.打开命令行工具&quot;&gt;&lt;/a&gt;1.打开命令行工具&lt;/h3&gt;&lt;p&gt;输入以下命令：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;
       
     
     </summary>

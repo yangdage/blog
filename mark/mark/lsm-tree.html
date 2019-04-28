@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSM-Tree">
+<meta property="og:url" content="http://yangdage.github.io/mark/mark/lsm-tree.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-28T10:04:44.843Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LSM-Tree">
+<meta name="twitter:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>LSM-Tree</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/blog/mark/mark/mysql-engines.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/blog/cache/cache/redis-cache-invalid.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/lsm-tree.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/lsm-tree.html&text=LSM-Tree"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/lsm-tree.html&is_video=false&description=LSM-Tree"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LSM-Tree&body=Check out this article: http://yangdage.github.io/mark/mark/lsm-tree.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/lsm-tree.html&name=LSM-Tree&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        LSM-Tree
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2016-04-27T16:00:00.000Z" itemprop="datePublished">2016-04-28</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/mark/">mark</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。</p>
+<p>下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted String<br>Table file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTables的元素据。</p>
+<p>每当用户插入一条键值对数据到LevelDB中的时候，首先会在日志文件中记录一条相关日志。然后才会将数据插入到内存中一个叫MemTable的有序的数据结构中。<br>MemTable维护着最近的数据更新。当数据大小增长到超过其容量的时候，MemTable将被转化为只读的数据结构<code>Immutable MemTable</code>，同时会生成一个新<br>的MemTable用于接收新的数据。这时，后台会有另外一个线程会将<code>Immutable MemTable</code>中的数据写入磁盘，并重新生成一个排好序的SSTable文件。</p>
+<p>SSTable存储的数据按照数据项的键的排序。磁盘中的SSTable文件被分成几个等级，最年轻的等级Level0，由内存中的<code>Immutable MemTable</code>数据写入磁盘时产生。<br>只有Level0中的数据允许包含重复的键。</p>
+<p>每一层级中都有对SSTable文件大小总量的限制，并且限制的大小随着层级的增加呈现指数级的增长。<br>比如Level1中可存储文件大小总量不超过10M，Level2中可存储的文件大小总量不可超过100M。</p>
+<p>为了保证存储的数据结构最优化，后台的压缩线程将实时监控SSTable文件的大小变化，当该层级中的文件总大小超过限制值时，压缩线程将在该层级中选取一个SSTable文件，<br>并选取下一层级中的所有SSTable文件进行合并处理，重新生成一系列有序的SSTable文件。默认每个SSTable文件的大小为2M，每当新生成的SSTable超过2M时，将重新创建新的SSTable文件。<br>所有参与压缩的旧的文件将会全部被删除。</p>
+<p>Level0到Level1的压缩处理比较特殊，这一层的处理由SSTable文件的数量限制触发，默认时超过4个文件时就会进行压缩操作。</p>
+<p>通过压缩操作，可以确保越新的数据会保存在越小的层级中，越老的数据，将会被压到层级的越底层。</p>
+<p>读取数据的操作比较复杂。当LevelDB收到读取请求时，首先会去MemTable中查找数据，然后再去<code>Immutable MemTable</code>中查找，最后再去SSTable的分层文件中查找，查找顺序从层级0开始。<br>查询到了数据后，LevelDB就会结束查找操作，</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yangdage.github.io/mark/mark/lsm-tree.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yangdage.github.io/mark/mark/lsm-tree.html&text=LSM-Tree"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yangdage.github.io/mark/mark/lsm-tree.html&is_video=false&description=LSM-Tree"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LSM-Tree&body=Check out this article: http://yangdage.github.io/mark/mark/lsm-tree.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yangdage.github.io/mark/mark/lsm-tree.html&title=LSM-Tree"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yangdage.github.io/mark/mark/lsm-tree.html&name=LSM-Tree&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 yangdage
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">首页</a></li>
+         
+          <li><a href="/blog/about/">关于</a></li>
+         
+          <li><a href="/blog/archives/">归档</a></li>
+         
+          <li><a href="/blog/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/blog/lib/gitment/css/gitment.css">
+
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7f1ea269d2e25e1cda2420b588322207";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+<script src="/blog/lib/gitment/js/gitment.js"></script>
+    
+    <div id="container"></div>
+    <script>
+    var url=window.location.pathname;
+    var id = url.substring(url.lastIndexOf('/')+1).replace(/\..*/,"");
+    var gitment = new Gitment({
+      id: id,
+      owner: 'yangdage',
+      repo: 'blog',
+      oauth: {
+        client_id: '46017db3b142281b63d3',
+        client_secret: '7ee12180b9df370a13abd2ed941e3d94fc0f3c60',
+      },
+    })
+    gitment.render('container')
+    </script>
+    
+</body>
+</html>
