@@ -6,17 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+    <meta name="description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，和LSM-Tree算法实现，受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTa">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LSM-Tree">
 <meta property="og:url" content="http://yangdage.github.io/mark/mark/lsm-tree.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+<meta property="og:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，和LSM-Tree算法实现，受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-28T10:04:44.843Z">
+<meta property="og:image" content="http://yangdage.github.io/blog/images/lsm-tree.png">
+<meta property="og:updated_time" content="2019-04-29T07:23:56.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LSM-Tree">
-<meta name="twitter:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SST">
+<meta name="twitter:description" content="LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，和LSM-Tree算法实现，受到工业界和学术界也来越多的关注和支持。 下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted StringTable file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTa">
+<meta name="twitter:image" content="http://yangdage.github.io/blog/images/lsm-tree.png">
     
     
         
@@ -145,8 +147,9 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，基于LSM-Tree算法实现，也受到工业界和学术界也来越多的关注和支持。</p>
+    <p>LevelDB是一个开源的键值存储数据库，基于Google的BigTable思想，和LSM-Tree算法实现，受到工业界和学术界也来越多的关注和支持。</p>
 <p>下图展示的是Level-DB的基础架构，包含2个内存中的MemTable数据结构部分，和一系列磁盘中的SSTables（ Sorted String<br>Table file）数据结构部分，以及一些其他附属文件，如Manifest文件，用于存储SSTTables的元素据。</p>
+<p><img src="/blog/images/lsm-tree.png" alt="level-tree"></p>
 <p>每当用户插入一条键值对数据到LevelDB中的时候，首先会在日志文件中记录一条相关日志。然后才会将数据插入到内存中一个叫MemTable的有序的数据结构中。<br>MemTable维护着最近的数据更新。当数据大小增长到超过其容量的时候，MemTable将被转化为只读的数据结构<code>Immutable MemTable</code>，同时会生成一个新<br>的MemTable用于接收新的数据。这时，后台会有另外一个线程会将<code>Immutable MemTable</code>中的数据写入磁盘，并重新生成一个排好序的SSTable文件。</p>
 <p>SSTable存储的数据按照数据项的键的排序。磁盘中的SSTable文件被分成几个等级，最年轻的等级Level0，由内存中的<code>Immutable MemTable</code>数据写入磁盘时产生。<br>只有Level0中的数据允许包含重复的键。</p>
 <p>每一层级中都有对SSTable文件大小总量的限制，并且限制的大小随着层级的增加呈现指数级的增长。<br>比如Level1中可存储文件大小总量不超过10M，Level2中可存储的文件大小总量不可超过100M。</p>
