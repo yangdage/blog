@@ -210,6 +210,33 @@
   </entry>
   
   <entry>
+    <title>数据结构和算法学习方式</title>
+    <link href="http://yangdage.github.io/mark/mark/datastructure-algorithm.html"/>
+    <id>http://yangdage.github.io/mark/mark/datastructure-algorithm.html</id>
+    <published>2016-05-05T16:00:00.000Z</published>
+    <updated>2019-05-08T02:19:18.706Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>数据结构+算法=程序</p></blockquote><p><strong>数据结构</strong>解决如何更有效的储存数据<br><strong>算法</strong>解决问题的方法和策略</p><p><strong>数据结构分类</strong></p><ul><li>线性结构</li><li>树</li><li>图</li></ul><p><strong>数据结构难点</strong></p><ul><li>描述太抽象</li><li>不知哪里可以用到</li><li>体会不到其中乐趣</li><li>语言基础不好</li></ul><p><strong>数据结构基本操作</strong></p><ul><li>取值</li><li>查找</li><li>插入</li><li>删除</li></ul><p><strong>学习路径</strong></p><ul><li>青铜：画图、理解、画图</li><li>白银：做题、反思、做题</li><li>黄金：刷题、总结、刷题</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;数据结构+算法=程序&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;数据结构&lt;/strong&gt;解决如何更有效的储存数据&lt;br&gt;&lt;strong&gt;算法&lt;/strong&gt;解决问题的方法和策略&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据结构分类&lt;/st
+      
+    
+    </summary>
+    
+      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>LSM-Tree</title>
     <link href="http://yangdage.github.io/mark/mark/lsm-tree.html"/>
     <id>http://yangdage.github.io/mark/mark/lsm-tree.html</id>
@@ -457,30 +484,6 @@
       
       
         &lt;h3 id=&quot;NodeJS、NPM安装&quot;&gt;&lt;a href=&quot;#NodeJS、NPM安装&quot; class=&quot;headerlink&quot; title=&quot;NodeJS、NPM安装&quot;&gt;&lt;/a&gt;NodeJS、NPM安装&lt;/h3&gt;&lt;p&gt;由于Hexo是基于NodeJS的静态博客框架，首先我们必须要
-      
-    
-    </summary>
-    
-      <category term="mark" scheme="http://yangdage.github.io/categories/mark/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>API接口文档设计</title>
-    <link href="http://yangdage.github.io/mark/mark/api-design.html"/>
-    <id>http://yangdage.github.io/mark/mark/api-design.html</id>
-    <published>2016-03-03T16:00:00.000Z</published>
-    <updated>2016-04-20T04:05:51.608Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="功能说明"><a href="#功能说明" class="headerlink" title="功能说明"></a>功能说明</h3><p>简单说明接口实现的相关功能，使用场景等等。</p><h3 id="调用说明"><a href="#调用说明" class="headerlink" title="调用说明"></a>调用说明</h3><h4 id="请求地址"><a href="#请求地址" class="headerlink" title="请求地址"></a>请求地址</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.xxx.com/api/demo</span><br></pre></td></tr></table></figure><h4 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET/POST</span><br></pre></td></tr></table></figure><h4 id="请求头信息"><a href="#请求头信息" class="headerlink" title="请求头信息"></a>请求头信息</h4><p>一些需要设置请求头的需要加上特殊说明。<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type：application/json</span><br></pre></td></tr></table></figure></p><h4 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h4><p>GET请求方式的列表方式列出请求所需参数，包含说明是否为必传字段。</p><table><thead><tr><th>参数</th><th>类型</th><th>说明</th><th>必传</th></tr></thead><tbody><tr><td>userId</td><td>int</td><td>用户ID</td><td>Y</td></tr><tr><td>timestamp</td><td>long</td><td>时间戳(毫秒值)</td><td>N</td></tr></tbody></table><p>POST方式需要传json参数的列出json样例格式</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"userId"</span>:<span class="number">123</span>,<span class="comment">//用户ID，必传</span></span><br><span class="line"><span class="string">"timestamp"</span>:<span class="number">3887717000</span><span class="comment">//时间戳(毫秒值)，非必传</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h3><p>一般接口返回JSON或XML格式的数据，需列出相关返回格式样例数据。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="string">"status"</span>: <span class="number">0</span>,</span><br><span class="line"><span class="string">"data"</span>:&#123;</span><br><span class="line"><span class="string">"userId"</span>:<span class="number">123</span>,<span class="comment">//用户ID</span></span><br><span class="line"><span class="string">"userName"</span>:<span class="string">"张三"</span><span class="comment">//用户名</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"msg"</span>: <span class="string">"success"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">status</span>&gt;</span>0<span class="tag">&lt;/<span class="name">status</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">msg</span>&gt;</span>success<span class="tag">&lt;/<span class="name">msg</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userId</span> <span class="attr">value</span>=<span class="string">"123"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">userName</span> <span class="attr">value</span>=<span class="string">"张三"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Result</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="返回状态"><a href="#返回状态" class="headerlink" title="返回状态"></a>返回状态</h4><p>必要时需要列出所有返回状态对应的数据格式。</p><table><thead><tr><th>状态值</th><th>状态说明</th></tr></thead><tbody><tr><td>0</td><td>成功</td></tr><tr><td>500</td><td>系统异常</td></tr><tr><td>404</td><td>请求不存在</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;功能说明&quot;&gt;&lt;a href=&quot;#功能说明&quot; class=&quot;headerlink&quot; title=&quot;功能说明&quot;&gt;&lt;/a&gt;功能说明&lt;/h3&gt;&lt;p&gt;简单说明接口实现的相关功能，使用场景等等。&lt;/p&gt;
-&lt;h3 id=&quot;调用说明&quot;&gt;&lt;a href=&quot;#调用说明&quot; class=
       
     
     </summary>
